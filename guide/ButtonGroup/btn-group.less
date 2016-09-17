@@ -1,0 +1,36 @@
+.btn-group {
+    display: flex;
+    color: #858e99;
+    background-color: #fff;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .25);
+    overflow: hidden;
+    font-size: 0.12rem;
+}
+
+.btn-group > * {
+    position: relative;
+    display: flex;
+    flex: 1;
+    background-color: transparent;
+    height: 50px;
+    border: none;
+    justify-content: center;
+    align-items: center;
+
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 1px;
+        height: 24px;
+        margin-top: -12px;
+        margin-right: -.5px;
+        background-color: #cacaca;
+    }
+
+    &:last-child:after {
+        display: none;
+    }
+}

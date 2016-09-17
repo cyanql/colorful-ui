@@ -1,0 +1,131 @@
+<template lang="html">
+	<i class="colorful-icon" :class="oClass" :style="oStyle"></i>
+</template>
+
+<script>
+export default {
+	name: 'colorful-icon',
+	props: {
+		type: {
+			type: String,
+			required: true
+		},
+		color: {
+			type: String,
+			default: 'default'
+		},
+		style: {
+			type: Object,
+			default: () => ({})
+		},
+		class: {
+			type: String,
+			default: ''
+		}
+	},
+	computed: {
+		oClass() {
+			const type = this.type
+			const color = this.color
+			let className = this.class
+			if (!(color.indexOf('#') > -1)) {
+				className = [className, 'colorful-icon-' + color, 'colorful-icon-' + type].join(' ')
+			}
+			return className
+		},
+		oStyle() {
+			const color = this.color
+			const style = this.style
+			if (color.indexOf('#') > -1) {
+				style.color = color
+			}
+			return style
+		}
+	}
+}
+</script>
+
+<style lang="less">
+
+@font-face {
+    font-family: 'colorful-font';
+    src: url('./fonts/iconfont.eot');
+    src: url('./fonts/iconfont.eot?#iefix') format('embedded-opentype'),
+         url('./fonts/iconfont.woff') format('woff'),
+         url('./fonts/iconfont.ttf') format('truetype'),
+         url('./fonts/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.colorful-icon {
+	font-family: 'colorful-font';
+	display: inline-block;
+    font-style: normal;
+    vertical-align: baseline;
+    text-align: center;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    cursor: pointer;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.colorful-icon:before { display : block; }
+
+.icon-add:before { content: "\e601"; }
+.icon-increase:before { content: "\e620"; }
+.icon-inventory:before { content: "\e621"; }
+.icon-search-voucher:before { content: "\e602"; }
+.icon-import-voucher:before { content: "\e603"; }
+.icon-money:before { content: "\e604"; }
+.icon-pack-up:before { content: "\e617"; }
+.icon-cancel:before { content: "\e605"; }
+.icon-triangle:before { content: "\e606"; }
+.icon-save:before { content: "\e607"; }
+.icon-share:before { content: "\e608"; }
+.icon-delete:before { content: "\e609"; }
+.icon-selecte:before { content: "\e61e"; }
+.icon-report:before { content: "\e60b"; }
+.icon-deposit:before { content: "\e622"; }
+.icon-edit:before { content: "\e60c"; }
+.icon-balance:before { content: "\e600"; }
+.icon-anti-settlement:before { content: "\e623"; }
+.icon-new:before { content: "\e60d"; }
+.icon-home:before { content: "\e60e"; }
+.icon-business-tax:before { content: "\e630"; }
+.icon-calculator:before { content: "\e60f"; }
+.icon-preview:before { content: "\e610"; }
+.icon-undetermind:before { content: "\e624"; }
+.icon-modification:before { content: "\e631"; }
+.icon-delete-plus:before { content: "\e615"; }
+.icon-confirm:before { content: "\e611"; }
+.icon-credit:before { content: "\e632"; }
+.icon-arrow-right:before { content: "\e612"; }
+.icon-income:before { content: "\e627"; }
+.icon-calendar:before { content: "\e613"; }
+.icon-unfold:before { content: "\e61f"; }
+.icon-initial-value:before { content: "\e61c"; }
+.icon-choose:before { content: "\e614"; }
+.icon-cash:before { content: "\e633"; }
+.icon-settle:before { content: "\e616"; }
+.icon-close:before { content: "\e61d"; }
+.icon-tag:before { content: "\e62d"; }
+.icon-other-expenses:before { content: "\e634"; }
+.icon-close-item:before { content: "\e62b"; }
+.icon-expenses:before { content: "\e628"; }
+.icon-income-from-investment:before { content: "\e635"; }
+.icon-add-plus-fill:before { content: "\e60a"; }
+.icon-financial-expenses:before { content: "\e636"; }
+.icon-add-plus:before { content: "\e618"; }
+.icon-the-invosing:before { content: "\e62f"; }
+.icon-profit:before { content: "\e619"; }
+.icon-other-income:before { content: "\e637"; }
+.icon-management-feet:before { content: "\e638"; }
+.icon-purse:before { content: "\e61a"; }
+.icon-settlement:before { content: "\e629"; }
+.icon-trial-balance:before { content: "\e625"; }
+.icon-selling-expenses:before { content: "\e639"; }
+.icon-label:before { content: "\e62e"; }
+.icon-arrow-down:before { content: "\e61b"; }
+</style>

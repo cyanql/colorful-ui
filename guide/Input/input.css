@@ -1,0 +1,31 @@
+.text {
+    box-sizing: border-box;
+    width: 1.5rem;
+    text-indent: .15rem;
+    padding: .05rem 0;
+    color: #666;
+    border: .01rem #d9d9d9 solid;
+    border-radius: .06rem;
+    outline: none;
+}
+.text:focus {
+    transition: border linear .2s,box-shadow linear .2s;
+    border-color: rgba(45,183,245,.8);
+    box-shadow: 0 0 .05rem  rgba(45,183,245,.4);
+}
+.text::-webkit-input-placeholder { font-size: 12px;line-height: 21px;}
+.text::-moz-placeholder { font-size: 12px;line-height: 21px;} /* firefox 19+ */
+.text:-ms-input-placeholder { font-size: 12px;line-height: 21px;} /* Internet Explorer 10+ */
+.text:-moz-placeholder { font-size: 12px;line-height: 21px;} /* firefox 14-18 */
+.textarea {
+    composes: text;
+    font-size: .13rem;
+    padding: .02rem 4%;
+    height: .3rem;
+    text-indent: 0;
+}
+.text:disabled,
+.textarea:disabled {
+	-webkit-text-fill-color: #bbb;
+	-webkit-opacity: 1;
+}

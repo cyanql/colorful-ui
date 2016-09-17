@@ -1,0 +1,96 @@
+.messageContainer{
+	position: fixed;
+	z-index: 1000;
+	display: block;
+	top: 16px;
+	width:100%;
+	opacity: 1;
+}
+
+.messageContent{
+	position: absolute;
+	display: block;
+	width:auto;
+	left: 50%;
+}
+.message{
+	position: relative;
+  right: 50%;
+	box-shadow:0 0 4px rgba(0, 0, 0, 0.17);
+	border:1px solid  #999;
+	border-radius: 5px;
+	line-height: 1.5;
+	padding: 8px 16px;
+	background-color: #fff;
+}
+.icon{
+	margin-right: 8px;
+    font-size: 14px;
+    top: 1px;
+    position: relative;
+}
+
+.info-icon{
+	composes : icon;
+	composes : info-color from '../common/css/color.css';
+}
+
+.warn-icon{
+	composes : icon;
+	composes : warn-color from '../common/css/color.css';
+}
+
+.error-icon{
+	composes : icon;
+	composes : error-color from '../common/css/color.css';
+}
+
+.success-icon{
+	composes : icon;
+	composes : success-color from '../common/css/color.css';
+}
+.hide{
+	display: none;
+}
+.slideAppear {
+  animation-duration: .2s;
+  animation-fill-mode: both;
+  transform-origin: 0 0;
+  opacity: 0;
+  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+  animation-name: slideDownIn;
+}
+.slideLeave {
+  animation-duration: .2s;
+  animation-fill-mode: both;
+  transform-origin: 0 0;
+  opacity: 1;
+  animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+  animation-name: slideDownOut;
+}
+@keyframes slideDownIn {
+  0% {
+    opacity: 0;
+	transform-origin: 0% 100%;
+	transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 0% 100%;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes slideDownOut {
+  0% {
+    opacity: 1;
+    transform-origin: 0% 100%;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+     z-index: -1000;
+    transform-origin: 0% 100%;
+    transform: scaleY(0);
+  }
+}
