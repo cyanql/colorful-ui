@@ -6,6 +6,7 @@ const autoprefixer = require('autoprefixer')
 
 const SRC_PATH = path.resolve(__dirname, 'src')
 const DIST_PATH = path.resolve(__dirname, 'dist')
+const TEST_PATH = path.resolve(__dirname, 'test')
 
 const config = {
 	debug: true,
@@ -29,39 +30,42 @@ const config = {
 		alias: {
 			mobile: path.resolve(SRC_PATH, 'mobile'),
 			desktop: path.resolve(SRC_PATH, 'desktop'),
-			test: path.resolve(__dirname, 'test')
+			test: TEST_PATH
 		},
 		extensions: ['', '.js', '.vue']
 	},
 	module: {
 		loaders: [{
 			test: /\.js$/,
-			include: SRC_PATH,
+			exclude: /\/node_modules\//,
 			loader: 'babel'
 		}, {
 			test: /\.vue$/,
-			include: SRC_PATH,
+			exclude: /\/node_modules\//,
 			loader: 'vue'
 		}, {
-			test: /\.css/,
-			exclude: SRC_PATH,
+			test: /\.css$/,
 			loader: ExtractTextPlugin.extract('style', 'css!postcss')
 		}, {
 			test: /\.less$/,
-			include: SRC_PATH,
+			exclude: /\/node_modules\//,
 			loader: ExtractTextPlugin.extract('style', 'css!postcss!less')
 		}, {
 			test: /\.(jpg|png)$/,
-			exclude: /node_modules/,
+			exclude: /\/node_modules\//,
 			loader: 'url?name=images/[name].[ext]&limit=51200'
 		}, {
 			test: /\.(eot|svg|ttf|woff)$/,
-			exclude: /node_modules/,
+			exclude: /\/node_modules\//,
 			loader: 'url?name=fonts/[name].[ext]&limit=1000'
 		}]
 	},
 	postcss: [autoprefixer({ browsers: ['> 1%', 'last 2 versions'] })],
-	plugins: []
+	plugins: [
+		new ExtractTextPlugin('css/[name].css', {
+			allChunks: false
+		})
+	]
 }
 
 const NODE_ENV = process.env.NODE_ENV
@@ -90,10 +94,7 @@ if (NODE_ENV === 'test') {
 			}))
 		}
 	}
-	config.plugins.unshift(new webpack.optimize.CommonsChunkPlugin('lib', 'js/lib.js'))
-	config.plugins.unshift(new ExtractTextPlugin('css/[name].css', {
-		allChunks: false
-	}))
+	//config.plugins.unshift(new webpack.optimize.CommonsChunkPlugin('lib', 'js/lib.js'))
 }
 
 if (NODE_ENV === 'development') {

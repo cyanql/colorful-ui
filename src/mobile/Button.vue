@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style lang="less">
-@import "~mobile/variable";
+@import "~mobile/variables";
 
 
 .colorful-button {

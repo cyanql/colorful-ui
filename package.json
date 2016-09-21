@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=mobile webpack-dev-server --host 0.0.0.0 --port 3000",
-    "test": "NODE_ENV=test karma start"
+    "start": "NODE_ENV=test karma start --auto-watch",
+    "prod": "rm -rf ./dist && NODE_ENV=mobile webpack --progress --profile --color",
+    "test": "NODE_ENV=test karma start --single-run"
   },
   "author": "keyves",
   "license": "ISC",
@@ -37,6 +38,7 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "mocha": "^3.0.2",
+    "postcss-loader": "^0.13.0",
     "sinon": "^1.17.5",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",

@@ -1,20 +1,9 @@
-const path = require('path')
 const webpackConfig = require('./webpack.config')
-
-// const DEVICE_TYPE = process.env.NODE_DEVICE
-//
-// if (DEVICE_TYPE !== 'mobile' && DEVICE_TYPE !== 'desktop') {
-// 	throw new Error('you should set device type, such as NODE_DEVICE=mobile || desktop')
-// }
-
-const SRC_PATH = path.resolve(__dirname, 'src')
 
 module.exports = function(config) {
 	config.set({
 		basePath: '',
 		logLevel: config.LOG_INFO,
-		singleRun: false,
-		autoWatch: true,
 		port: 9999,
 		colors: true,
 		frameworks: ['mocha', 'chai'],

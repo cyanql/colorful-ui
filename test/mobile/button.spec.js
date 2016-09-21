@@ -1,54 +1,50 @@
 import { registerComponent, hexToRgb } from 'test/utils'
-import Button from 'mobile/Button'
+import ButtonTest from 'test/components/ButtonTest'
+
 
 
 describe('Button', () => {
-	const vm = registerComponent(Button)
-	const btn = vm.$('.colorful-button')
+	const vm = registerComponent(ButtonTest)
 
 	it('type', async () => {
-		vm.type = 'button'
-		await vm.nextTick()
+		const btn = vm.$('.type')
 		expect(btn.getAttribute('type')).to.be.equal('button')
 	})
 
 	it('color type', async () => {
+		let btn
 		for (const key of ['primary', 'info', 'success', 'warning', 'error']) {
 			vm.color = key
 			await vm.nextTick()
+			btn = vm.$('.color-type')
 			expect(btn.getAttribute('class')).to.contain('colorful-button-' + key)
 		}
 	})
 
 	it('color hex', async () => {
-		const color = '#22bb66'
-		vm.color = color
-		await vm.nextTick()
-		expect(btn.style.color).to.equal(hexToRgb(color))
+		const btn = vm.$('.color-hex')
+		expect(btn.style.color).to.equal(hexToRgb('#336699'))
 	})
 
 	it('icon exist && type', async () => {
-		const iconType = 'what'
-		vm.icon = iconType
-		await vm.nextTick()
-		const icon = vm.$('.colorful-icon')
+		const btn = vm.$('.icon-button')
+		const icon = btn.querySelector('.colorful-icon')
 		expect(icon).to.be.exist
-		icon && expect(icon.getAttribute('class')).to.contain('icon-' + iconType)
+		icon && expect(icon.getAttribute('class')).to.contain('colorful-icon-circle')
 	})
 
 	it('style', async () => {
-		const style = {
-			opacity: '1'
-		}
-		vm.style = style
-		await vm.nextTick()
-		expect(btn.style.opacity).to.equal(style.opacity)
+		const btn = vm.$('.style')
+		expect(btn.style.backgroundColor).to.equal(hexToRgb('#336699'))
 	})
 
 	it('class', async () => {
-		const className = 'what'
-		vm.class = className
-		await vm.nextTick()
-		expect(btn.getAttribute('class')).to.contain(className)
+		const btn = vm.$('.class')
+		expect(btn).to.be.exist
+	})
+
+	it('slot', async () => {
+		const btn = vm.$('.class')
+		expect(btn.textContent.trim()).to.equal('测试')
 	})
 })

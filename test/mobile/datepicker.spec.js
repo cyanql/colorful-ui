@@ -1,12 +1,12 @@
-import { registerComponent, hexToRgb } from 'test/utils'
-import DatePicker from 'test/DatePickerTest'
+import { registerComponent } from 'test/utils'
+import DatePicker from 'test/components/DatePickerTest'
 
 
 describe('Button', () => {
 	const vm = registerComponent(DatePicker)
 
-	it('value', () => {
+	it.only('value', () => {
 		const datepicker = vm.$('.value')
-		
+
 	})
 })
