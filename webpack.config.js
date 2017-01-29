@@ -18,51 +18,51 @@ const config = {
 		publicPath: '/dist' //模板、样式、脚本、图片等资源对应server上的路径
 	},
 	entry: {
-		index: [path.resolve(SRC_PATH, 'mobile/index')]
+		index: [TEST_PATH]//[path.resolve(SRC_PATH, 'index')]
 	},
 	output: {
 		path: DIST_PATH, //输出目录的配置，模板、样式、脚本、图片等资源的路径配置都相对于它
 		publicPath: './', //模板、样式、脚本、图片等资源对应的的路径
 		filename: 'js/[name].js' //每个页面对应的主js的生成配置
-			// chunkFilename: 'js/[id].chunk.js' //chunk生成的配置
 	},
 	resolve: {
 		alias: {
-			mobile: path.resolve(SRC_PATH, 'mobile'),
-			desktop: path.resolve(SRC_PATH, 'desktop'),
-			test: TEST_PATH
+			src: SRC_PATH,
+			test: TEST_PATH,
+			vue: 'vue/dist/vue.js'
 		},
 		extensions: ['', '.js', '.vue']
+	},
+	vue : {
+		loaders: {
+			scss: ExtractTextPlugin.extract('style', 'css!sass')
+		}
 	},
 	module: {
 		loaders: [{
 			test: /\.js$/,
-			exclude: /\/node_modules\//,
+			exclude: /node_modules/,
 			loader: 'babel'
 		}, {
 			test: /\.vue$/,
-			exclude: /\/node_modules\//,
 			loader: 'vue'
 		}, {
-			test: /\.css$/,
-			loader: ExtractTextPlugin.extract('style', 'css!postcss')
+			test: /\.s?css$/,
+			loader: ExtractTextPlugin.extract('style', 'css!sass')
 		}, {
-			test: /\.less$/,
-			exclude: /\/node_modules\//,
-			loader: ExtractTextPlugin.extract('style', 'css!postcss!less')
+			test: /\.json$/,
+			loader: 'json'
 		}, {
 			test: /\.(jpg|png)$/,
-			exclude: /\/node_modules\//,
 			loader: 'url?name=images/[name].[ext]&limit=51200'
 		}, {
-			test: /\.(eot|svg|ttf|woff)$/,
-			exclude: /\/node_modules\//,
+			test: /\.(eot|svg|ttf|woff(2)?)(\?[a-z0-9=\.]+)?$/,
 			loader: 'url?name=fonts/[name].[ext]&limit=1000'
 		}]
 	},
 	postcss: [autoprefixer({ browsers: ['> 1%', 'last 2 versions'] })],
 	plugins: [
-		new ExtractTextPlugin('css/[name].css', {
+		new ExtractTextPlugin('[name].css', {
 			allChunks: false
 		})
 	]
@@ -78,12 +78,12 @@ if (NODE_ENV === 'test') {
 	}]
 } else {
 	//多文件入口，html模版生成
-	for (const name in config.entry) {
+	for (const name of Object.keys(config.entry)) {
 		if (name !== 'lib') {
 			config.plugins.push(new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
 				// favicon: './src/img/favicon.ico', //favicon路径，通过webpack引入同时可以生成hash值
 				title: name,
-				chunks: [name], //需要引入的chunk，不配置就会引入所有页面的资源
+				chunks: [name, 'lib'], //需要引入的chunk，不配置就会引入所有页面的资源
 				filename: './' + name + '.html', //生成的html存放路径，相对于path
 				inject: 'body', //js插入的位置，true/'head'/'body'/false
 				hash: true, //为静态资源生成hash值
@@ -94,7 +94,7 @@ if (NODE_ENV === 'test') {
 			}))
 		}
 	}
-	//config.plugins.unshift(new webpack.optimize.CommonsChunkPlugin('lib', 'js/lib.js'))
+	config.plugins.unshift(new webpack.optimize.CommonsChunkPlugin('lib', 'js/lib.js'))
 }
 
 if (NODE_ENV === 'development') {
