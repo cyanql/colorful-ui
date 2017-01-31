@@ -14,7 +14,6 @@ export default {
 
 .c-menu {
 	width: 200px;
-	overflow: hidden;
 }
 
 </style>

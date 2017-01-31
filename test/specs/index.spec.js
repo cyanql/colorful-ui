@@ -4,5 +4,8 @@ import DropdownTest from 'test/components/dropdown.test'
 import MenuTest from 'test/components/menu.test'
 import PopoverTest from 'test/components/popover.test'
 
+
 // registerComponent(ButtonTest)
-registerComponent(PopoverTest)
+// registerComponent(DropdownTest)
+registerComponent(MenuTest)
+// registerComponent(PopoverTest)

@@ -39,7 +39,7 @@ export default {
 		return {
 			drop: null,
 			timer: null,
-			opened: false
+			opened: this.visible
 		}
 	},
 	methods: {

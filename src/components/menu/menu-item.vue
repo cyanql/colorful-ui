@@ -53,7 +53,7 @@ export default {
 	}
 
 	&.selected {
-		border-right: 3px solid #108ee9;
+		border-right: 2px solid #108ee9;
 		background: #f6f6f6;
 	}
 }
