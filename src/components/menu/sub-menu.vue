@@ -16,7 +16,7 @@
 				<span class="c-sub-menu-title-text">{{title}}</span>
 				<c-icon class="expand-more" :class="openClass" icon="expand_more"></c-icon>
 			</c-menu-item>
-			<transition>
+			<transition name="scale">
 				<div class="c-sub-menu-content" v-show="opened" @mouseover="onOpen" @mouseout="onClose">
 					<slot></slot>
 				</div>
@@ -113,6 +113,7 @@ export default {
 			min-width: 200px;
 			text-indent: 20px;
 			background: white;
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 		}
 
 		& > .c-sub-menu-expand {
@@ -143,6 +144,20 @@ export default {
 		& > .c-sub-menu-content {
 			text-indent: 20px;
 			background: white;
+		}
+	}
+
+	.scale {
+		&-enter-active,
+		&-leave-active {
+			transform-origin: 0 0;
+			transition: transform .2s ease, opacity .2s ease;
+		}
+
+		&-enter,
+		&-leave-active {
+			transform: scale(0);
+			opacity: 0;
 		}
 	}
 }

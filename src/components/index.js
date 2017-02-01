@@ -1,5 +1,6 @@
 import Button from './button'
 import Icon from './icon'
+import Checkbox from './checkbox'
 import Popover from './popover'
 import Notification from './notification'
 import Menu from './menu'
@@ -19,5 +20,6 @@ export {
 	Notification,
 	Notice,
 	Ripple,
-	Dropdown
+	Dropdown,
+	Checkbox
 }

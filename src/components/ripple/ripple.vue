@@ -35,7 +35,7 @@ export default {
 			if (!parentEl) {
 				return
 			}
-			const TIMEOUT = 400
+			const TIMEOUT = 450
 			let opt = {}
 
 			parentEl.addEventListener('mousedown', e => {
