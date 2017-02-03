@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Colorful from 'mobile'
+import Colorful from 'src'
 
 Vue.use(Colorful)
 

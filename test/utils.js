@@ -1,6 +1,10 @@
 import Vue from 'vue'
 
-export function registerComponent(Component) {
+const div = document.createElement('div')
+div.id = 'root'
+document.body.appendChild(div)
+
+export function registerComponent(Component, propsData) {
     const New = Vue.extend(Component)
     New.prototype.$ = function(selector) {
         return this.$el.querySelector(selector)
@@ -11,8 +15,8 @@ export function registerComponent(Component) {
         })
     }
     return new New({
-        el: 'body',
-        replace: false
+        el: '#root',
+		propsData
     })
 }
 

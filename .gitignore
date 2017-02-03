@@ -4,3 +4,5 @@ coverage
 
 # file
 *.log
+guide
+dist
