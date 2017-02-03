@@ -2,7 +2,7 @@
 	<transition name="modal" @enter="enter">
 		<div class="c-modal" v-show="visible">
 			<div class="c-modal-mask"></div>
-			<div class="c-modal-container" :style="{transformOrigin}">
+			<div class="c-modal-container" ref="cModalContainer">
 				<div class="c-modal-header">
 					<slot name="header">
 						<span class="c-modal-title">{{title}}</span>
@@ -24,37 +24,29 @@ export default {
 	name: 'c-modal',
 	props: {
 		visible: Boolean,
-		title: String,
-		closeButtonDisabled: Boolean,
-		maskButtonDisabled: Boolean
+		title: String
 	},
 	data() {
 		return {
-			position: null,
-			transformOrigin: 'center'
+			triggerEl: null
 		}
 	},
 	methods: {
 		enter(el) {
-			let rect, x, y, left, top, position
-			position = this.position
-			// rect中的left不包含translate的偏移量，即translateX(-50%)
-			// 所以实际left = 目前所处于位置的x + 50%的width
-			rect = el.querySelector('.c-modal-container').getBoundingClientRect()
-			console.log(rect)
-			left = rect.left - 520 / 2
-			top = rect.top - 176 / 2
-			x = position.x - left + 'px'
-			y = position.y - top + 'px'
-			this.transformOrigin = [x, y].join(' ')
+			let containerEl, triggerRect, x, y
+
+			containerEl = this.$refs.cModalContainer
+			triggerRect = this.triggerEl.getBoundingClientRect()
+
+			x = triggerRect.left - containerEl.offsetLeft + 'px'
+			y = triggerRect.top - containerEl.offsetTop + 'px'
+
+			containerEl.style.transformOrigin = [x, y].join(' ')
 		}
 	},
 	mounted() {
 		document.addEventListener('mousedown', e => {
-			this.position = {
-				x: e.clientX,
-				y: e.clientY
-			}
+			this.triggerEl = e.target
 		})
 	}
 }
@@ -64,30 +56,46 @@ export default {
 @import "~src/styles/variables";
 
 .c-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	z-index: 1050;
+
+	&:before {
+		content: "";
+		display: inline-block;
+		width: 0;
+		height: 100%;
+		vertical-align: middle;
+	}
+
 	&-mask {
 		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
-		z-index: 1050px;
 		background-color: rgba(0,0,0,.5);
+		z-index: -1;
 	}
 
 	&-container {
-		position: fixed;
+		display: inline-block;
+		vertical-align: middle;
+		text-align: left;
 		width: 520px;
-		top: 50%;
-		left: 50%;
 		padding: 0 20px;
 		border-radius: 3px;
 		background-color: #fff;
-		transform: translateX(-50%) translateY(-50%) scale(1);
 		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+
 	}
 
 
-	&-title {
+	&-header {
 		display: inline-block;
 	    padding: 20px 0;
 	    font-size: 22px;
@@ -103,7 +111,6 @@ export default {
 		padding-bottom: 25px;
 	    box-sizing: border-box;
 	    overflow-y: hidden;
-	    max-height: 639px;
 	}
 
 	&-footer {
@@ -127,9 +134,10 @@ export default {
 		opacity: 0;
 
 		.c-modal-container {
-			// opacity: 1;
-			transform: translateX(-50%) translateY(-50%) scale(0);
+			transform: scale(.2);
 		}
 	}
 }
 </style>
+e.clientX - container.clientLeft
+e.clientY - container.clientTop

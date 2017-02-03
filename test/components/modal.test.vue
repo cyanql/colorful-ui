@@ -1,12 +1,24 @@
 <template>
 	<ul>
 		<li>
-			<p>color</p>
-			<c-button @click="toggle">Toggle</c-button>
-			<c-modal title="标题" :visible="visible">
+			<p>title</p>
+			<c-button @click="titleModalToggle">Toggle</c-button>
+			<c-modal title="标题" :visible="titleModalVisible">
 				内容
 				<div slot="footer">
-					<c-button color="ghost" @click="toggle">Cancel</c-button>
+					<c-button color="ghost" @click="titleModalToggle">Cancel</c-button>
+					<c-button color="primary">Enter</c-button>
+				</div>
+			</c-modal>
+		</li>
+		<li>
+			<p>header</p>
+			<c-button @click="headerModalToggle">Toggle</c-button>
+			<c-modal :visible="headerModalVisible">
+				<h1 slot="header">h1</h1>
+				内容
+				<div slot="footer">
+					<c-button color="ghost" @click="headerModalToggle">Cancel</c-button>
 					<c-button color="primary">Enter</c-button>
 				</div>
 			</c-modal>
@@ -17,12 +29,16 @@
 export default {
 	data() {
 		return {
-			visible: false
+			titleModalVisible: false,
+			headerModalVisible: false
 		}
 	},
 	methods: {
-		toggle() {
-			this.visible = !this.visible
+		titleModalToggle() {
+			this.titleModalVisible = !this.titleModalVisible
+		},
+		headerModalToggle() {
+			this.headerModalVisible = !this.headerModalVisible
 		}
 	}
 }
