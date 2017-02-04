@@ -2,6 +2,7 @@ import Button from './button'
 import Icon from './icon'
 import Checkbox from './checkbox'
 import Modal from './modal'
+import Input from './input'
 import Popover from './popover'
 import Notification from './notification'
 import Menu from './menu'
@@ -23,5 +24,6 @@ export {
 	Ripple,
 	Dropdown,
 	Checkbox,
-	Modal
+	Modal,
+	Input
 }
