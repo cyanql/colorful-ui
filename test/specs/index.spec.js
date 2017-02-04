@@ -6,6 +6,7 @@ import PopoverTest from 'test/components/popover.test'
 import Checkbox from 'test/components/checkbox.test'
 import Modal from 'test/components/modal.test'
 import Input from 'test/components/Input.test'
+import Switch from 'test/components/Switch.test'
 
 // registerComponent(ButtonTest)
 // registerComponent(DropdownTest)
@@ -13,4 +14,5 @@ import Input from 'test/components/Input.test'
 // registerComponent(PopoverTest)
 // registerComponent(Checkbox)
 // registerComponent(Modal)
-registerComponent(Input)
+// registerComponent(Input)
+registerComponent(Switch)

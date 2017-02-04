@@ -3,6 +3,7 @@ import Icon from './icon'
 import Checkbox from './checkbox'
 import Modal from './modal'
 import Input from './input'
+import Switch from './switch'
 import Popover from './popover'
 import Notification from './notification'
 import Menu from './menu'
@@ -25,5 +26,6 @@ export {
 	Dropdown,
 	Checkbox,
 	Modal,
-	Input
+	Input,
+	Switch
 }

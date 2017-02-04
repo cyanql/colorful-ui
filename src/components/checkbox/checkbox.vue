@@ -17,10 +17,6 @@ export default {
 		checked: {
 			type: Boolean,
 			default: false
-		},
-		defaultChecked: {
-			type: Boolean,
-			default: false
 		}
 	},
 	data() {
@@ -30,7 +26,9 @@ export default {
 	},
 	computed: {
 		oClass() {
-			return this.oChecked ? 'checked' : ''
+			return {
+				'checked': this.oChecked
+			}
 		}
 	},
 	methods: {
