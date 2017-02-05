@@ -7,6 +7,7 @@ import Checkbox from 'test/components/checkbox.test'
 import Modal from 'test/components/modal.test'
 import Input from 'test/components/Input.test'
 import Switch from 'test/components/Switch.test'
+import Radio from 'test/components/Radio.test'
 
 // registerComponent(ButtonTest)
 // registerComponent(DropdownTest)
@@ -15,4 +16,5 @@ import Switch from 'test/components/Switch.test'
 // registerComponent(Checkbox)
 // registerComponent(Modal)
 // registerComponent(Input)
-registerComponent(Switch)
+// registerComponent(Switch)
+registerComponent(Radio)
