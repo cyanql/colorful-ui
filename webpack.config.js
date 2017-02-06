@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer')
 const SRC_PATH = path.resolve(__dirname, 'src')
 const DIST_PATH = path.resolve(__dirname, 'dist')
 const TEST_PATH = path.resolve(__dirname, 'test')
+const DOCS_PATH = path.resolve(__dirname, 'docs')
 
 const config = {
 	debug: true,
@@ -18,7 +19,7 @@ const config = {
 		publicPath: '/dist' //模板、样式、脚本、图片等资源对应server上的路径
 	},
 	entry: {
-		index: [TEST_PATH]//[path.resolve(SRC_PATH, 'index')]
+		index: [DOCS_PATH]//[path.resolve(SRC_PATH, 'index')]
 	},
 	output: {
 		path: DIST_PATH, //输出目录的配置，模板、样式、脚本、图片等资源的路径配置都相对于它
