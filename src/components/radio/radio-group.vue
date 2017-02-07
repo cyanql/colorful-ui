@@ -21,30 +21,6 @@ export default {
 			type: Boolean,
 			default: false
 		}
-	},
-	mounted() {
-		const children = this.$children
-
-		children && children.forEach(vm => {
-			vm.$on('input', this.onInput)
-			vm.$on('change', this.onChange)
-		})
-	},
-	beforeDestroy() {
-		const children = this.$children
-
-		children && children.forEach(vm => {
-			vm.$off('input', this.onInput)
-			vm.$off('change', this.onChange)
-		})
-	},
-	methods: {
-		onInput(checkedValue, e) {
-			this.$emit('input', checkedValue, e)
-		},
-		onChange(checked, e) {
-			this.$emit('change', checked, e)
-		}
 	}
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
 	<button class="c-button" :class="oClass" :type="type" :style="oStyle" @click="onClick">
 		<c-icon :icon="icon" :color="iconColor" v-if="icon"></c-icon>
-		<span v-if="$slots.default"><slot></slot></span>
+		<span class="c-button-text" v-if="$slots.default"><slot></slot></span>
 		<c-ripple></c-ripple>
 	</button>
 </template>
@@ -86,6 +86,7 @@ export default {
 }
 
 .c-button {
+	position: relative;
 	font-size: 12px;
     padding: 8px 16px;
 	border-radius: 3px;
@@ -105,7 +106,7 @@ export default {
 	user-select: none;
 	transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-	& > .c-icon + span, & > span + .c-icon {
+	& > .c-icon + .c-button-text, & > .c-button-text + .c-icon {
 	    margin-left: 0.5em;
 	}
 

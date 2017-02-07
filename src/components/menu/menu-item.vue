@@ -12,9 +12,11 @@
 </template>
 
 <script>
+import Event from 'src/mixins/event'
 
 export default {
 	name: 'c-menu-item',
+	mixins: [Event],
 	props: {
 		icon: String,
 		selected: Boolean,
@@ -24,8 +26,9 @@ export default {
 		},
 		indent: {
 			type: Number,
-			default: 20
-		}
+			default: 30
+		},
+		data: null
 	},
 	computed: {
 		paddingLeft() {
@@ -35,6 +38,7 @@ export default {
 	methods: {
 		onClick(e) {
 			this.$emit('click', e)
+			this.bubble('c-menu', 'select', this.data)
 		}
 	}
 }
@@ -45,10 +49,10 @@ export default {
 	display: block;
 	text-align: left;
 	width: 100%;
-	padding: 10px 20px;
+	padding: 10px 30px;
 	border-radius: 0;
 
-	&:hover {
+	&:not([disabled]):hover {
 		background: #e7e7e7;
 	}
 

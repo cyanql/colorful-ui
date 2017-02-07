@@ -14,6 +14,7 @@ const Notice = Notification.Notice
 const MenuItem = Menu.Item
 const SubMenu = Menu.SubMenu
 const RadioGroup = Radio.Group
+const MenuItemGroup = Menu.ItemGroup
 
 export {
 	Button,
@@ -22,6 +23,7 @@ export {
 	Menu,
 	SubMenu,
 	MenuItem,
+	MenuItemGroup,
 	Notification,
 	Notice,
 	Ripple,

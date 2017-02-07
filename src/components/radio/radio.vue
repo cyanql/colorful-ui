@@ -12,10 +12,11 @@
 </template>
 
 <script>
-import eventHandler from 'src/utils/eventHandler'
+import Event from 'src/mixins/event'
 
 export default {
 	name: 'c-radio',
+	mixins: [Event],
 	props: {
 		color: {
 			type: String,
@@ -50,10 +51,12 @@ export default {
 		onInput(e) {
 			if (!this.disabled) {
 				this.$emit('input', this.checkedValue, e)
+				this.bubble('c-radio-group', this.checkedValue, e)
 			}
 		},
 		onChange(e) {
 			this.$emit('change', this.oChecked, e)
+			this.bubble('c-radio-group', this.oChecked, e)
 		}
 	}
 }

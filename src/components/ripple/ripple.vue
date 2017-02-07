@@ -55,7 +55,7 @@ export default {
 					this.opts.shift()
 				}, TIMEOUT)
 			})
-			parentEl.className += ' c-ripple-target'
+			parentEl.classList.add('c-ripple-target')
 		}
 	},
 	mounted() {
