@@ -15,6 +15,14 @@
 					</c-menu-item>
 				</c-menu-item-group>
 			</c-menu>
+			<div class="content">
+				<pre-code>
+					<div>
+						<c-button></c-button>
+					</div>
+				</pre-code>
+				content
+			</div>
 		</div>
 		<footer>
 
@@ -24,6 +32,7 @@
 
 <script>
 import conf from './conf'
+import PreCode from './pre-code'
 
 export default {
 	name: 'app',
@@ -42,8 +51,12 @@ export default {
 	},
 	methods: {
 		onSelect(data) {
+			console.log(data)
 			this.selectIndex = data
 		}
+	},
+	components: {
+		'pre-code': PreCode
 	}
 }
 </script>
@@ -83,12 +96,20 @@ export default {
 			bottom: 0;
 			overflow-y: scroll;
 			padding: 20px 0;
+			width: 200px;
 			font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
 
 			.chinese {
 				font-size: 12px;
 				opacity: .7;
 			}
+		}
+
+		.content {
+			margin-top: 60px;
+			margin-left: 200px;
+			padding: 50px;
+			overflow: hidden;
 		}
 	}
 }

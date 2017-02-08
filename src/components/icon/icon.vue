@@ -13,29 +13,25 @@ export default {
 		color: {
 			type: String,
 			default: 'default'
-		},
-		style: {
-			type: Object,
-			default: () => ({})
-		},
-		class: {
-			type: String,
-			default: ''
 		}
 	},
 	data() {
-		const color = this.color
-		const oStyle = this.style
-		let oClass = this.class
+		const { color } = this
+		const oStyle = {}
+		let colorClass
 
+		// 当使用16进制颜色时，背景默认为transparent
 		if (color.indexOf('#') > -1) {
 			oStyle.color = color
+			oStyle.backgroundColor = 'transparent'
 		} else {
-			oClass = [oClass, color].join(' ')
+			colorClass = color
 		}
 		return {
 			oStyle,
-			oClass
+			oClass: {
+				[colorClass]: colorClass
+			}
 		}
 	}
 }

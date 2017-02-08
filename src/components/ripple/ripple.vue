@@ -1,13 +1,11 @@
 <template>
-	<span class="c-ripple-container">
-		<span class="c-ripple" :class="opt.class" :style="opt.style" v-for="opt in opts"></span>
-	</span>
+	<span class="c-ripple-container"></span>
 </template>
 
 <script>
-function onMouseDown(e, parentEl) {
+function getTargetRippleStyle(e, el) {
 	let rect, x, y, style
-	rect = parentEl.getBoundingClientRect()
+	rect = el.getBoundingClientRect()
 	x = e.clientX - rect.left
 	y = e.clientY - rect.top
 
@@ -23,39 +21,37 @@ function onMouseDown(e, parentEl) {
 
 export default {
 	name: 'c-ripple',
-	data() {
-		return {
-			opts: []
-		}
-	},
 	methods: {
 		init() {
 			const parentEl = this.$parent.$el
 
-			if (!parentEl) {
-				return
+			if (!parentEl || (parentEl && parentEl.style.position === 'static')) {
+				return console.error('ripple要求存在父级元素且position需要设置为非static的值')
 			}
-			const TIMEOUT = 450
-			let opt = {}
+			const container = this.$el
+			const span = document.createElement('span')
+			const TIMEOUT = 500
+
+			span.classList.add('c-ripple')
 
 			parentEl.addEventListener('mousedown', e => {
-				opt = {
-					class: '',
-					style: null
-				}
-				opt.style = onMouseDown(e, parentEl)
-				this.opts.push(opt)
+				const ripple = span.cloneNode(true)
+				Object.assign(ripple.style, getTargetRippleStyle(e, parentEl))
+				container.appendChild(ripple)
 				setTimeout(() => {
-					opt.class = 'transiting'
+					ripple.classList.add('transiting')
 				}, 0)
+
+				const mouseupFn = () => {
+					parentEl.removeEventListener('mouseup', mouseupFn)
+
+					ripple.classList.add('done')
+					setTimeout(() => {
+						container.removeChild(ripple)
+					}, TIMEOUT)
+				}
+				parentEl.addEventListener('mouseup', mouseupFn)
 			})
-			parentEl.addEventListener('mouseup', e => {
-				opt.class = 'done'
-				setTimeout(() => {
-					this.opts.shift()
-				}, TIMEOUT)
-			})
-			parentEl.classList.add('c-ripple-target')
 		}
 	},
 	mounted() {
@@ -102,10 +98,5 @@ export default {
 		opacity: 0;
 		transform: scale(1);
 	}
-}
-
-.c-ripple-target {
-	position: relative;
-	overflow: hidden;
 }
 </style>

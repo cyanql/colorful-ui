@@ -23,19 +23,15 @@ export default {
 		type: String,
 		icon: String,
 		iconColor: String,
-		style: {
-			type: Object,
-			default: () => ({})
-		},
-		class: {
-			type: String,
-			default: ''
-		},
 		shape: {
 			type: String,
 			validator(value) {
 				return ['circle', undefined].includes(value)
 			}
+		},
+		rippleVisible: {
+			type: Boolean,
+			default: true
 		}
 	},
 	methods: {
@@ -45,15 +41,15 @@ export default {
 	},
 	data() {
 		const { shape, color } = this
-		const oStyle = this.style
-		let oClass = this.class
+		const oStyle = {}
+		let colorClass
 
-		// 当使用16进制颜色时，背景默认为transparent，注：style优先级比color高
+		// 当使用16进制颜色时，背景默认为transparent
 		if (color.indexOf('#') > -1) {
-			oStyle.color = oStyle.color || color
-			oStyle.backgroundColor = oStyle.backgroundColor || 'transparent'
+			oStyle.color = color
+			oStyle.backgroundColor = 'transparent'
 		} else {
-			oClass = [oClass, color].join(' ')
+			colorClass = color
 		}
 
 		if (shape === 'circle') {
@@ -65,7 +61,10 @@ export default {
 
 		return {
 			oStyle,
-			oClass
+			oClass: {
+				[colorClass]: colorClass,
+				'has-ripple': this.rippleVisible
+			}
 		}
 	},
 	components: {
@@ -86,7 +85,6 @@ export default {
 }
 
 .c-button {
-	position: relative;
 	font-size: 12px;
     padding: 8px 16px;
 	border-radius: 3px;
@@ -125,6 +123,11 @@ export default {
 
 	&:focus {
 		outline: none;
+	}
+
+	&.has-ripple {
+		position: relative;
+		overflow: hidden;
 	}
 
 	&.default {

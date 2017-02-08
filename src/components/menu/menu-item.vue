@@ -1,8 +1,8 @@
 <template>
 	<c-button
 		class="c-menu-item"
-		:class="selected && 'selected'"
-		:style="{paddingLeft}"
+		:class="oClass"
+		:style="oStyle"
 		:icon="icon"
 		color="ghost"
 		@click="onClick"
@@ -31,8 +31,15 @@ export default {
 		data: null
 	},
 	computed: {
-		paddingLeft() {
-			return this.level * this.indent + 'px'
+		oStyle() {
+			return {
+				paddingLeft: this.level * this.indent + 'px'
+			}
+		},
+		oClass() {
+			return {
+				'selected': this.selected
+			}
 		}
 	},
 	methods: {
