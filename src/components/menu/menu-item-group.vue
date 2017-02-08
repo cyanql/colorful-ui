@@ -1,8 +1,10 @@
 <template>
-	<div class="c-menu-item-group">
+	<li class="c-menu-item-group">
 		<div class="c-menu-item-group-title">{{title}}</div>
-		<slot></slot>
-	</div>
+		<ul>
+			<slot></slot>
+		</ul>
+	</li>
 </template>
 
 <script>

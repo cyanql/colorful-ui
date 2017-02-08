@@ -1,5 +1,5 @@
 <template>
-	<ul>
+	<ul class="component">
 		<li>
 			<p>title</p>
 			<c-button @click="titleModalToggle">Toggle</c-button>
@@ -43,8 +43,8 @@ export default {
 	}
 }
 </script>
-<style>
-li {
+<style scoped>
+.component > li {
 	padding: 20px 50px;
 }
 </style>

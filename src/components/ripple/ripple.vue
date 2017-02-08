@@ -25,9 +25,10 @@ export default {
 		init() {
 			const parentEl = this.$parent.$el
 
-			if (!parentEl || (parentEl && parentEl.style.position === 'static')) {
+			if (!parentEl || (parentEl && getComputedStyle(parentEl).position === 'static')) {
 				return console.error('ripple要求存在父级元素且position需要设置为非static的值')
 			}
+
 			const container = this.$el
 			const span = document.createElement('span')
 			const TIMEOUT = 500

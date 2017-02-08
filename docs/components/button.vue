@@ -1,5 +1,5 @@
 <template>
-	<ul>
+	<ul class="component">
 		<li>
 		<p>color</p>
 			<c-button class="test-color">default</c-button>
@@ -33,8 +33,8 @@
 		</li>
 	</ul>
 </template>
-<style>
-li {
+<style scoped>
+.component > li {
 	padding: 20px 50px;
 }
 </style>

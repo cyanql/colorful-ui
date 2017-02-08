@@ -24,6 +24,14 @@ ul, ol { list-style: none; }
 /** 重置文本格式元素 **/
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
+a,
+a:hover,
+a:active,
+a:visited,
+a:focus,
+a:link {
+	color: inherit;
+}
 
 
 /** 重置表单元素 **/

@@ -1,5 +1,5 @@
 <template>
-	<ul>
+	<ul class="component">
 		<li>
 			<p>color</p>
 			<c-radio :checkedValue="1" v-model="radio1">primary</c-radio>
@@ -33,8 +33,8 @@ export default {
 
 </script>
 
-<style>
-li {
+<style scoped>
+.component > li {
 	padding: 20px 50px;
 }
 </style>

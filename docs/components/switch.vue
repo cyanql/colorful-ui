@@ -1,5 +1,5 @@
 <template>
-	<ul>
+	<ul class="component">
 		<li>
 			<p>color</p>
 			<c-switch checked>primary</c-switch>
@@ -9,8 +9,8 @@
 		</li>
 	</ul>
 </template>
-<style>
-li {
+<style scoped>
+.component > li {
 	padding: 20px 50px;
 }
 </style>

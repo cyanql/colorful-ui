@@ -9,30 +9,23 @@
 		<div class="docs-container">
 			<c-menu class="sidebar" @select="onSelect">
 				<c-menu-item-group v-for="group in groups" :title="group.title">
-					<c-menu-item v-for="item in group.items" :data="item.index" :disabled="item.disabled" :selected="selectIndex === item.index">
-						<span>{{item.english}}</span>
-						<span>{{item.chinese}}</span>
+					<c-menu-item v-for="item in group.items" :data="item.index" :disabled="item.disabled" :selected="selectIndex === item.index" auto-trigger-href>
+						<router-link :to="item.path">
+							<span>{{item.english}}</span>
+							<span class="chinese">{{item.chinese}}</span>
+						</router-link>
 					</c-menu-item>
 				</c-menu-item-group>
 			</c-menu>
 			<div class="content">
-				<pre-code>
-					<div>
-						<c-button></c-button>
-					</div>
-				</pre-code>
-				content
+				<router-view></router-view>
 			</div>
 		</div>
-		<footer>
-
-		</footer>
 	</div>
 </template>
 
 <script>
 import conf from './conf'
-import PreCode from './pre-code'
 
 export default {
 	name: 'app',
@@ -42,6 +35,7 @@ export default {
 			groups: conf.groups.map(v => {
 				v.items.map(w => {
 					w.index = i++
+					w.path = w.english.toLowerCase()
 					return w
 				})
 				return v
@@ -54,9 +48,6 @@ export default {
 			console.log(data)
 			this.selectIndex = data
 		}
-	},
-	components: {
-		'pre-code': PreCode
 	}
 }
 </script>
@@ -95,7 +86,8 @@ export default {
 			left: 0;
 			bottom: 0;
 			overflow-y: scroll;
-			padding: 20px 0;
+			padding-top: 20px;
+			padding-bottom: 200px;
 			width: 200px;
 			font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
 
@@ -106,10 +98,15 @@ export default {
 		}
 
 		.content {
-			margin-top: 60px;
-			margin-left: 200px;
+			position: fixed;
+			top: 60px;
+			left: 200px;
+			width: 100%;
+			height: 100%;
 			padding: 50px;
-			overflow: hidden;
+			padding-bottom: 200px;
+			overflow-y: scroll;
+			overflow-x: hidden;
 		}
 	}
 }

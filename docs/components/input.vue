@@ -1,5 +1,5 @@
 <template>
-	<ul>
+	<ul class="component">
 		<li>
 			<p>base</p>
 			<c-input v-model="text1"></c-input>
@@ -62,11 +62,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 p {
 	padding: 0;
 }
-li {
+.component > li {
 	padding: 20px 50px;
 }
 </style>

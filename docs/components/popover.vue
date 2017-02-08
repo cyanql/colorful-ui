@@ -1,8 +1,8 @@
 <template>
-	<ul>
+	<ul class="component">
 		<li>
 			<p>position</p>
-			<ul>
+			<ul class="component">
 				<li>
 					<p>top</p>
 					<c-button ref="top1">left</c-button>
@@ -67,8 +67,8 @@
 		</li>
 	</ul>
 </template>
-<style>
-li {
+<style scoped>
+.component > li {
 	padding: 20px 50px;
 }
 

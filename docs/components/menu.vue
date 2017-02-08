@@ -1,5 +1,5 @@
 <template>
-	<ul>
+	<ul class="component">
 		<li>
 			<p>inline</p>
 			<c-menu>
@@ -35,8 +35,8 @@
 	</ul>
 </template>
 
-<style>
-li {
+<style scoped>
+.component > li {
 	padding: 20px 50px;
 }
 </style>

@@ -6,9 +6,9 @@
 				<c-icon class="expand-more" :class="openClass" icon="expand_more"></c-icon>
 			</c-menu-item>
 			<expand-transition>
-				<div class="c-sub-menu-content" v-show="opened">
+				<ul class="c-sub-menu-content" v-show="opened">
 					<slot></slot>
-				</div>
+				</ul>
 			</expand-transition>
 		</template>
 		<template v-if="mode === 'vertical'">
@@ -17,9 +17,9 @@
 				<c-icon class="expand-more" :class="openClass" icon="expand_more"></c-icon>
 			</c-menu-item>
 			<transition name="scale">
-				<div class="c-sub-menu-content" v-show="opened" @mouseover="onOpen" @mouseout="onClose">
+				<ul class="c-sub-menu-content" v-show="opened" @mouseover="onOpen" @mouseout="onClose">
 					<slot></slot>
-				</div>
+				</ul>
 			</transition>
 		</template>
 	</div>
@@ -111,7 +111,6 @@ export default {
 			left: 100%;
 			top: 0;
 			min-width: 200px;
-			text-indent: 20px;
 			background: white;
 			box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 		}
@@ -142,7 +141,6 @@ export default {
 		}
 
 		& > .c-sub-menu-content {
-			text-indent: 20px;
 			background: white;
 		}
 	}
