@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="docs">
 		<header class="docs-header">
 			<span class="logo">Colorful-UI</span>
 			<nav class="nav">

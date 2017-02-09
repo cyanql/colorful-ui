@@ -7,7 +7,12 @@ Vue.use(VueRouter)
 const routes = Object.keys(Components).map(key => {
 	return {
 		path: '/' + key.toLowerCase(),
-		component: Components[key]
+		component: Vue.component(key, {
+			template: '<div v-html="html"><div>',
+			data: () => ({
+				html: Components[key]
+			})
+		})
 	}
 })
 
@@ -20,8 +25,6 @@ routes.unshift({
 //     path: '*',
 //     redirect: '/'
 // })
-
-console.log(routes)
 
 export default new VueRouter({
 	routes
