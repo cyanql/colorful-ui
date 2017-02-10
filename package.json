@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docs": "NODE_ENV=development webpack-dev-server --progress",
+    "dist": "rm -rf ./dist && NODE_ENV=production webpack",
+    "docs": "NODE_ENV=document webpack-dev-server --progress",
+	"deploy": "rm -rf ./docs && NODE_ENV=deploy webpack --progress",
     "start": "NODE_ENV=test karma start --auto-watch",
-    "prod": "rm -rf ./dist && NODE_ENV=production webpack",
     "test": "NODE_ENV=test karma start --single-run"
   },
   "author": "keyves",

@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer')
 const SRC_PATH = path.resolve(__dirname, 'src')
 const DIST_PATH = path.resolve(__dirname, 'dist')
 const TEST_PATH = path.resolve(__dirname, 'test')
+const DOCS_SRC_PATH = path.resolve(__dirname, 'docs-src')
 const DOCS_PATH = path.resolve(__dirname, 'docs')
 
 const config = {
@@ -24,7 +25,7 @@ const config = {
 		publicPath: '/dist' //模板、样式、脚本、图片等资源对应server上的路径
 	},
 	entry: {
-		index: [DOCS_PATH]
+		index: [DOCS_SRC_PATH]
 	},
 	output: {
 		path: DIST_PATH, //输出目录的配置，模板、样式、脚本、图片等资源的路径配置都相对于它
@@ -33,7 +34,7 @@ const config = {
 	},
 	resolveLoader: {
 		alias: {
-			'docs-loader': path.resolve(DOCS_PATH, 'loader')
+			'docs-loader': path.resolve(DOCS_SRC_PATH, 'loader')
 		}
 	},
 	resolve: {
@@ -50,10 +51,6 @@ const config = {
 			exclude: /node_modules/,
 			loader: 'babel-loader'
 		}, {
-			test: /\.md$/,
-			exclude: /node_modules/,
-			loader: 'docs-loader'
-		}, {
 			test: /\.vue$/,
 			loader: 'vue-loader',
             options: {
@@ -65,6 +62,10 @@ const config = {
                 },
                 postcss: [autoprefixer({ browsers: ['> 1%', 'last 2 versions'] })]
             }
+		}, {
+			test: /\.md$/,
+			exclude: /node_modules/,
+			loader: 'docs-loader'
 		}, {
 			test: /\.s?css$/,
 			loader: ExtractTextPlugin.extract({
@@ -117,7 +118,12 @@ if (NODE_ENV === 'test') {
 	// }))
 }
 
-if (NODE_ENV === 'development') {
+if (NODE_ENV === 'document' || NODE_ENV === 'deploy') {
+	config.output.path = path.resolve(DOCS_PATH)
+}
+
+
+if (NODE_ENV === 'development' || NODE_ENV === 'document') {
 	for (const name of Object.keys(config.entry)) {
 		if (name !== 'lib') {
 			config.entry[name].unshift('webpack/hot/only-dev-server')
@@ -132,7 +138,7 @@ if (NODE_ENV === 'development') {
 }
 
 
-if (NODE_ENV === 'production') {
+if (NODE_ENV === 'production' || NODE_ENV === 'deploy') {
 	config.plugins.unshift(new webpack.DefinePlugin({
 		'process.env.NODE_ENV': JSON.stringify('production')
 	}))
@@ -141,7 +147,6 @@ if (NODE_ENV === 'production') {
 			warnings: false
 		}
 	}))
-	delete config.devtool
 }
 
 module.exports = config
