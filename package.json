@@ -4,15 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development webpack-dev-server --progress --color --port 3000",
+    "docs": "NODE_ENV=development webpack-dev-server --progress",
     "start": "NODE_ENV=test karma start --auto-watch",
-    "prod": "rm -rf ./dist && NODE_ENV=mobile webpack --progress --profile --color",
+    "prod": "rm -rf ./dist && NODE_ENV=production webpack",
     "test": "NODE_ENV=test karma start --single-run"
   },
   "author": "keyves",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "tether-drop": "^1.4.2",
+    "autosize": "^3.0.20",
     "vue": "^2.0.3"
   },
   "devDependencies": {
@@ -29,8 +29,9 @@
     "chai": "^3.5.0",
     "css-loader": "^0.26.1",
     "eslint": "^3.5.0",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.9.0",
+    "extract-text-webpack-plugin": "^2.0.0-rc.3",
+    "file-loader": "^0.10.0",
+    "highlight.js": "^9.9.0",
     "html-webpack-plugin": "^2.22.0",
     "isparta-loader": "^2.0.0",
     "karma": "^1.4.0",
@@ -41,19 +42,23 @@
     "karma-mocha-reporter": "^2.1.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.1",
+    "marked": "^0.3.6",
     "mocha": "^3.0.2",
     "node-sass": "^4.3.0",
     "postcss-loader": "^1.2.2",
-    "sass-loader": "^4.1.1",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^5.0.1",
     "sinon": "^1.17.5",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^2.0.7",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^10.0.2",
-    "vue-style-loader": "^1.0.0",
+    "vue-markdown-loader": "^0.6.2",
+    "vue-router": "^2.2.0",
+    "vue-style-loader": "^2.0.0",
     "vue-template-compiler": "^2.1.10",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.15.1"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
   }
 }

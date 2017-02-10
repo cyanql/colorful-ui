@@ -34,6 +34,7 @@ export default {
 
 	&-menu {
 		padding: 10px 0;
+		box-shadow: none;
 	}
 }
 </style>

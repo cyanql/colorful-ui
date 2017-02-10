@@ -139,5 +139,3 @@ export default {
 	}
 }
 </style>
-e.clientX - container.clientLeft
-e.clientY - container.clientTop

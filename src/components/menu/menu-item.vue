@@ -1,22 +1,22 @@
 <template>
-	<c-button
+	<li
 		class="c-menu-item"
-		:class="selected && 'selected'"
-		:style="{paddingLeft}"
-		:icon="icon"
-		color="ghost"
+		:class="oClass"
+		:style="oStyle"
 		@click="onClick"
 		>
 		<slot></slot>
-	</c-button>
+		<c-ripple v-if="!disabled"></c-ripple>
+	</li>
 </template>
 
 <script>
+import Event from 'src/mixins/event'
 
 export default {
 	name: 'c-menu-item',
+	mixins: [Event],
 	props: {
-		icon: String,
 		selected: Boolean,
 		level: {
 			type: Number,
@@ -24,17 +24,41 @@ export default {
 		},
 		indent: {
 			type: Number,
-			default: 20
+			default: 30
+		},
+		data: null,
+		disabled: {
+			type: Boolean,
+			default: false
+		},
+		autoTriggerHref: {
+			type: Boolean,
+			default: false
 		}
 	},
 	computed: {
-		paddingLeft() {
-			return this.level * this.indent + 'px'
+		oStyle() {
+			return {
+				paddingLeft: this.level * this.indent + 'px'
+			}
+		},
+		oClass() {
+			return {
+				selected: this.selected,
+				disabled: this.disabled
+			}
 		}
 	},
 	methods: {
 		onClick(e) {
-			this.$emit('click', e)
+			if (!this.disabled) {
+				this.$emit('click', e)
+				this.bubble('c-menu', 'select', this.data)
+				if (this.autoTriggerHref) {
+					const els = this.$el.querySelectorAll('[href]')
+					els && els.forEach(el => el.click())
+				}
+			}
 		}
 	}
 }
@@ -42,19 +66,35 @@ export default {
 
 <style lang="scss">
 .c-menu-item {
+	position: relative;
+	cursor: pointer;
 	display: block;
 	text-align: left;
 	width: 100%;
 	padding: 10px 20px;
 	border-radius: 0;
 
-	&:hover {
+	&.disabled {
+		opacity: .6;
+		cursor: not-allowed;
+	}
+
+	&:not(.disabled):hover {
 		background: #e7e7e7;
 	}
 
 	&.selected {
 		border-right: 2px solid #108ee9;
 		background: #f6f6f6;
+	}
+
+	a,
+	a:hover,
+	a:visited,
+	a:focus,
+	a:link {
+		text-decoration: none;
+		pointer-events: none;
 	}
 }
 </style>

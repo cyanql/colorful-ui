@@ -7,23 +7,34 @@ const autoprefixer = require('autoprefixer')
 const SRC_PATH = path.resolve(__dirname, 'src')
 const DIST_PATH = path.resolve(__dirname, 'dist')
 const TEST_PATH = path.resolve(__dirname, 'test')
+const DOCS_PATH = path.resolve(__dirname, 'docs')
 
 const config = {
-	debug: true,
 	devtool: 'inline-source-map',
+	stats: {
+		hash: false,
+		colors: true,
+		chunks: false,
+		version: false,
+		children: false,
+		timings: true
+   },
 	devServer: {
-		stats: {
-			colors: true
-		},
+		port: 3000,
 		publicPath: '/dist' //模板、样式、脚本、图片等资源对应server上的路径
 	},
 	entry: {
-		index: [TEST_PATH]//[path.resolve(SRC_PATH, 'index')]
+		index: [DOCS_PATH]
 	},
 	output: {
 		path: DIST_PATH, //输出目录的配置，模板、样式、脚本、图片等资源的路径配置都相对于它
 		publicPath: './', //模板、样式、脚本、图片等资源对应的的路径
 		filename: 'js/[name].js' //每个页面对应的主js的生成配置
+	},
+	resolveLoader: {
+		alias: {
+			'docs-loader': path.resolve(DOCS_PATH, 'loader')
+		}
 	},
 	resolve: {
 		alias: {
@@ -31,39 +42,46 @@ const config = {
 			test: TEST_PATH,
 			vue: 'vue/dist/vue.js'
 		},
-		extensions: ['', '.js', '.vue']
-	},
-	vue : {
-		loaders: {
-			scss: ExtractTextPlugin.extract('style', 'css!sass')
-		}
+		extensions: ['.js', '.vue', '.md']
 	},
 	module: {
-		loaders: [{
+		rules: [{
 			test: /\.js$/,
 			exclude: /node_modules/,
-			loader: 'babel'
+			loader: 'babel-loader'
+		}, {
+			test: /\.md$/,
+			exclude: /node_modules/,
+			loader: 'docs-loader'
 		}, {
 			test: /\.vue$/,
-			loader: 'vue'
+			loader: 'vue-loader',
+            options: {
+                loaders: {
+                    scss: ExtractTextPlugin.extract({
+						fallback: 'vue-style-loader',
+						loader: 'css-loader!sass-loader'
+					})
+                },
+                postcss: [autoprefixer({ browsers: ['> 1%', 'last 2 versions'] })]
+            }
 		}, {
 			test: /\.s?css$/,
-			loader: ExtractTextPlugin.extract('style', 'css!sass')
-		}, {
-			test: /\.json$/,
-			loader: 'json'
+			loader: ExtractTextPlugin.extract({
+				fallback: 'vue-style-loader',
+				loader: 'css-loader!sass-loader'
+			})
 		}, {
 			test: /\.(jpg|png)$/,
-			loader: 'url?name=images/[name].[ext]&limit=51200'
+			loader: 'url-loader?name=images/[name].[ext]&limit=51200'
 		}, {
 			test: /\.(eot|svg|ttf|woff(2)?)(\?[a-z0-9=\.]+)?$/,
-			loader: 'url?name=fonts/[name].[ext]&limit=1000'
+			loader: 'url-loader?name=fonts/[name].[ext]&limit=1000'
 		}]
 	},
-	postcss: [autoprefixer({ browsers: ['> 1%', 'last 2 versions'] })],
 	plugins: [
-		new ExtractTextPlugin('[name].css', {
-			allChunks: false
+		new ExtractTextPlugin({
+			filename: '[name].css'
 		})
 	]
 }
@@ -94,7 +112,9 @@ if (NODE_ENV === 'test') {
 			}))
 		}
 	}
-	config.plugins.unshift(new webpack.optimize.CommonsChunkPlugin('lib', 'js/lib.js'))
+	// config.plugins.unshift(new webpack.optimize.CommonsChunkPlugin({
+	// 	filename: 'js/lib.js',
+	// }))
 }
 
 if (NODE_ENV === 'development') {
@@ -108,6 +128,7 @@ if (NODE_ENV === 'development') {
 		'process.env.NODE_ENV': JSON.stringify('development')
 	}))
 	config.plugins.unshift(new webpack.HotModuleReplacementPlugin())
+	config.watch = true
 }
 
 
@@ -115,14 +136,12 @@ if (NODE_ENV === 'production') {
 	config.plugins.unshift(new webpack.DefinePlugin({
 		'process.env.NODE_ENV': JSON.stringify('production')
 	}))
-	config.plugins.push(new webpack.optimize.OccurrenceOrderPlugin())
 	config.plugins.push(new webpack.optimize.UglifyJsPlugin({
 		compress: {
 			warnings: false
 		}
 	}))
 	delete config.devtool
-	delete config.debug
 }
 
 module.exports = config

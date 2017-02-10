@@ -1,7 +1,10 @@
 import Button from './button'
 import Icon from './icon'
-import Checkbox from './checkbox'
 import Modal from './modal'
+import Input from './input'
+import Checkbox from './checkbox'
+import Switch from './switch'
+import Radio from './radio'
 import Popover from './popover'
 import Notification from './notification'
 import Menu from './menu'
@@ -10,6 +13,8 @@ import Dropdown from './dropdown'
 const Notice = Notification.Notice
 const MenuItem = Menu.Item
 const SubMenu = Menu.SubMenu
+const RadioGroup = Radio.Group
+const MenuItemGroup = Menu.ItemGroup
 
 export {
 	Button,
@@ -18,10 +23,15 @@ export {
 	Menu,
 	SubMenu,
 	MenuItem,
+	MenuItemGroup,
 	Notification,
 	Notice,
 	Ripple,
 	Dropdown,
+	Modal,
+	Input,
 	Checkbox,
-	Modal
+	Switch,
+	Radio,
+	RadioGroup
 }

@@ -12,6 +12,7 @@ const cssText = `
 `
 
 const container = document.createElement('div')
+container.className = 'c-drop-container'
 document.body.appendChild(container)
 
 function initElement(drop) {
