@@ -1,17 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import * as Components from './components'
+import * as Components from './pages/components'
 
 Vue.use(VueRouter)
 
 const routes = Object.keys(Components).map(key => {
+	const name = key.toLowerCase()
 	return {
-		path: '/' + key.toLowerCase(),
-		component: Vue.component(key, {
-			template: '<div v-html="html"><div>',
-			data: () => ({
-				html: Components[key]
-			})
+		path: '/' + name,
+		component: Vue.component('docs-' + name, {
+			template: `<div>${Components[key]}<div>`
 		})
 	}
 })

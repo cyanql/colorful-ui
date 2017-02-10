@@ -42,7 +42,7 @@ const config = {
 			test: TEST_PATH,
 			vue: 'vue/dist/vue.js'
 		},
-		extensions: ['.js', '.vue']
+		extensions: ['.js', '.vue', '.md']
 	},
 	module: {
 		rules: [{

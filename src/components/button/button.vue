@@ -110,7 +110,7 @@ export default {
 
 	&[disabled] {
 		cursor: not-allowed;
-		opacity: .6;
+		opacity: .5;
 
 		& > * {
 			pointer-events: none;

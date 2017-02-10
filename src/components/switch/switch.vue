@@ -62,6 +62,7 @@ $thumb-height: 20px;
 	width: $switch-width;
 	height: $switch-height;
 	cursor: pointer;
+	line-height: 1.5;
 
 	&.checked {
 		.c-switch-thumb {

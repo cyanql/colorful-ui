@@ -5,6 +5,7 @@ export default {
 			english: 'Button',
 			chinese: '按钮'
 		}, {
+			disabled: true,
 			english: 'Icon',
 			chinese: '图标'
 		}]
@@ -59,7 +60,6 @@ export default {
 			english: 'AutoComplete',
 			chinese: '自动完成'
 		}, {
-			disabled: true,
 			english: 'Checkbox',
 			chinese: '多选框'
 		}, {

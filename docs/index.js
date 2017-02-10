@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import App from './app'
 import router from './router'
-import Colorful from 'src'
+import DocsUI from './components'
+import ColorfulUI from 'src'
+import 'highlight.js/styles/vs.css'
 import './styles/init.scss'
 
-Vue.use(Colorful)
+Vue.use(ColorfulUI)
+Vue.use(DocsUI)
 
 const div = document.createElement('div')
 div.id = 'app'

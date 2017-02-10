@@ -101,8 +101,8 @@ export default {
 			position: fixed;
 			top: 60px;
 			left: 200px;
-			width: 100%;
-			height: 100%;
+			right: 0;
+			bottom: 0;
 			padding: 50px;
 			padding-bottom: 200px;
 			overflow-y: scroll;
