@@ -32,12 +32,11 @@ function replaceSample(text) {
 	// 先操作尾部，避免操作头部导致字符串长度变化
 	text = text.substring(0, lastIndex) + marked(text.substring(lastIndex))
 	text = marked(text.substring(0, firstIndex)) + text.substring(firstIndex)
-	
+
 	return text
 		.replace(RE, function(str, content) {
 			let infoResult, codeResult, title, description, code, slot
 			content = content.trim()
-			console.log(content)
 			infoResult = content.match(infoRE)
 			codeResult = content.match(codeRE)
 

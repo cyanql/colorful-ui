@@ -1,3 +1,105 @@
+
+.docs-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 50px;
+  line-height: 60px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
+}
+.docs-header:after {
+    content: '';
+    clear: both;
+}
+.docs-header .logo {
+    display: inline-block;
+    font-weight: bold;
+}
+.docs-header .nav {
+    display: inline-block;
+    float: right;
+}
+.docs-container .sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  padding-top: 20px;
+  padding-bottom: 200px;
+  width: 200px;
+  font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+}
+.docs-container .sidebar .chinese {
+    font-size: 12px;
+    opacity: .7;
+}
+.docs-container .content {
+  position: fixed;
+  top: 60px;
+  left: 200px;
+  right: 0;
+  bottom: 0;
+  padding: 50px;
+  padding-bottom: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.sample {
+  position: relative;
+  margin: 50px 0;
+  white-space: nowrap;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  overflow: hidden;
+}
+.sample .demo, .sample .code {
+    width: 50%;
+}
+.sample .demo {
+    vertical-align: top;
+    white-space: normal;
+    overflow: hidden;
+    border-right: 1px solid rgba(0, 0, 0, 0.075);
+}
+.sample .demo p {
+      margin: 0;
+}
+.sample .demo .case {
+      padding: 30px 20px 40px 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+}
+.sample .demo .title {
+      position: absolute;
+      display: inline-block;
+      padding: 0 10px;
+      font-size: 14px;
+      color: #777;
+      background-color: #fff;
+      -webkit-transform: translate(10px, -50%);
+              transform: translate(10px, -50%);
+}
+.sample .demo .description {
+      font-size: 12.5px;
+      padding: 30px 20px;
+      white-space: pre-wrap;
+}
+.sample .code {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    padding: 20px 30px;
+    overflow: scroll;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.01);
+    background-color: #f8f8f8;
+}
+.sample .code pre,
+    .sample .code code {
+      background-color: #f8f8f8;
+}
 @charset "UTF-8";
 /** 清除内外边距 **/
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
@@ -863,5 +965,256 @@ table {
   -webkit-transition: height .2s ease;
   transition: height .2s ease;
 }
+/*
+
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+
+*/
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: white;
+  color: black; }
+
+.hljs-comment,
+.hljs-quote,
+.hljs-variable {
+  color: #008000; }
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+  color: #00f; }
+
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-addition {
+  color: #a31515; }
+
+.hljs-deletion,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-meta {
+  color: #2b91af; }
+
+.hljs-doctag {
+  color: #808080; }
+
+.hljs-attr {
+  color: #f00; }
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link {
+  color: #00b0e8; }
+
+.hljs-emphasis {
+  font-style: italic; }
+
+.hljs-strong {
+  font-weight: bold; }
+body {
+  color: rgba(0, 0, 0, 0.65); }
+
+.docs {
+  font-size: 14px; }
+  .docs code,
+  .docs pre {
+    font-family: Consolas,Liberation Mono,Menlo,Courier,monospace; }
+  .docs img {
+    vertical-align: middle;
+    max-width: 100%; }
+  .docs h1 {
+    color: rgba(0, 0, 0, 0.75);
+    font-weight: 500;
+    line-height: 40px;
+    margin-bottom: 24px;
+    margin-top: 8px;
+    font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif; }
+    .docs h1 .subtitle {
+      font-weight: normal;
+      font-size: 90%;
+      margin-left: 12px; }
+  .docs h2,
+  .docs h3,
+  .docs h4,
+  .docs h5,
+  .docs h6 {
+    color: rgba(0, 0, 0, 0.75);
+    font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+    margin: 1.6em 0 0.6em;
+    font-weight: 500;
+    clear: both; }
+  .docs h1:hover .anchor,
+  .docs h2:hover .anchor,
+  .docs h3:hover .anchor,
+  .docs h4:hover .anchor,
+  .docs h5:hover .anchor,
+  .docs h6:hover .anchor {
+    opacity: 1;
+    display: inline-block; }
+  .docs h1 {
+    font-size: 28px; }
+  .docs h2 {
+    font-size: 22px; }
+  .docs h3 {
+    font-size: 18px; }
+  .docs h4 {
+    font-size: 16px; }
+  .docs h5 {
+    font-size: 14px; }
+  .docs h6 {
+    font-size: 12px; }
+  .docs hr {
+    height: 1px;
+    border: 0;
+    background: #e9e9e9;
+    margin: 16px 0;
+    clear: both; }
+  .docs p {
+    margin: 1em 0; }
+  .docs ul > li {
+    list-style: circle; }
+    .docs ul > li:empty {
+      display: none; }
+  .docs > ol li,
+  .docs > ul li,
+  .docs blockquote ol > li,
+  .docs blockquote ul > li {
+    margin-left: 20px;
+    padding-left: 4px; }
+  .docs > ol li > p,
+  .docs > ul li > p {
+    margin: 0.2em 0; }
+  .docs ol > li {
+    list-style: decimal; }
+  .docs code {
+    color: #e96900;
+    background: #f8f8f8;
+    padding: 3px 5px;
+    margin: 0 2px;
+    border-radius: 2px;
+    font-size: 0.9em;
+    border: 1px solid #eee; }
+  .docs pre {
+    border-radius: 4px;
+    font-family: "Lucida Console", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; }
+  .docs pre code {
+    border: none;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.65);
+    overflow: auto;
+    font-size: 13px;
+    font-family: 'Roboto Mono', Monaco, courier, monospace;
+    background-color: #f8f8f8;
+    -webkit-font-smoothing: initial;
+    -moz-osx-font-smoothing: initial; }
+  .docs b,
+  .docs strong {
+    font-weight: 600; }
+  .docs > table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #e9e9e9;
+    width: 100%;
+    margin: 16px 0; }
+    .docs > table th {
+      white-space: nowrap;
+      color: #5C6B77;
+      font-weight: 600; }
+    .docs > table td,
+    .docs > table th {
+      border: 1px solid #e9e9e9;
+      padding: 8px 16px;
+      text-align: left; }
+    .docs > table th {
+      background: #F7F7F7; }
+  .docs blockquote {
+    font-size: 90%;
+    color: #999;
+    border-left: 4px solid #e9e9e9;
+    padding-left: 0.8em;
+    margin: 1em 0; }
+    .docs blockquote p {
+      margin: 0; }
+  .docs .anchor {
+    opacity: 0;
+    -webkit-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+    margin-left: 8px; }
+  .docs .waiting {
+    color: #ccc;
+    cursor: not-allowed; }
+  .docs a.edit-button {
+    line-height: 12px;
+    display: inline-block;
+    margin-left: 10px;
+    height: 12px; }
+    .docs a.edit-button i {
+      color: #999; }
+    .docs a.edit-button i:hover {
+      color: #108ee9; }
+    .docs a.edit-button .anticon {
+      display: block;
+      font-size: 16px; }
+  .docs > br,
+  .docs > p > br {
+    clear: both; }
+  .docs.api-container table {
+    font-size: 13px; }
+    .docs.api-container table td:first-child {
+      background: #fcfcfc;
+      font-weight: 500;
+      width: 20%;
+      font-family: "Lucida Console", Consolas, Menlo, Courier, monospace; }
+    .docs.api-container table td:nth-child(3) {
+      width: 22%;
+      font-size: 12px;
+      font-family: "Lucida Console", Consolas, Menlo, Courier, monospace; }
+    .docs.api-container table td:last-child {
+      width: 13%;
+      font-size: 12px;
+      font-family: "Lucida Console", Consolas, Menlo, Courier, monospace; }
+
+.highlight {
+  line-height: 1.5; }
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: white;
+  color: black; }
+  .hljs-comment, .hljs-quote, .hljs-variable {
+    color: #008000; }
+  .hljs-keyword {
+    color: #e96900; }
+  .hljs-built_in, .hljs-name, .hljs-selector-tag, .hljs-tag {
+    color: #2973b7; }
+  .hljs-addition, .hljs-attribute, .hljs-literal, .hljs-section, .hljs-string, .hljs-template-tag, .hljs-template-variable, .hljs-title, .hljs-type {
+    color: #42b983; }
+  .hljs-deletion, .hljs-meta, .hljs-selector-attr, .hljs-selector-pseudo {
+    color: #2b91af; }
+  .hljs-doctag {
+    color: #808080; }
+  .hljs-attr {
+    color: #e96900; }
+  .hljs-bullet, .hljs-link, .hljs-symbol {
+    color: #00b0e8; }
+  .hljs-emphasis {
+    font-style: italic; }
+  .hljs-strong {
+    font-weight: bold; }
 
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJpbmRleC5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/
