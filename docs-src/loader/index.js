@@ -1,9 +1,8 @@
 const marked = require('marked')
 const loaderUtils = require('loader-utils')
 const highlight = require('highlight.js')
-
 const renderer = new marked.Renderer()
-
+const cache = require('./cache')
 
 const defaultOpts = {
 	renderer,
@@ -23,57 +22,89 @@ const RE = /:::((?:.|\s)*?):::/g
 const infoRE = /^([^\s]*)\s*===((?:.|\s)*?)===/
 const codeRE = /```[^\n]*\n((?:.|\s)*?)\n```/
 
+function parseToken(text) {
+	const tokens = []
+	let start = 0, index
 
-function replaceSample(text) {
-	const flag = ':::'
-	const firstIndex = text.indexOf(flag)
-	const lastIndex = text.lastIndexOf(flag) + flag.length
+	function tearString(start, end) {
+		if (end > start) {
+			const value = marked(text.substring(start, end))
+			value && tokens.push({
+				type: 'md',
+				value
+			})
+		}
+	}
 
-	// 先操作尾部，避免操作头部导致字符串长度变化
-	text = text.substring(0, lastIndex) + marked(text.substring(lastIndex))
-	text = marked(text.substring(0, firstIndex)) + text.substring(firstIndex)
+	text.replace(RE, function(str, content) {
+		let infoResult, codeResult, title, description, escapeCode, sourceCode
 
-	return text
-		.replace(RE, function(str, content) {
-			let infoResult, codeResult, title, description, code, slot
-			content = content.trim()
-			infoResult = content.match(infoRE)
-			codeResult = content.match(codeRE)
+		// 拆分出默认起始位到当前匹配的起始下标位的字符串
+		index = arguments[arguments.length - 2]
+		tearString(start, index)
 
-			if (infoResult) {
-				title = infoResult[1]
-				description = infoResult[2]
+		content = content.trim()
+		infoResult = content.match(infoRE)
+		codeResult = content.match(codeRE)
+
+		if (infoResult) {
+			title = infoResult[1]
+			description = infoResult[2]
+		}
+
+		if (codeResult) {
+			escapeCode = codeResult[0]
+			sourceCode = codeResult[1]
+		}
+
+		sourceCode = sourceCode || ''
+		title = title ? marked(title) : ''
+		description = description ? marked(description) : ''
+		escapeCode = escapeCode ? marked(escapeCode) : ''
+
+		tokens.push({
+			type: 'sample',
+			value: {
+				title,
+				description,
+				code: {
+					source: sourceCode,
+					escape: escapeCode
+				}
 			}
-
-			if (codeResult) {
-				code = codeResult[0]
-				slot = codeResult[1]
-			}
-
-			slot = slot || ''
-			title = title ? marked(title) : ''
-			description = description ? marked(description) : ''
-			code = code ? marked(code) : ''
-
-			return (
-				`<sample>
-					<template slot="case">${slot}</template>
-					<template slot="title">${title}</template>
-					<template slot="description">${description}</template>
-					<template slot="code">${code}</template>
-				</sample>`
-			)
 		})
+		// 默认起始位调整为当前字符串最后一位所处原始字符串的下标
+		start = index + str.length
+	})
+
+	return tokens
 }
 
-module.exports = function(docs) {
+
+cache.clean()
+module.exports = function(source) {
 	this.cacheable()
 
-	const loaderOpts = loaderUtils.getLoaderConfig(this, 'docs')
+	const loaderOpts = loaderUtils.getLoaderConfig(this)
 	const opts = Object.assign({}, defaultOpts, loaderOpts)
 	marked.setOptions(opts)
 
-	const html = replaceSample(docs)
+	const tokens = parseToken(source)
+	const filename = this.resourcePath.split('/').pop()
 
-	return 'module.exports = ' + JSON.stringify(html)
+	let text = `var tokens = ${JSON.stringify(tokens)};`
+	tokens.forEach((token, index) => {
+		if (token.type === 'sample') {
+			const filePath = cache.save(filename + '.' + index + '.vue', token.value.code.source)
+			const instance = `require(${loaderUtils.stringifyRequest(this, '!!vue-loader!' + filePath)})`
+			text += `
+				tokens[${index}].value.instance = ${instance};
+			`
+		}
+	})
+
+	return `
+		${text}
+		module.exports = tokens;
+	`
 }

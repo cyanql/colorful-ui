@@ -55,7 +55,7 @@
   border: 1px solid rgba(0, 0, 0, 0.075);
   overflow: hidden;
 }
-.sample .demo, .sample .code {
+.sample .demo, .sample .escape-code {
     width: 50%;
 }
 .sample .demo {
@@ -67,7 +67,7 @@
 .sample .demo p {
       margin: 0;
 }
-.sample .demo .case {
+.sample .demo .source-code {
       padding: 30px 20px 40px 20px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.075);
 }
@@ -86,7 +86,7 @@
       padding: 30px 20px;
       white-space: pre-wrap;
 }
-.sample .code {
+.sample .escape-code {
     position: absolute;
     top: 0;
     right: 0;
@@ -96,8 +96,8 @@
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.01);
     background-color: #f8f8f8;
 }
-.sample .code pre,
-    .sample .code code {
+.sample .escape-code pre,
+    .sample .escape-code code {
       background-color: #f8f8f8;
 }
 @charset "UTF-8";

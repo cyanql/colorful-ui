@@ -6,7 +6,7 @@
   "scripts": {
     "dist": "rm -rf ./dist && NODE_ENV=production webpack",
     "docs": "NODE_ENV=document webpack-dev-server --progress",
-	"deploy": "rm -rf ./docs && NODE_ENV=deploy webpack --progress",
+    "deploy": "rm -rf ./docs && NODE_ENV=deploy webpack --progress",
     "start": "NODE_ENV=test karma start --auto-watch",
     "test": "NODE_ENV=test karma start --single-run"
   },
@@ -32,6 +32,7 @@
     "eslint": "^3.5.0",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.10.0",
+    "fs-extra": "^2.0.0",
     "highlight.js": "^9.9.0",
     "html-webpack-plugin": "^2.22.0",
     "isparta-loader": "^2.0.0",
@@ -47,7 +48,6 @@
     "mocha": "^3.0.2",
     "node-sass": "^4.3.0",
     "postcss-loader": "^1.2.2",
-    "raw-loader": "^0.5.1",
     "sass-loader": "^5.0.1",
     "sinon": "^1.17.5",
     "style-loader": "^0.13.1",
@@ -55,7 +55,6 @@
     "vue-hot-reload-api": "^2.0.7",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^10.0.2",
-    "vue-markdown-loader": "^0.6.2",
     "vue-router": "^2.2.0",
     "vue-style-loader": "^2.0.0",
     "vue-template-compiler": "^2.1.10",

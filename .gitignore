@@ -1,6 +1,7 @@
 # folder
 node_modules
 coverage
+.cache
 
 # file
 *.log

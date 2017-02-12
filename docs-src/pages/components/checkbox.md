@@ -10,13 +10,17 @@
 幽灵和16进制类型默认背景色为透明
 ===
 ```html
-<c-checkbox checked>default</c-checkbox>
-<c-checkbox color="primary">primary</c-checkbox>
-<c-checkbox color="success">success</c-checkbox>
-<c-checkbox color="warning">warning</c-checkbox>
-<c-checkbox color="error">error</c-checkbox>
-<c-checkbox color="ghost">ghost</c-checkbox>
-<c-checkbox color="#808">#808</c-checkbox>
+<template>
+	<div>
+		<c-checkbox checked>default</c-checkbox>
+		<c-checkbox color="primary">primary</c-checkbox>
+		<c-checkbox color="success">success</c-checkbox>
+		<c-checkbox color="warning">warning</c-checkbox>
+		<c-checkbox color="error">error</c-checkbox>
+		<c-checkbox color="ghost">ghost</c-checkbox>
+		<c-checkbox color="#808">#808</c-checkbox>
+	</div>
+</template>
 ```
 :::
 
@@ -26,7 +30,11 @@
 当设置`disabled`属性为`true`时，按钮即为不可用状态
 ===
 ```html
-<c-checkbox checked disabled>disabled</c-checkbox>
-<c-checkbox disabled>disabled</c-checkbox>
+<template>
+	<div>	
+		<c-checkbox checked disabled>disabled</c-checkbox>
+		<c-checkbox disabled>disabled</c-checkbox>
+	</div>
+</template>
 ```
 :::

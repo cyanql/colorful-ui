@@ -10,7 +10,11 @@
 幽灵和16进制类型默认背景色为透明
 ===
 ```html
-<c-input></c-input>
+<template>
+	<div>
+		<c-input></c-input>
+	</div>
+</template>
 ```
 :::
 
@@ -19,7 +23,11 @@
 ===
 ===
 ```html
-<c-input placeholder="placeholder"></c-input>
+<template>
+	<div>
+		<c-input placeholder="placeholder"></c-input>
+	</div>
+</template>
 ```
 :::
 
@@ -29,8 +37,12 @@
 通过设置`label`的值来展示标签，还可以通过`floating-label`来打开过渡效果
 ===
 ```html
-<c-input label="label" placeholder="placeholder"></c-input>
-<c-input label="label" placeholder="placeholder" floating-label></c-input>
+<template>
+	<div>
+		<c-input label="label" placeholder="placeholder"></c-input>
+		<c-input label="label" placeholder="placeholder" floating-label></c-input>
+	</div>
+</template>
 ```
 :::
 
@@ -40,7 +52,11 @@
 效果等同于`react`的受限组件
 ===
 ```html
-<c-input placeholder="placeholder" controlled value="value"></c-input>
+<template>
+	<div>
+		<c-input placeholder="placeholder" controlled value="value"></c-input>
+	</div>
+</template>
 ```
 :::
 
@@ -50,10 +66,14 @@
 通过设置`hint`来显示提示信息，`hint-visible`来控制显示，`hint-color`来控制颜色
 ===
 ```html
-<c-input hint="hint" hint-visible></c-input>
-<c-input hint="hint" label="primary" hint-color="primary" hint-visible></c-input>
-<c-input hint="hint" label="success" placeholder="placeholder" hint-color="success" hint-visible></c-input>
-<c-input hint="hint" label="warning" placeholder="placeholder" hint-color="warning" hint-visible floating-label></c-input>
+<template>
+	<div>
+		<c-input hint="hint" hint-visible></c-input>
+		<c-input hint="hint" label="primary" hint-color="primary" hint-visible></c-input>
+		<c-input hint="hint" label="success" placeholder="placeholder" hint-color="success" hint-visible></c-input>
+		<c-input hint="hint" label="warning" placeholder="placeholder" hint-color="warning" hint-visible floating-label></c-input>
+	</div>
+</template>
 ```
 :::
 
@@ -63,6 +83,10 @@
 通过设置`multiline`来设置多行输入，`autosize`仅支持此模式
 ===
 ```html
-<c-input label="label" placeholder="placeholder" autosize floating-label multiline></c-input>
+<template>
+	<div>
+		<c-input label="label" placeholder="placeholder" autosize floating-label multiline></c-input>
+	</div>
+</template>
 ```
 :::

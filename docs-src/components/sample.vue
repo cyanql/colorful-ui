@@ -1,8 +1,8 @@
 <template>
 	<div class="sample">
 		<div class="demo">
-			<div class="case">
-				<slot name="case"></slot>
+			<div class="source-code">
+				<slot name="source-code"></slot>
 			</div>
 			<div class="title">
 				<slot name="title"></slot>
@@ -11,8 +11,8 @@
 				<slot name="description"></slot>
 			</div>
 		</div>
-		<div class="code">
-			<slot name="code"></slot>
+		<div class="escape-code">
+			<slot name="escape-code"></slot>
 		</div>
 	<div>
 </template>
@@ -32,7 +32,7 @@ export default {
 	border: 1px solid rgba(0,0,0,.075);
 	overflow: hidden;
 
-	.demo, .code {
+	.demo, .escape-code {
 		width: 50%;
 	}
 
@@ -46,7 +46,7 @@ export default {
 			margin: 0;
 		}
 
-		.case {
+		.source-code {
 			padding: 30px 20px 40px 20px;
 			border-bottom: 1px solid rgba(0,0,0,.075);
 		}
@@ -68,7 +68,7 @@ export default {
 		}
 	}
 
-	.code {
+	.escape-code {
 		position: absolute;
 		top: 0;
 		right: 0;
