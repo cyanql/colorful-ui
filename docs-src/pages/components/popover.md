@@ -2,62 +2,110 @@
 
 ## 示例
 
+
+::: 使用方式
+===
+默认父级元素为宿主，若设置了`target`属性，则会查找匹配的`ref`
+===
+```html
+<template>
+	<div>
+		<c-button>
+			<span>父级</span>
+			<c-popover>
+				<p>popover文本内容</p>
+			</c-popover>
+		</c-button>
+
+		<c-button ref="xxxx">
+			<span>ref & target</span>
+		</c-button>
+		<c-popover target="xxxx">
+			<p>popover文本内容</p>
+		</c-popover>
+	</div>
+</template>
+```
+:::
+
+
+::: 触发方式
+===
+共有`hover` `click`两种触发方式
+===
+```html
+<template>
+	<div>
+		<c-button>
+			<span>hover</span>
+			<c-popover trigger="hover">
+				<p>popover文本内容</p>
+			</c-popover>
+		</c-button>
+
+		<c-button>
+			<span>click</span>
+			<c-popover trigger="click">
+				<p>popover文本内容</p>
+			</c-popover>
+		</c-button>
+	</div>
+</template>
+```
+:::
+
+
 ::: 位置
 ===
 共有`top-left`、`top`、`top-right`等12种值
 ===
 ```html
-<c-button ref="top1">left</c-button>
-<c-popover target="top1" trigger="hover" position="top-left">
-	<p>top-left</p>
-</c-popover>
-<c-button ref="top2">center</c-button>
-<c-popover target="top2" trigger="hover" position="top">
-	<p>top</p>
-</c-popover>
-<c-button ref="top3">right</c-button>
-<c-popover target="top3" trigger="hover" position="top-right">
-	<p>top-right</p>
-</c-popover>
+<template>
+	<div>
+		<c-button v-for="position in positions">
+			<span v-text="position"></span>
+			<c-popover :position="position">
+				<p>popover文本内容</p>
+				<p v-text="position"></p>
+			</c-popover>
+		</c-button>
+	</div>
+</template>
 
-<c-button ref="bottom1">left</c-button>
-<c-popover target="bottom1" trigger="hover" position="bottom-left">
-	<p>bottom-left</p>
-</c-popover>
-<c-button ref="bottom2">center</c-button>
-<c-popover target="bottom2" trigger="hover" position="bottom">
-	<p>bottom</p>
-</c-popover>
-<c-button ref="bottom3">right</c-button>
-<c-popover target="bottom3" trigger="hover" position="bottom-right">
-	<p>bottom-right</p>
-</c-popover>
+<script>
+export default {
+	data() {
+		return {
+			positions: [
+				'top-left', 'top', 'top-right',
+				'bottom-left', 'bottom', 'bottom-right',
+				'left-top', 'left', 'left-bottom',
+				'right-top', 'right', 'right-bottom'
+			]
+		}
+	}
+}
+</script>
 
-<c-button ref="left1">top</c-button>
-<c-popover target="left1" trigger="hover" position="left-top">
-	<p>left-top</p>
-</c-popover>
-<c-button ref="left2">center</c-button>
-<c-popover target="left2" trigger="hover" position="left">
-	<p>left</p>
-</c-popover>
-<c-button ref="left3">bottom</c-button>
-<c-popover target="left3" trigger="hover" position="left-bottom">
-	<p>left-bottom</p>
-</c-popover>
-
-<c-button ref="right1">top</c-button>
-<c-popover target="right1" trigger="hover" position="right-top">
-	<p>right-top</p>
-</c-popover>
-<c-button ref="right2">center</c-button>
-<c-popover target="right2" trigger="hover" position="right">
-	<p>right</p>
-</c-popover>
-<c-button ref="right3">bottom</c-button>
-<c-popover target="right3" trigger="hover" position="right-bottom">
-	<p>right-bottom</p>
-</c-popover>
-
+<style scoped>
+.c-button {
+	margin: 20px;
+}
+</style>
 ```
 :::
+
+
+
+## API
+
+| 属性       | 说明                                       | 类型       | 默认值           |
+| -------- | ---------------------------------------- | -------- | ------------- |
+| target   | 设置宿主元素的`ref`值                            | string   | -             |
+| trigger  | 设置触发事件类型，可选值为`hover` `click` 或者不设        | string   | `hover`       |
+| position | 设置浮动层显示位置，可选值为`top-left` `top` `top-right` 等12种 | string   | `bottom-left` |
+| visible  | 设置初始的浮动层是否显示                             | boolean  | false         |
+| @open    | 浮动层显示时触发                                 | function | -             |
+| @close   | 浮动层隐藏时触发                                 | function | -             |
+| @toggle  | 浮动层显示关闭都触发                               | function | -             |
+| $slots.default | 浮动层内容                                | component | -     |

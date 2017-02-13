@@ -71,25 +71,17 @@ export default {
             type: Boolean,
             default: false
         },
-        autosize: {
-            type: Boolean,
-            default: true
-        },
         maxlength: Number,
 		minlength: Number,
         min: Number,
         max: Number,
-        rows: {
-            type: Number,
-            default: 2
-        },
-        label: String,
-        placeholder: String,
-        value: [String, Number],
 		floatingLabel: {
 			type: Boolean,
 			default: false
 		},
+        label: String,
+        placeholder: String,
+        value: [String, Number],
 		controlled: {
 			type: Boolean,
 			default: false
@@ -106,7 +98,15 @@ export default {
 		multiline: {
 			type: Boolean,
 			default: false
-		}
+		},
+        rows: {
+            type: Number,
+            default: 2
+        },
+        autosize: {
+            type: Boolean,
+            default: true
+        }
 	},
 	data() {
 		return {

@@ -1,8 +1,8 @@
 <template>
 	<div class="c-dropdown">
 		<slot></slot>
-		<c-popover class="c-dropdown-menu" visible>
-			<slot name="menu"></slot>
+		<c-popover class="c-dropdown-content" :visible="visible" :trigger="trigger" :position="position">
+			<slot name="content"></slot>
 		</c-popover>
 	</div>
 </template>
@@ -13,14 +13,9 @@ import Popover from '../popover'
 export default {
 	name: 'c-dropdown',
 	props: {
-		trigger: {
-			type: String,
-			default: 'hover',
-			validator(value) {
-				return ['hover', 'click'].includes(value)
-			}
-		},
-		visible: Boolean
+		trigger: String,
+		visible: Boolean,
+		position: String
 	},
 	components: {
 		Popover
@@ -32,9 +27,12 @@ export default {
 .c-dropdown {
 	display: inline-block;
 
-	&-menu {
+	&-content {
 		padding: 10px 0;
-		box-shadow: none;
+
+		.c-menu {
+			box-shadow: none;
+		}
 	}
 }
 </style>

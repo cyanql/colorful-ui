@@ -7,10 +7,10 @@
 			</nav>
 		</header>
 		<div class="docs-container">
-			<c-menu class="sidebar" @select="onSelect">
+			<c-menu class="sidebar">
 				<c-menu-item-group v-for="group in groups" :title="group.title">
-					<c-menu-item v-for="item in group.items" :data="item.index" :disabled="item.disabled" :selected="selectIndex === item.index" auto-trigger-href>
-						<router-link :to="item.path">
+					<c-menu-item v-for="item in group.items" :data="item.index" :disabled="item.disabled" :selected="selectRouteName === item.name" auto-trigger-href>
+						<router-link :to="item.name">
 							<span>{{item.english}}</span>
 							<span class="chinese">{{item.chinese}}</span>
 						</router-link>
@@ -30,23 +30,22 @@ import conf from './conf'
 export default {
 	name: 'app',
 	data() {
-		let i = 0
 		return {
-			groups: conf.groups.map(v => {
+			groups: conf.groups.filter(v => {
+				v.items = v.items.filter(w => !w.disabled)
+				return v.items.length > 0
+			}).map(v => {
 				v.items.map(w => {
-					w.index = i++
-					w.path = w.english.toLowerCase()
+					w.name = w.english.toLowerCase()
 					return w
 				})
 				return v
-			}),
-			selectIndex: 0
+			})
 		}
 	},
-	methods: {
-		onSelect(data) {
-			console.log(data)
-			this.selectIndex = data
+	computed: {
+		selectRouteName() {
+			return this.$route.name
 		}
 	}
 }
@@ -89,11 +88,16 @@ export default {
 			padding-top: 20px;
 			padding-bottom: 200px;
 			width: 200px;
+			white-space: nowrap;
 			font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
 
 			.chinese {
 				font-size: 12px;
 				opacity: .7;
+			}
+
+			a {
+				color: inherit;
 			}
 		}
 

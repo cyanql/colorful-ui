@@ -1,8 +1,8 @@
 <template>
 	<button class="c-button" :class="oClass" :type="type" :style="oStyle" @click="onClick">
-		<c-icon :icon="icon" :color="iconColor" v-if="icon"></c-icon>
+		<c-icon :icon="icon" v-if="icon"></c-icon>
 		<span class="c-button-text" v-if="$slots.default"><slot></slot></span>
-		<c-ripple></c-ripple>
+		<c-ripple v-if="rippleVisible"></c-ripple>
 	</button>
 </template>
 
@@ -22,12 +22,15 @@ export default {
 		},
 		type: String,
 		icon: String,
-		iconColor: String,
 		shape: {
 			type: String,
 			validator(value) {
 				return ['circle', undefined].includes(value)
 			}
+		},
+		loading: {
+			type: Boolean,
+			default: false
 		},
 		rippleVisible: {
 			type: Boolean,
@@ -47,21 +50,14 @@ export default {
 		// 当使用16进制颜色时，背景默认为transparent
 		if (color.indexOf('#') > -1) {
 			oStyle.color = color
-			oStyle.backgroundColor = 'transparent'
 		} else {
 			colorClass = color
-		}
-
-		if (shape === 'circle') {
-			oStyle.borderRadius = '50%'
-			oStyle.width = '40px'
-			oStyle.height = '40px'
-			oStyle.padding = '0px'
 		}
 
 		return {
 			oStyle,
 			oClass: {
+				[shape]: shape,
 				[colorClass]: colorClass,
 				'has-ripple': this.rippleVisible
 			}
@@ -104,7 +100,7 @@ export default {
 	user-select: none;
 	transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-	& > .c-icon + .c-button-text, & > .c-button-text + .c-icon {
+	& .c-icon + span, & span + .c-icon {
 	    margin-left: 0.5em;
 	}
 
@@ -117,12 +113,25 @@ export default {
 		}
 	}
 
-	&:not([disabled]):hover {
-		opacity: .8;
+	&:not([disabled]) {
+		&:hover {
+			opacity: .7;
+		}
+
+		&:active {
+			opacity: 1;
+		}
 	}
 
 	&:focus {
 		outline: none;
+	}
+
+	&.circle {
+		width: 40px;
+		height: 40px;
+		padding: 0;
+		border-radius: 50%;
 	}
 
 	&.has-ripple {

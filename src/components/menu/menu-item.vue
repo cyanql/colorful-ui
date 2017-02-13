@@ -54,10 +54,13 @@ export default {
 			if (!this.disabled) {
 				this.$emit('click', e)
 				this.bubble('c-menu', 'select', this.data)
-				if (this.autoTriggerHref) {
-					const els = this.$el.querySelectorAll('[href]')
-					els && els.forEach(el => el.click())
-				}
+				this.triggerHref()
+			}
+		},
+		triggerHref() {
+			if (this.autoTriggerHref) {
+				const els = this.$el.querySelectorAll('[href]')
+				els && els.forEach(el => el.click())
 			}
 		}
 	}
