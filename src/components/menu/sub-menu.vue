@@ -95,6 +95,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~src/styles/variables";
+
 .c-sub-menu {
 	&.vertical {
 		position: relative;
@@ -113,6 +115,7 @@ export default {
 			min-width: 200px;
 			background: white;
 			box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+			z-index: $zindex-menu;
 		}
 
 		& > .c-sub-menu-expand {

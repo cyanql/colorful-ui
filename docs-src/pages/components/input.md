@@ -4,17 +4,22 @@
 ## 示例
 
 
-::: 颜色
+::: 基本
 ===
-颜色类型：除默认、主要、成功、警告、错误、幽灵这6种基本类型以外，还可以通过设置16进制颜色来设置字体颜色
-幽灵和16进制类型默认背景色为透明
 ===
 ```html
 <template>
 	<div>
-		<c-input></c-input>
+		<c-input v-model="value"></c-input>
 	</div>
 </template>
+<script>
+export default {
+	data: () => ({
+		value: ''
+	})
+}
+</script>
 ```
 :::
 
@@ -25,9 +30,16 @@
 ```html
 <template>
 	<div>
-		<c-input placeholder="placeholder"></c-input>
+		<c-input placeholder="placeholder" v-model="value"></c-input>
 	</div>
 </template>
+<script>
+export default {
+	data: () => ({
+		value: ''
+	})
+}
+</script>
 ```
 :::
 
@@ -39,10 +51,18 @@
 ```html
 <template>
 	<div>
-		<c-input label="label" placeholder="placeholder"></c-input>
-		<c-input label="label" placeholder="placeholder" floating-label></c-input>
+		<c-input label="label" placeholder="placeholder" v-model="value1"></c-input>
+		<c-input label="label" placeholder="placeholder" floating-label v-model="value2"></c-input>
 	</div>
 </template>
+<script>
+export default {
+	data: () => ({
+		value1: '',
+		value2: ''
+	})
+}
+</script>
 ```
 :::
 
@@ -54,9 +74,23 @@
 ```html
 <template>
 	<div>
-		<c-input placeholder="placeholder" controlled value="value"></c-input>
+		<c-input placeholder="placeholder" controlled :value="value" @input="onInput"></c-input>
 	</div>
 </template>
+<script>
+export default {
+	data: () => ({
+		value: ''
+	}),
+	methods: {
+		onInput(value) {
+			if (/^\d*$/.test(value)) {
+				this.value = value
+			}
+		}
+	}
+}
+</script>
 ```
 :::
 
@@ -68,12 +102,22 @@
 ```html
 <template>
 	<div>
-		<c-input hint="hint" hint-visible></c-input>
-		<c-input hint="hint" label="primary" hint-color="primary" hint-visible></c-input>
-		<c-input hint="hint" label="success" placeholder="placeholder" hint-color="success" hint-visible></c-input>
-		<c-input hint="hint" label="warning" placeholder="placeholder" hint-color="warning" hint-visible floating-label></c-input>
+		<c-input hint="hint" hint-visible v-model="value1"></c-input>
+		<c-input hint="hint" label="primary" hint-color="primary" hint-visible v-model="value2"></c-input>
+		<c-input hint="hint" label="success" placeholder="placeholder" hint-color="success" hint-visible v-model="value3"></c-input>
+		<c-input hint="hint" label="warning" placeholder="placeholder" hint-color="warning" hint-visible floating-label v-model="value4"></c-input>
 	</div>
 </template>
+<script>
+export default {
+	data: () => ({
+		value1: '',
+		value2: '',
+		value3: '',
+		value4: ''
+	})
+}
+</script>
 ```
 :::
 
@@ -85,8 +129,47 @@
 ```html
 <template>
 	<div>
-		<c-input label="label" placeholder="placeholder" autosize floating-label multiline></c-input>
+		<c-input label="label" placeholder="placeholder" autosize floating-label multiline v-model="value"></c-input>
 	</div>
 </template>
+<script>
+export default {
+	data: () => ({
+		value: ''
+	})
+}
+</script>
 ```
 :::
+
+
+## API
+
+| 属性             | 说明                                       | 类型             | 默认值       |
+| -------------- | ---------------------------------------- | -------------- | --------- |
+| name           | 原生属性                                     | string         | —         |
+| type           | 原生属性                                     | string         | text      |
+| required       | 原生属性                                     | boolean        | —         |
+| readonly       | 原生属性                                     | boolean        | —         |
+| disabled       | 原生属性                                     | boolean        | —         |
+| auto-complete  | 原生属性，自动补全，可选值`on`, `off`                 | string         | `off`     |
+| autofocus      | 原生属性，自动获取焦点                              | boolean        | false     |
+| maxlength      | 原生属性，最大输入长度                              | number         | —         |
+| minlength      | 原生属性，最小输入长度                              | number         | —         |
+| max            | 原生属性，设置最大值                               | *              | —         |
+| min            | 原生属性，设置最小值                               | *              | —         |
+| floating-label | 标签是否浮动                                   | boolean        | false     |
+| label          | 标签文本                                     | string         | -         |
+| placeholder    | 占位文本                                     | string         | —         |
+| value          | 绑定值                                      | string, number | —         |
+| controlled     | 受限，同 **react**中受限组件类似                    | boolean        | false     |
+| hint           | 提示                                       | string         | -         |
+| hint-visible   | 提示信息是否可见                                 | boolean        | false     |
+| hint-color     | 提示信息颜色，可选值`primary`  `success` `warning` `error` | string         | `primary` |
+| multiline      | 多行模式                                     | boolean        | false     |
+| rows           | 输入框行数，只在设置`multiline`时有效                 | number         | 2         |
+| autosize       | 自适应内容高度，只在设置`multiline`时有效               | boolean        | false     |
+| @input         | 值输入时触发                                   | function       | —         |
+| @change        | 值更改时触发                                   | function       | —         |
+| @focus         | 输入框聚焦时触发                                 | function       | —         |
+| @blur          | 输入框失焦时触发                                 | function       | —         |

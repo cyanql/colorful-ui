@@ -30,7 +30,6 @@ export default {
 	white-space: nowrap;
 	background-color: #fff;
 	border: 1px solid rgba(0,0,0,.075);
-	overflow: hidden;
 
 	.demo, .escape-code {
 		width: 50%;
@@ -39,7 +38,6 @@ export default {
 	.demo {
 		vertical-align: top;
 		white-space: normal;
-		overflow: hidden;
 		border-right: 1px solid rgba(0,0,0,.075);
 
 		p {

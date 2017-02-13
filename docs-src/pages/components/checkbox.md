@@ -6,19 +6,17 @@
 
 ::: 颜色
 ===
-颜色类型：除默认、主要、成功、警告、错误、幽灵这6种基本类型以外，还可以通过设置16进制颜色来设置字体颜色
-幽灵和16进制类型默认背景色为透明
+在**Button**颜色的基础上，将默认颜色改为`primary`，并去除`default` `ghost`两种颜色类型
 ===
 ```html
 <template>
 	<div>
 		<c-checkbox checked>default</c-checkbox>
-		<c-checkbox color="primary">primary</c-checkbox>
-		<c-checkbox color="success">success</c-checkbox>
-		<c-checkbox color="warning">warning</c-checkbox>
-		<c-checkbox color="error">error</c-checkbox>
-		<c-checkbox color="ghost">ghost</c-checkbox>
-		<c-checkbox color="#808">#808</c-checkbox>
+		<c-checkbox checked color="primary">primary</c-checkbox>
+		<c-checkbox checked color="success">success</c-checkbox>
+		<c-checkbox checked color="warning">warning</c-checkbox>
+		<c-checkbox checked color="error">error</c-checkbox>
+		<c-checkbox checked color="#808">#808</c-checkbox>
 	</div>
 </template>
 ```
@@ -31,10 +29,20 @@
 ===
 ```html
 <template>
-	<div>	
+	<div>
 		<c-checkbox checked disabled>disabled</c-checkbox>
 		<c-checkbox disabled>disabled</c-checkbox>
 	</div>
 </template>
 ```
 :::
+
+
+## API
+
+| 属性      | 说明                                       | 类型       | 默认值   |
+| ------- | ---------------------------------------- | -------- | ----- |
+| color   | 设置颜色，可选值为`primary` `success` `warning` `error` `16进制` | string   | -     |
+| checked | 设置初始是否选中                                 | string   | false |
+| @change | 状态变化时触发                                  | function | -     |
+| $slots.default | 文本内容                                  | component | -     |

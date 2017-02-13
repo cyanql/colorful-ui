@@ -8,20 +8,20 @@
 ```html
 <template>
 	<div>
-		<c-radio checkedValue="1" :value="value">primary</c-radio>
-		<c-radio color="success" checkedValue="2" value="1">success</c-radio>
-		<c-radio color="warning" checkedValue="3" value="1">warning</c-radio>
-		<c-radio color="error" checkedValue="4" value="1">error</c-radio>
-		<c-radio color="error" checkedValue="5" value="1" disabled>error</c-radio>
+		<c-radio checkedValue="1" v-model="value">default</c-radio>
+		<c-radio color="primary" checkedValue="2" v-model="value">primary</c-radio>
+		<c-radio color="success" checkedValue="3" v-model="value">success</c-radio>
+		<c-radio color="warning" checkedValue="4" v-model="value">warning</c-radio>
+		<c-radio color="error" checkedValue="5" v-model="value">error</c-radio>
+		<c-radio color="#808" checkedValue="6" v-model="value">#808</c-radio>
+		<c-radio color="error" checkedValue="7" v-model="value" disabled>disabled error</c-radio>
 	</div>
 </template>
 <script>
 export default {
-	data() {
-		return {
-			value: '1'
-		}
-	}
+	data: () => ({
+		value: '1'
+	})
 }
 </script>
 ```
@@ -32,13 +32,32 @@ export default {
 ===
 ```html
 <template>
-	<c-radio-group value="2">
-		<c-radio checkedValue="1">primary</c-radio>
-		<c-radio color="success" checkedValue="2">success</c-radio>
-		<c-radio color="warning" checkedValue="3">warning</c-radio>
-		<c-radio color="error" checkedValue="4">error</c-radio>
-		<c-radio color="error" checkedValue="5" disabled>error</c-radio>
+	<c-radio-group v-model="value">
+		<c-radio checkedValue="1">default</c-radio>
+		<c-radio color="primary" checkedValue="2">primary</c-radio>
+		<c-radio color="success" checkedValue="3">success</c-radio>
+		<c-radio color="warning" checkedValue="4">warning</c-radio>
+		<c-radio color="error" checkedValue="5">error</c-radio>
+		<c-radio color="#808" checkedValue="6">#808</c-radio>
+		<c-radio color="error" checkedValue="7" disabled>disabled error</c-radio>
 	</c-radio-group>
 </template>
+<script>
+export default {
+	data: () => ({
+		value: '1'
+	})
+}
+</script>
 ```
 :::
+
+| 属性      | 说明                                       | 类型       | 默认值   |
+| ------- | ---------------------------------------- | -------- | ----- |
+| color   | 设置颜色，可选值为`primary` `success` `warning` `error` `16进制` | string   | -     |
+| checked | 设置初始是否选中                                 | string   | false |
+| checkedValue | 设置选中时的值                                 | string   | false |
+| value | 当与`checkedValue`相等时，自动选中                    | string   | false |
+| @input | 状态变化时触发                                  | function | -     |
+| @change | 状态变化时触发                                  | function | -     |
+| $slots.default | 文本内容                                  | component | -     |

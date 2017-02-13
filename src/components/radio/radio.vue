@@ -1,13 +1,18 @@
 <template>
 	<label class="c-radio" :class="oClass" @click="onInput">
-		<input
-			class="c-radio-input"
-			type="radio"
-			@change="onChange"
-			:value="checkedValue"
-		>
-		<span class="c-radio-outer"></span>
-		<span class="c-radio-inner"></span>
+		<span class="c-radio-circle">
+			<input
+				class="c-radio-input"
+				type="radio"
+				@change="onChange"
+				:value="checkedValue"
+			>
+			<span class="c-radio-outer" :style="oStyle.outer"></span>
+			<span class="c-radio-inner" :style="oStyle.inner"></span>
+		</span>
+		<span class="c-radio-text">
+			<slot></slot>
+		</span>
 	</label>
 </template>
 
@@ -42,21 +47,32 @@ export default {
 		oClass() {
 			return {
 				checked: this.oChecked,
-				[this.color]: this.color,
+				[this.color]: this.color.indexOf('#') === -1,
 				disabled: this.disabled
 			}
+		},
+		oStyle() {
+			const { color } = this
+			return color.indexOf('#') > -1 && this.oChecked ? {
+				inner: {
+					backgroundColor: color
+				},
+				outer: {
+					borderColor: color
+				}
+			} : {}
 		}
 	},
 	methods: {
 		onInput(e) {
 			if (!this.disabled) {
 				this.$emit('input', this.checkedValue, e)
-				this.bubble('c-radio-group', this.checkedValue, e)
+				this.bubble('c-radio-group', 'input', this.checkedValue, e)
 			}
 		},
 		onChange(e) {
 			this.$emit('change', this.oChecked, e)
-			this.bubble('c-radio-group', this.oChecked, e)
+			this.bubble('c-radio-group', 'change', this.oChecked, e)
 		}
 	}
 }
@@ -76,10 +92,7 @@ export default {
 }
 
 .c-radio {
-    display: inline-block;
-	position: relative;
-    width: 20px;
-    height: 20px;
+	display: inline-block;
 
 	&.disabled {
 		opacity: .5;
@@ -110,6 +123,14 @@ export default {
 		}
 	}
 
+	&-circle {
+	    display: inline-block;
+		position: relative;
+	    width: 20px;
+	    height: 20px;
+		vertical-align: middle;
+	}
+
 	&-input {
 		position: absolute;
 		opacity: 0;
@@ -138,6 +159,10 @@ export default {
 	&-inner {
 		transform: scale(0);
 		transition: transform .2s ease;
+	}
+
+	&-text {
+		padding: 0 8px;
 	}
 }
 </style>

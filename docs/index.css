@@ -29,11 +29,15 @@
   padding-top: 20px;
   padding-bottom: 200px;
   width: 200px;
+  white-space: nowrap;
   font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
 }
 .docs-container .sidebar .chinese {
     font-size: 12px;
     opacity: .7;
+}
+.docs-container .sidebar a {
+    color: inherit;
 }
 .docs-container .content {
   position: fixed;
@@ -53,7 +57,6 @@
   white-space: nowrap;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.075);
-  overflow: hidden;
 }
 .sample .demo, .sample .escape-code {
     width: 50%;
@@ -61,7 +64,6 @@
 .sample .demo {
     vertical-align: top;
     white-space: normal;
-    overflow: hidden;
     border-right: 1px solid rgba(0, 0, 0, 0.075);
 }
 .sample .demo p {
@@ -209,7 +211,7 @@ table {
   -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-.c-button > .c-icon + .c-button-text, .c-button > .c-button-text + .c-icon {
+.c-button .c-icon + span, .c-button span + .c-icon {
     margin-left: 0.5em;
 }
 .c-button[disabled] {
@@ -220,10 +222,19 @@ table {
       pointer-events: none;
 }
 .c-button:not([disabled]):hover {
-    opacity: .8;
+    opacity: .7;
+}
+.c-button:not([disabled]):active {
+    opacity: 1;
 }
 .c-button:focus {
     outline: none;
+}
+.c-button.circle {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
 }
 .c-button.has-ripple {
     position: relative;
@@ -303,28 +314,18 @@ table {
 }
 .c-icon.default {
     color: inherit;
-    background: transparent;
-    border: none;
 }
 .c-icon.primary {
     color: #108ee9;
-    background: transparent;
-    border: none;
 }
 .c-icon.success {
     color: #00A854;
-    background: transparent;
-    border: none;
 }
 .c-icon.warning {
     color: #F56A00;
-    background: transparent;
-    border: none;
 }
 .c-icon.error {
     color: #F04134;
-    background: transparent;
-    border: none;
 }
 
 /*url('https://fonts.gstatic.com/s/materialicons/v16/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2') format('woff2');*/
@@ -602,7 +603,7 @@ table {
 .c-checkbox {
   cursor: pointer;
 }
-.c-checkbox:hover .c-checkbox-inner {
+.c-checkbox:not(.disabled):hover .c-checkbox-inner {
     border-color: #52b0f3;
 }
 .c-checkbox-mark {
@@ -610,6 +611,30 @@ table {
     line-height: 1;
     display: inline-block;
     vertical-align: middle;
+}
+.c-checkbox.checked .c-checkbox-inner:after {
+    -webkit-transform: rotate(45deg) scale(1);
+            transform: rotate(45deg) scale(1);
+}
+.c-checkbox.checked.primary .c-checkbox-inner {
+    background-color: #108ee9;
+    border-color: #0e7fd1;
+}
+.c-checkbox.checked.success .c-checkbox-inner {
+    background-color: #00A854;
+    border-color: #008f47;
+}
+.c-checkbox.checked.warning .c-checkbox-inner {
+    background-color: #F56A00;
+    border-color: #dc5f00;
+}
+.c-checkbox.checked.error .c-checkbox-inner {
+    background-color: #F04134;
+    border-color: #ee2b1c;
+}
+.c-checkbox.disabled {
+    opacity: .6;
+    cursor: not-allowed;
 }
 .c-checkbox-inner {
     display: inline-block;
@@ -623,14 +648,6 @@ table {
     background-color: #fff;
     -webkit-transition: background-color .25s ease, border-color .25s ease;
     transition: background-color .25s ease, border-color .25s ease;
-}
-.c-checkbox-inner.checked {
-      background-color: #108ee9;
-      border-color: #0e7fd1;
-}
-.c-checkbox-inner.checked:after {
-        -webkit-transform: rotate(45deg) scale(1);
-                transform: rotate(45deg) scale(1);
 }
 .c-checkbox-inner:after {
       position: absolute;
@@ -732,9 +749,6 @@ table {
 
 .c-radio {
   display: inline-block;
-  position: relative;
-  width: 20px;
-  height: 20px;
 }
 .c-radio.disabled {
     opacity: .5;
@@ -768,6 +782,13 @@ table {
 .c-radio.checked:not([disabled]).error .c-radio-outer {
     border-color: #F04134;
 }
+.c-radio-circle {
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
 .c-radio-input {
     position: absolute;
     opacity: 0;
@@ -797,6 +818,9 @@ table {
     transition: -webkit-transform .2s ease;
     transition: transform .2s ease;
     transition: transform .2s ease, -webkit-transform .2s ease;
+}
+.c-radio-text {
+    padding: 0 8px;
 }
 
 .c-popover {
@@ -882,6 +906,7 @@ table {
     min-width: 200px;
     background: white;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    z-index: 1050;
 }
 .c-sub-menu.vertical > .c-sub-menu-expand-enter-active, .c-sub-menu.vertical > .c-sub-menu-expand-leave-active {
     -webkit-transition: height .2s ease;
@@ -956,77 +981,22 @@ table {
 .c-dropdown {
   display: inline-block;
 }
-.c-dropdown-menu {
+.c-dropdown-content {
     padding: 10px 0;
-    box-shadow: none;
+}
+.c-dropdown-content .c-menu {
+      box-shadow: none;
 }
 
 .expand-enter-active, .expand-leave-active {
   -webkit-transition: height .2s ease;
   transition: height .2s ease;
 }
-/*
-
-Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
-
-*/
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: white;
-  color: black; }
-
-.hljs-comment,
-.hljs-quote,
-.hljs-variable {
-  color: #008000; }
-
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-built_in,
-.hljs-name,
-.hljs-tag {
-  color: #00f; }
-
-.hljs-string,
-.hljs-title,
-.hljs-section,
-.hljs-attribute,
-.hljs-literal,
-.hljs-template-tag,
-.hljs-template-variable,
-.hljs-type,
-.hljs-addition {
-  color: #a31515; }
-
-.hljs-deletion,
-.hljs-selector-attr,
-.hljs-selector-pseudo,
-.hljs-meta {
-  color: #2b91af; }
-
-.hljs-doctag {
-  color: #808080; }
-
-.hljs-attr {
-  color: #f00; }
-
-.hljs-symbol,
-.hljs-bullet,
-.hljs-link {
-  color: #00b0e8; }
-
-.hljs-emphasis {
-  font-style: italic; }
-
-.hljs-strong {
-  font-weight: bold; }
 body {
   color: rgba(0, 0, 0, 0.65); }
 
 .docs {
-  font-size: 14px; }
+  font-size: 12.5px; }
   .docs code,
   .docs pre {
     font-family: Consolas,Liberation Mono,Menlo,Courier,monospace; }
@@ -1097,6 +1067,9 @@ body {
     margin: 0.2em 0; }
   .docs ol > li {
     list-style: decimal; }
+  .docs a {
+    padding: 0 5px;
+    color: #2973b7; }
   .docs code {
     color: #e96900;
     background: #f8f8f8;
@@ -1121,25 +1094,8 @@ body {
     -moz-osx-font-smoothing: initial; }
   .docs b,
   .docs strong {
-    font-weight: 600; }
-  .docs > table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    empty-cells: show;
-    border: 1px solid #e9e9e9;
-    width: 100%;
-    margin: 16px 0; }
-    .docs > table th {
-      white-space: nowrap;
-      color: #5C6B77;
-      font-weight: 600; }
-    .docs > table td,
-    .docs > table th {
-      border: 1px solid #e9e9e9;
-      padding: 8px 16px;
-      text-align: left; }
-    .docs > table th {
-      background: #F7F7F7; }
+    font-weight: 600;
+    padding: 0 5px; }
   .docs blockquote {
     font-size: 90%;
     color: #999;
@@ -1171,18 +1127,36 @@ body {
   .docs > br,
   .docs > p > br {
     clear: both; }
-  .docs.api-container table {
+  .docs table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #e9e9e9;
+    width: 100%;
+    margin: 16px 0; }
+    .docs table th {
+      white-space: nowrap;
+      color: #5C6B77;
+      font-weight: 600; }
+    .docs table td,
+    .docs table th {
+      border: 1px solid #e9e9e9;
+      padding: 8px 16px;
+      text-align: left; }
+    .docs table th {
+      background: #F7F7F7; }
+  .docs table {
     font-size: 13px; }
-    .docs.api-container table td:first-child {
+    .docs table td:first-child {
       background: #fcfcfc;
       font-weight: 500;
       width: 20%;
       font-family: "Lucida Console", Consolas, Menlo, Courier, monospace; }
-    .docs.api-container table td:nth-child(3) {
+    .docs table td:nth-child(3) {
       width: 22%;
       font-size: 12px;
       font-family: "Lucida Console", Consolas, Menlo, Courier, monospace; }
-    .docs.api-container table td:last-child {
+    .docs table td:last-child {
       width: 13%;
       font-size: 12px;
       font-family: "Lucida Console", Consolas, Menlo, Courier, monospace; }
@@ -1216,5 +1190,8 @@ body {
     font-style: italic; }
   .hljs-strong {
     font-weight: bold; }
+
+.javascript .hljs-attr {
+  color: #2973b7; }
 
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJpbmRleC5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/

@@ -30,21 +30,17 @@ export default {
 		})
 	},
 	beforeDestroy() {
-		if (this.drop) {
-			this.drop.remove()
-			this.drop.destroy()
-		}
+		this.drop.remove()
+		this.drop.destroy()
 	},
 	data() {
 		return {
-			drop: null,
-			timer: null,
-			opened: this.visible
+			drop: null
 		}
 	},
 	methods: {
 		init() {
-			const { $parent, $el, target, position, trigger, onOpen, onClose, visible } = this
+			const { $parent, $el, target, position, trigger, onOpen, onClose, onToggle, visible } = this
 			,	vm = $parent.$refs[target] || $parent
 			,	targetEl = vm ? vm.$el : null
 
@@ -53,41 +49,22 @@ export default {
 				content: $el,
 				position: position,
 				trigger: trigger,
-				visible
+				visible,
+				onOpen,
+				onClose,
+				onToggle
 			})
-
-			if (trigger === 'hover') {
-				targetEl.addEventListener('mouseover', onOpen, false)
-				targetEl.addEventListener('mouseout', onClose, false)
-				$el.addEventListener('mouseover', onOpen, false)
-				$el.addEventListener('mouseout', onClose, false)
-			} else if (trigger === 'click') {
-				targetEl.addEventListener('click', onOpen, false)
-			}
 
 			this.drop = drop
 		},
-		onOpen(e) {
-			clearTimeout(this.timer)
-			this.timer = setTimeout(() => {
-				if (!this.opened) {
-					this.drop.el.className += ' show'
-					this.drop.open()
-					this.$emit('open', e)
-					this.opened = true
-				}
-			}, 100)
+		onOpen(visible) {
+			this.$emit('open', visible)
 		},
-		onClose(e) {
-			clearTimeout(this.timer)
-			this.timer = setTimeout(() => {
-				if (this.opened) {
-					this.drop.el.className = this.drop.el.className.replace(' show', '')
-					this.drop.close()
-					this.$emit('close', e)
-					this.opened = false
-				}
-			}, 100)
+		onClose(visible) {
+			this.$emit('close', visible)
+		},
+		onToggle(visible) {
+			this.$emit('toggle', visible)
 		}
 	}
 }

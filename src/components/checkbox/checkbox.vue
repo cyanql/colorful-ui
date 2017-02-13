@@ -1,8 +1,8 @@
 <template>
-	<label class="c-checkbox">
+	<label class="c-checkbox" :class="oClass">
 		<span class="c-checkbox-mark">
-			<span class="c-checkbox-inner" :class="oClass"></span>
-			<input class="c-checkbox-input" type="checkbox" @change="onChange" v-model="oChecked">
+			<span class="c-checkbox-inner" :style="oStyle"></span>
+			<input class="c-checkbox-input" type="checkbox" @change="onChange" v-model="oChecked" :disabled="disabled">
 		</span>
 		<span class="c-checkbox-text">
 			<slot></slot>
@@ -14,7 +14,18 @@
 export default {
 	name: 'c-checkbox',
 	props: {
+		color: {
+			type: String,
+			default: 'primary',
+			validator(value) {
+				return ['primary', 'success', 'warning', 'error'].includes(value) || value.indexOf('#') === 0
+			}
+		},
 		checked: {
+			type: Boolean,
+			default: false
+		},
+		disabled: {
 			type: Boolean,
 			default: false
 		}
@@ -27,8 +38,17 @@ export default {
 	computed: {
 		oClass() {
 			return {
-				'checked': this.oChecked
+				[this.color]: this.color.indexOf('#') === -1,
+				checked: this.oChecked,
+				disabled: this.disabled
 			}
+		},
+		oStyle() {
+			const { color } = this
+			return color.indexOf('#') > -1 && this.oChecked ? {
+				backgroundColor: color,
+				borderColor: color
+			} : null
 		}
 	},
 	methods: {
@@ -42,10 +62,18 @@ export default {
 <style lang="scss">
 @import "~src/styles/variables";
 
+@mixin background-border($background-color, $border-color: transparent) {
+	.c-checkbox-inner {
+		background-color: $background-color;
+		border-color: $border-color;
+	}
+	// background-image: -webkit-linear-gradient(top, $background, $border);
+}
+
 .c-checkbox {
 	cursor: pointer;
 
-	&:hover {
+	&:not(.disabled):hover {
 		.c-checkbox-inner {
 			border-color: $blue-3;
 		}
@@ -56,6 +84,35 @@ export default {
 		line-height: 1;
 	    display: inline-block;
 	    vertical-align: middle;
+	}
+
+
+	&.checked {
+		.c-checkbox-inner {
+			&:after {
+				transform: rotate(45deg) scale(1);
+			}
+		}
+		&.primary {
+			@include background-border($blue-6, $blue-7);
+		}
+
+		&.success {
+			@include background-border($green-6, $green-7);
+		}
+
+		&.warning {
+			@include background-border($orange-6, $orange-7);
+		}
+
+		&.error {
+			@include background-border($red-6, $red-7);
+		}
+	}
+
+	&.disabled {
+		opacity: .6;
+		cursor: not-allowed;
 	}
 
 	&-inner {
@@ -69,15 +126,6 @@ export default {
 		border-radius: 3px;
 		background-color: #fff;
 		transition: background-color .25s ease, border-color .25s ease;
-
-		&.checked {
-			background-color: $blue-6;
-			border-color: $blue-7;
-
-			&:after {
-				transform: rotate(45deg) scale(1);
-			}
-		}
 
 		&:after {
 			position: absolute;

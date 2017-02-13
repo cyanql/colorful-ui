@@ -77,6 +77,8 @@ function parseToken(text) {
 		start = index + str.length
 	})
 
+	tearString(start, text.length)
+
 	return tokens
 }
 
@@ -93,6 +95,7 @@ module.exports = function(source) {
 	const filename = this.resourcePath.split('/').pop()
 
 	let text = `var tokens = ${JSON.stringify(tokens)};`
+
 	tokens.forEach((token, index) => {
 		if (token.type === 'sample') {
 			const filePath = cache.save(filename + '.' + index + '.vue', token.value.code.source)

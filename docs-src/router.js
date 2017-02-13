@@ -13,7 +13,6 @@ const routes = Object.keys(Components).map(key => {
 	const text = tokens.reduce((prev, token, index) => {
 		if (token.type === 'sample') {
 			const compName = 'sample-case' + index
-
 			compMap[compName] = token.value.instance
 
 			return prev + `<sample>
@@ -28,6 +27,7 @@ const routes = Object.keys(Components).map(key => {
 	}, '')
 
 	return {
+		name,
 		path: '/' + name,
 		component: Vue.component('docs-' + name, {
 			template: `<div>${text}<div>`,
@@ -36,19 +36,6 @@ const routes = Object.keys(Components).map(key => {
 	}
 
 })
-
-function compileSourceCode(source) {
-	const div = document.createElement('div')
-	div.innerHTML = source
-
-	const template = div.querySelector('template')
-	const script = div.querySelector('script')
-	return {
-		template: template && template.innerHTML,
-		script: script && script.textContent
-	}
-}
-
 
 
 routes.unshift({

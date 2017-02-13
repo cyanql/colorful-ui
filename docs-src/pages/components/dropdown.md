@@ -6,15 +6,14 @@
 
 ::: 颜色
 ===
-颜色类型：除默认、主要、成功、警告、错误、幽灵这6种基本类型以外，还可以通过设置16进制颜色来设置字体颜色
-幽灵和16进制类型默认背景色为透明
+`Dropdown`配置项同`Popover`一致，可以理解为`Popover`的另一种使用方式，默认`slot`为宿主元素，`slot="content"`为内容
 ===
 ```html
 <template>
 	<div>
-		<c-dropdown trigger="click" visible>
-			<c-button>hover</c-button>
-			<c-menu slot="menu">
+		<c-dropdown trigger="click">
+			<c-button>click</c-button>
+			<c-menu slot="content">
 				<c-menu-item>item 1</c-menu-item>
 				<c-menu-item>item 2</c-menu-item>
 				<c-menu-item>item 3</c-menu-item>
@@ -24,7 +23,25 @@
 				</c-sub-menu>
 			</c-menu>
 		</c-dropdown>
+
+		<c-dropdown trigger="hover" position="right">
+			<c-button>hover</c-button>
+			<c-menu slot="content">
+				<c-menu-item>item 1</c-menu-item>
+				<c-menu-item>item 2</c-menu-item>
+				<c-menu-item>item 3</c-menu-item>
+				<c-sub-menu title="submenu" mode="vertical">
+					<c-menu-item>item 4</c-menu-item>
+					<c-menu-item>item 5</c-menu-item>
+				</c-sub-menu>
+			</c-menu>
+		</c-dropdown>
 	</div>
 </template>
 ```
 :::
+
+
+## API
+
+同[**Popover**](#/popover)一致

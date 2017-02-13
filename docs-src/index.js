@@ -3,7 +3,6 @@ import App from './app'
 import router from './router'
 import DocsUI from './components'
 import ColorfulUI from 'src'
-import 'highlight.js/styles/vs.css'
 import './styles/init.scss'
 
 Vue.use(ColorfulUI)

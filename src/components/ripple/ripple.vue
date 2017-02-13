@@ -1,5 +1,5 @@
 <template>
-	<span class="c-ripple-container"></span>
+	<div class="c-ripple-container"></div>
 </template>
 
 <script>

@@ -23,10 +23,10 @@ export default {
 		// 当使用16进制颜色时，背景默认为transparent
 		if (color.indexOf('#') > -1) {
 			oStyle.color = color
-			oStyle.backgroundColor = 'transparent'
 		} else {
 			colorClass = color
 		}
+
 		return {
 			oStyle,
 			oClass: {
@@ -41,36 +41,16 @@ export default {
 @import url(~src/fonts/material-icons.css);
 @import "~src/styles/variables";
 
-@mixin color-type($color, $background, $border) {
-	color: $color;
-	background: $background;
-	border: $border;
-}
-
 .c-icon {
 	line-height: 1;
 	font-size: initial;
 	vertical-align: middle;
 
-	&.default {
-		@include color-type(inherit, transparent, none);
-	}
-
-	&.primary {
-		@include color-type($blue-6, transparent, none);
-	}
-
-	&.success {
-		@include color-type($green-6, transparent, none);
-	}
-
-	&.warning {
-		@include color-type($orange-6, transparent, none);
-	}
-
-	&.error {
-		@include color-type($red-6, transparent, none);
-	}
+	&.default {color: inherit;}
+	&.primary {color: $blue-6;}
+	&.success {color: $green-6;}
+	&.warning {color: $orange-6;}
+	&.error {color: $red-6;}
 }
 /*url('https://fonts.gstatic.com/s/materialicons/v16/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2') format('woff2');*/
 </style>
