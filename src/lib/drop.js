@@ -1,6 +1,6 @@
 const cssText = `
 .drop {
-    position: absolute;
+    position: fixed;
     left: -9999px;
     top: -9999px;
     z-index: 1050;
@@ -42,65 +42,65 @@ function initElement(drop) {
 
 const align = {
 	top: {
-		left(el, tRect, cRect, spacing) {
-			el.style.top = tRect.top - cRect.height - spacing + 'px'
+		left(el, tRect, dRect, spacing) {
+			el.style.top = tRect.top - dRect.height - spacing + 'px'
 			el.style.left = tRect.left + 'px'
 		},
-		center(el, tRect, cRect, spacing) {
-			el.style.top = tRect.top - cRect.height - spacing + 'px'
-			el.style.left = tRect.left - (cRect.width - tRect.width) / 2 + 'px'
+		center(el, tRect, dRect, spacing) {
+			el.style.top = tRect.top - dRect.height - spacing + 'px'
+			el.style.left = tRect.left - (dRect.width - tRect.width) / 2 + 'px'
 		},
-		right(el, tRect, cRect, spacing) {
-			el.style.top = tRect.top - cRect.height - spacing + 'px'
-			el.style.left = tRect.left - (cRect.width - tRect.width) + 'px'
+		right(el, tRect, dRect, spacing) {
+			el.style.top = tRect.top - dRect.height - spacing + 'px'
+			el.style.left = tRect.left - (dRect.width - tRect.width) + 'px'
 		}
 	},
 	bottom: {
-		left(el, tRect, cRect, spacing) {
+		left(el, tRect, dRect, spacing) {
 			el.style.top = tRect.bottom + spacing + 'px'
 			el.style.left = tRect.left + 'px'
 		},
-		center(el, tRect, cRect, spacing) {
+		center(el, tRect, dRect, spacing) {
 			el.style.top = tRect.bottom + spacing + 'px'
-			el.style.left = tRect.left - (cRect.width - tRect.width) / 2 + 'px'
+			el.style.left = tRect.left - (dRect.width - tRect.width) / 2 + 'px'
 		},
-		right(el, tRect, cRect, spacing) {
+		right(el, tRect, dRect, spacing) {
 			el.style.top = tRect.bottom + spacing + 'px'
-			el.style.left = tRect.left - (cRect.width - tRect.width) + 'px'
+			el.style.left = tRect.left - (dRect.width - tRect.width) + 'px'
 		}
 	},
 	left: {
-		top(el, tRect, cRect, spacing) {
+		top(el, tRect, dRect, spacing) {
 			el.style.top = tRect.top + 'px'
-			el.style.left = tRect.left - cRect.width - spacing + 'px'
+			el.style.left = tRect.left - dRect.width - spacing + 'px'
 		},
-		center(el, tRect, cRect, spacing) {
-			el.style.top = tRect.top - (cRect.height - tRect.height) / 2 + 'px'
-			el.style.left = tRect.left - cRect.width - spacing + 'px'
+		center(el, tRect, dRect, spacing) {
+			el.style.top = tRect.top - (dRect.height - tRect.height) / 2 + 'px'
+			el.style.left = tRect.left - dRect.width - spacing + 'px'
 		},
-		bottom(el, tRect, cRect, spacing) {
-			el.style.top = tRect.top - (cRect.height - tRect.height) + 'px'
-			el.style.left = tRect.left - cRect.width - spacing + 'px'
+		bottom(el, tRect, dRect, spacing) {
+			el.style.top = tRect.top - (dRect.height - tRect.height) + 'px'
+			el.style.left = tRect.left - dRect.width - spacing + 'px'
 		}
 	},
 	right: {
-		top(el, tRect, cRect, spacing) {
+		top(el, tRect, dRect, spacing) {
 			el.style.top = tRect.top + 'px'
 			el.style.left = tRect.right + spacing + 'px'
 		},
-		center(el, tRect, cRect, spacing) {
-			el.style.top = tRect.top - (cRect.height - tRect.height) / 2 + 'px'
+		center(el, tRect, dRect, spacing) {
+			el.style.top = tRect.top - (dRect.height - tRect.height) / 2 + 'px'
 			el.style.left = tRect.right + spacing + 'px'
 		},
-		bottom(el, tRect, cRect, spacing) {
-			el.style.top = tRect.top - (cRect.height - tRect.height) + 'px'
+		bottom(el, tRect, dRect, spacing) {
+			el.style.top = tRect.top - (dRect.height - tRect.height) + 'px'
 			el.style.left = tRect.right + spacing + 'px'
 		}
 	}
 }
 
 function initMethods(drop) {
-	const { target, content, position, el, spacing } = drop
+	const { target, position, el, spacing } = drop
 	,	posArr = position.split('-')
 	,	posA = posArr[0]
 	,	posB = posArr[1] || 'center'
@@ -129,9 +129,10 @@ function initMethods(drop) {
 			alignFn(
 				el,
 				target.getBoundingClientRect(),
-				content.getBoundingClientRect(),
+				el.getBoundingClientRect(),
 				spacing
 			)
+
 			Object.assign(el.style, opts)
 		}
 	} catch(e) {

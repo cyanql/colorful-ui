@@ -77,8 +77,7 @@
       font-size: 14px;
       color: #777;
       background-color: #fff;
-      -webkit-transform: translate(10px, -50%);
-              transform: translate(10px, -50%);
+      transform: translate(10px, -50%);
 }
 .sample .demo .description {
       font-size: 12.5px;
@@ -193,19 +192,14 @@ table {
   text-align: center;
   line-height: 1.5;
   color: rgba(0, 0, 0, 0.65);
-  -ms-touch-action: manipulation;
-      touch-action: manipulation;
+  touch-action: manipulation;
   cursor: pointer;
   display: inline-block;
   margin-bottom: 0;
   font-weight: 500;
   background-image: none;
   white-space: nowrap;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  user-select: none;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .c-button .c-icon + span, .c-button span + .c-icon {
@@ -339,31 +333,22 @@ table {
 .c-ripple {
   border-radius: 50%;
   pointer-events: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  user-select: none;
   background-color: currentColor;
   position: absolute;
   top: 0;
   left: 0;
   opacity: .2;
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  -webkit-transition: opacity .4s ease-out, -webkit-transform .4s ease-out;
-  transition: opacity .4s ease-out, -webkit-transform .4s ease-out;
+  transform: scale(0);
   transition: transform .4s ease-out, opacity .4s ease-out;
-  transition: transform .4s ease-out, opacity .4s ease-out, -webkit-transform .4s ease-out;
 }
 .c-ripple.transiting {
     opacity: .4;
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
 }
 .c-ripple.done {
     opacity: 0;
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
 }
 
 .c-modal {
@@ -422,21 +407,16 @@ table {
     text-align: right;
 }
 .modal-enter-active, .modal-leave-active {
-  -webkit-transition: opacity .2s ease;
   transition: opacity .2s ease;
 }
 .modal-enter-active .c-modal-container, .modal-leave-active .c-modal-container {
-    -webkit-transition: -webkit-transform .2s ease;
-    transition: -webkit-transform .2s ease;
     transition: transform .2s ease;
-    transition: transform .2s ease, -webkit-transform .2s ease;
 }
 .modal-enter, .modal-leave-active {
   opacity: 0;
 }
 .modal-enter .c-modal-container, .modal-leave-active .c-modal-container {
-    -webkit-transform: scale(0.2);
-            transform: scale(0.2);
+    transform: scale(0.2);
 }
 
 .c-input {
@@ -465,7 +445,6 @@ table {
 }
 .c-input.has-floating-label.focus:not(.has-value) .c-input-placeholder {
     opacity: 1;
-    -webkit-transition: opacity .5s ease;
     transition: opacity .5s ease;
 }
 .c-input.has-floating-label .c-input-label-line {
@@ -496,10 +475,8 @@ table {
     text-align: left;
     top: 4px;
     font-size: 12px;
-    -webkit-transition-duration: .2s;
-            transition-duration: .2s;
-    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .c-input-label-line:after {
       content: '';
@@ -510,10 +487,8 @@ table {
       height: 2px;
       visibility: hidden;
       background-color: #108ee9;
-      -webkit-transition-duration: .2s;
-              transition-duration: .2s;
-      -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-              transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: .2s;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .c-input-placeholder {
     display: block;
@@ -610,8 +585,7 @@ table {
     vertical-align: middle;
 }
 .c-checkbox.checked .c-checkbox-inner:after {
-    -webkit-transform: rotate(45deg) scale(1);
-            transform: rotate(45deg) scale(1);
+    transform: rotate(45deg) scale(1);
 }
 .c-checkbox.checked.primary .c-checkbox-inner {
     background-color: #108ee9;
@@ -643,7 +617,6 @@ table {
     border: 1px solid #d9d9d9;
     border-radius: 3px;
     background-color: #fff;
-    -webkit-transition: background-color .25s ease, border-color .25s ease;
     transition: background-color .25s ease, border-color .25s ease;
 }
 .c-checkbox-inner:after {
@@ -655,12 +628,8 @@ table {
       height: 8px;
       border-bottom: 2px solid #fff;
       border-right: 2px solid #fff;
-      -webkit-transform: rotate(45deg) scale(0);
-              transform: rotate(45deg) scale(0);
-      -webkit-transition: -webkit-transform .2s ease;
-      transition: -webkit-transform .2s ease;
+      transform: rotate(45deg) scale(0);
       transition: transform .2s ease;
-      transition: transform .2s ease, -webkit-transform .2s ease;
 }
 .c-checkbox-input {
     position: absolute;
@@ -685,8 +654,7 @@ table {
   line-height: 1.5;
 }
 .c-switch.checked .c-switch-thumb {
-    -webkit-transform: translateX(16px);
-            transform: translateX(16px);
+    transform: translateX(16px);
 }
 .c-switch.checked.primary .c-switch-track {
     background-color: #82c6f6;
@@ -725,7 +693,6 @@ table {
     border-radius: 7px;
     vertical-align: middle;
     background-color: rgba(0, 0, 0, 0.25);
-    -webkit-transition: background-color .2s ease;
     transition: background-color .2s ease;
 }
 .c-switch-thumb {
@@ -738,10 +705,7 @@ table {
     border-radius: 50%;
     background-color: #fafafa;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-    -webkit-transition: background-color .2s ease, -webkit-transform .2s ease;
-    transition: background-color .2s ease, -webkit-transform .2s ease;
     transition: transform .2s ease, background-color .2s ease;
-    transition: transform .2s ease, background-color .2s ease, -webkit-transform .2s ease;
 }
 
 .c-radio {
@@ -752,8 +716,7 @@ table {
 }
 .c-radio.checked .c-radio-inner {
     background-color: rgba(0, 0, 0, 0.5);
-    -webkit-transform: scale(0.5);
-            transform: scale(0.5);
+    transform: scale(0.5);
 }
 .c-radio.checked:not([disabled]).primary .c-radio-inner {
     background-color: #108ee9;
@@ -805,16 +768,11 @@ table {
 }
 .c-radio-outer {
     border: 2px solid rgba(0, 0, 0, 0.5);
-    -webkit-transition: border-color .2s ease;
     transition: border-color .2s ease;
 }
 .c-radio-inner {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    -webkit-transition: -webkit-transform .2s ease;
-    transition: -webkit-transform .2s ease;
+    transform: scale(0);
     transition: transform .2s ease;
-    transition: transform .2s ease, -webkit-transform .2s ease;
 }
 .c-radio-text {
     padding: 0 8px;
@@ -830,7 +788,7 @@ table {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 .drop {
-  position: absolute;
+  position: fixed;
   left: -9999px;
   top: -9999px;
   z-index: 1050;
@@ -838,35 +796,19 @@ table {
   font-size: 12px;
   font-weight: normal;
   line-height: 1.5;
-  -webkit-transform-origin: 0 0;
-          transform-origin: 0 0;
+  transform-origin: 0 0;
 }
 .drop.show {
-    -webkit-animation: drop 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: drop 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-@-webkit-keyframes drop {
-0% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-            transform: scale(0);
-}
-100% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-            transform: scale(1);
-}
+    animation: drop 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @keyframes drop {
 0% {
     opacity: 0;
-    -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
 }
 100% {
     opacity: 1;
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
 }
 }
 
@@ -898,8 +840,7 @@ table {
 .c-notification-container.top {
     top: 0;
     left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 .c-notification-container.top-right {
     top: 0;
@@ -912,8 +853,7 @@ table {
 .c-notification-container.bottom {
     bottom: 0;
     left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 .c-notification-container.bottom-right {
     bottom: 0;
@@ -923,31 +863,21 @@ table {
     margin-bottom: 10px;
 }
 .c-notification-container.top .notification-enter-active, .c-notification-container.top .notification-leave-active, .c-notification-container.top-left .notification-enter-active, .c-notification-container.top-left .notification-leave-active, .c-notification-container.top-right .notification-enter-active, .c-notification-container.top-right .notification-leave-active {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-    -webkit-transition: height .2s, -webkit-transform .2s;
-    transition: height .2s, -webkit-transform .2s;
+    transform: translateY(0);
     transition: height .2s, transform .2s;
-    transition: height .2s, transform .2s, -webkit-transform .2s;
 }
 .c-notification-container.top .notification-enter, .c-notification-container.top .notification-leave-active, .c-notification-container.top-left .notification-enter, .c-notification-container.top-left .notification-leave-active, .c-notification-container.top-right .notification-enter, .c-notification-container.top-right .notification-leave-active {
-    -webkit-transform: translateY(-20px);
-            transform: translateY(-20px);
+    transform: translateY(-20px);
 }
 .c-notification-container.bottom .c-notification, .c-notification-container.bottom-left .c-notification, .c-notification-container.bottom-right .c-notification {
     margin-top: 10px;
 }
 .c-notification-container.bottom .notification-enter-active, .c-notification-container.bottom .notification-leave-active, .c-notification-container.bottom-left .notification-enter-active, .c-notification-container.bottom-left .notification-leave-active, .c-notification-container.bottom-right .notification-enter-active, .c-notification-container.bottom-right .notification-leave-active {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-    -webkit-transition: height .2s, -webkit-transform .2s;
-    transition: height .2s, -webkit-transform .2s;
+    transform: translateY(0);
     transition: height .2s, transform .2s;
-    transition: height .2s, transform .2s, -webkit-transform .2s;
 }
 .c-notification-container.bottom .notification-enter, .c-notification-container.bottom .notification-leave-active, .c-notification-container.bottom-left .notification-enter, .c-notification-container.bottom-left .notification-leave-active, .c-notification-container.bottom-right .notification-enter, .c-notification-container.bottom-right .notification-leave-active {
-    -webkit-transform: translateY(20px);
-            transform: translateY(20px);
+    transform: translateY(20px);
 }
 
 .c-menu {
@@ -959,8 +889,7 @@ table {
   position: relative;
 }
 .c-sub-menu.vertical > .c-sub-menu-title .c-icon.expand-more {
-    -webkit-transform: rotate(-90deg);
-            transform: rotate(-90deg);
+    transform: rotate(-90deg);
     float: right;
 }
 .c-sub-menu.vertical > .c-sub-menu-content {
@@ -973,37 +902,27 @@ table {
     z-index: 1050;
 }
 .c-sub-menu.vertical > .c-sub-menu-expand-enter-active, .c-sub-menu.vertical > .c-sub-menu-expand-leave-active {
-    -webkit-transition: height .2s ease;
     transition: height .2s ease;
 }
 .c-sub-menu.inline {
   overflow: hidden;
 }
 .c-sub-menu.inline > .c-sub-menu-title .c-icon.expand-more {
-    -webkit-transition: -webkit-transform .2s ease;
-    transition: -webkit-transform .2s ease;
     transition: transform .2s ease;
-    transition: transform .2s ease, -webkit-transform .2s ease;
     float: right;
 }
 .c-sub-menu.inline > .c-sub-menu-title .c-icon.expand-more.expand {
-      -webkit-transform: rotate(-180deg);
-              transform: rotate(-180deg);
+      transform: rotate(-180deg);
 }
 .c-sub-menu.inline > .c-sub-menu-content {
     background: white;
 }
 .c-sub-menu .scale-enter-active, .c-sub-menu .scale-leave-active {
-  -webkit-transform-origin: 0 0;
-          transform-origin: 0 0;
-  -webkit-transition: opacity .2s ease, -webkit-transform .2s ease;
-  transition: opacity .2s ease, -webkit-transform .2s ease;
+  transform-origin: 0 0;
   transition: transform .2s ease, opacity .2s ease;
-  transition: transform .2s ease, opacity .2s ease, -webkit-transform .2s ease;
 }
 .c-sub-menu .scale-enter, .c-sub-menu .scale-leave-active {
-  -webkit-transform: scale(0);
-          transform: scale(0);
+  transform: scale(0);
   opacity: 0;
 }
 
@@ -1053,7 +972,6 @@ table {
 }
 
 .expand-enter-active, .expand-leave-active {
-  -webkit-transition: height .2s ease;
   transition: height .2s ease;
 }
 body {
