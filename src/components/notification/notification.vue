@@ -1,17 +1,26 @@
 <template>
-	<div class="c-notification">
-		<c-notice v-for="item in queue" :message="item.message" :duration="item.duration" :delay="item.delay"></c-notice>
-	</div>
+	<transition name="notification">
+		<div class="c-notification">
+			<span class="c-notification-message">{{message}}</span>
+			<c-button :color="buttonColor" v-if="buttonText">{{buttonText}}</c-button>
+		</div>
+	</transition>
 </template>
 
 <script>
-import { queue } from './index'
-
 export default {
 	name: 'c-notification',
-	data() {
-		return {
-			queue
+	props: {
+		message: {
+			type: String,
+			required: true
+		},
+		buttonText: String,
+		buttonColor: {
+			type: String,
+			validator(value) {
+				return value ? value : '#2196f3'
+			}
 		}
 	}
 }
@@ -21,9 +30,19 @@ export default {
 @import "~src/styles/variables";
 
 .c-notification {
-	position: fixed;
-	left: 25px;
-	bottom: 25px;
-	z-index: 1000;
+	position: relative;
+	color: white;
+	padding: 0 20px;
+	border-radius: 3px;
+	background: #323232;
+	box-shadow: 0 0 5px $shadow-color;
+	overflow: hidden;
+
+	&-message {
+		display: inline-block;
+		width: 200px;
+		padding: 15px;
+		vertical-align: middle;
+	}
 }
 </style>

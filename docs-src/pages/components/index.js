@@ -7,6 +7,7 @@ import Radio from './radio'
 import Popover from './popover'
 import Menu from './menu'
 import Dropdown from './dropdown'
+import Notification from './notification'
 
 export {
 	Button,
@@ -17,5 +18,6 @@ export {
 	Radio,
 	Popover,
 	Menu,
-	Dropdown
+	Dropdown,
+	Notification
 }

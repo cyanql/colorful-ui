@@ -1,15 +1,6 @@
 import Notification from './notification'
-import Notice from './notice'
+import NotificationContainer from './notification-container'
 
-export const queue = []
-
-Notification.Notice = Notice
-Notification.notice = function(messageOrOpts) {
-	const opts = typeof messageOrOpts === 'string' ? {
-		message: messageOrOpts
-	} : messageOrOpts
-
-	queue.push(opts)
-}
+Notification.Container = NotificationContainer
 
 export default Notification

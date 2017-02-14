@@ -7,6 +7,7 @@
   padding: 0 50px;
   line-height: 60px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
+  z-index: 1;
 }
 .docs-header:after {
     content: '';
@@ -31,6 +32,7 @@
   width: 200px;
   white-space: nowrap;
   font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+  z-index: 1;
 }
 .docs-container .sidebar .chinese {
     font-size: 12px;
@@ -40,15 +42,10 @@
     color: inherit;
 }
 .docs-container .content {
-  position: fixed;
-  top: 60px;
-  left: 200px;
-  right: 0;
-  bottom: 0;
+  margin-top: 60px;
+  margin-left: 200px;
   padding: 50px;
   padding-bottom: 200px;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 .sample {
@@ -823,6 +820,10 @@ table {
     padding: 0 8px;
 }
 
+.c-radio-group {
+  display: inline-block;
+}
+
 .c-popover {
   padding: 10px 20px;
   background: white;
@@ -870,20 +871,83 @@ table {
 }
 
 .c-notification {
-  position: fixed;
-  left: 25px;
-  bottom: 25px;
-  z-index: 1000;
+  position: relative;
+  color: white;
+  padding: 0 20px;
+  border-radius: 3px;
+  background: #323232;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+.c-notification-message {
+    display: inline-block;
+    width: 200px;
+    padding: 15px;
+    vertical-align: middle;
 }
 
-.c-notice[data-v-d45bf6b8] {
-  color: white;
-  width: 260px;
-  padding: 10px 20px;
-  margin: 10px 0;
-  border-radius: 3px;
-  background: blue;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+.c-notification-container {
+  position: fixed;
+  margin: 20px;
+  z-index: 1010;
+}
+.c-notification-container.top-left {
+    top: 0;
+    left: 0;
+}
+.c-notification-container.top {
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+}
+.c-notification-container.top-right {
+    top: 0;
+    right: 0;
+}
+.c-notification-container.bottom-left {
+    bottom: 0;
+    left: 0;
+}
+.c-notification-container.bottom {
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+}
+.c-notification-container.bottom-right {
+    bottom: 0;
+    right: 0;
+}
+.c-notification-container.top .c-notification, .c-notification-container.top-left .c-notification, .c-notification-container.top-right .c-notification {
+    margin-bottom: 10px;
+}
+.c-notification-container.top .notification-enter-active, .c-notification-container.top .notification-leave-active, .c-notification-container.top-left .notification-enter-active, .c-notification-container.top-left .notification-leave-active, .c-notification-container.top-right .notification-enter-active, .c-notification-container.top-right .notification-leave-active {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transition: height .2s, -webkit-transform .2s;
+    transition: height .2s, -webkit-transform .2s;
+    transition: height .2s, transform .2s;
+    transition: height .2s, transform .2s, -webkit-transform .2s;
+}
+.c-notification-container.top .notification-enter, .c-notification-container.top .notification-leave-active, .c-notification-container.top-left .notification-enter, .c-notification-container.top-left .notification-leave-active, .c-notification-container.top-right .notification-enter, .c-notification-container.top-right .notification-leave-active {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+}
+.c-notification-container.bottom .c-notification, .c-notification-container.bottom-left .c-notification, .c-notification-container.bottom-right .c-notification {
+    margin-top: 10px;
+}
+.c-notification-container.bottom .notification-enter-active, .c-notification-container.bottom .notification-leave-active, .c-notification-container.bottom-left .notification-enter-active, .c-notification-container.bottom-left .notification-leave-active, .c-notification-container.bottom-right .notification-enter-active, .c-notification-container.bottom-right .notification-leave-active {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transition: height .2s, -webkit-transform .2s;
+    transition: height .2s, -webkit-transform .2s;
+    transition: height .2s, transform .2s;
+    transition: height .2s, transform .2s, -webkit-transform .2s;
+}
+.c-notification-container.bottom .notification-enter, .c-notification-container.bottom .notification-leave-active, .c-notification-container.bottom-left .notification-enter, .c-notification-container.bottom-left .notification-leave-active, .c-notification-container.bottom-right .notification-enter, .c-notification-container.bottom-right .notification-leave-active {
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
 }
 
 .c-menu {
