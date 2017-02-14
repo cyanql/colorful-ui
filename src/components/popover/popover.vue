@@ -81,7 +81,7 @@ export default {
 
 
 .drop {
-    position: absolute;
+    position: fixed;
     left: -9999px;
     top: -9999px;
     z-index: 1050;
