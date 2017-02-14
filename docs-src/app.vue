@@ -61,6 +61,7 @@ export default {
 		padding: 0 50px;
 		line-height: 60px;
 		box-shadow: 0 0 1px rgba(0,0,0,0.25);
+		z-index: 1;
 
 		&:after {
 			content: '';
@@ -90,6 +91,7 @@ export default {
 			width: 200px;
 			white-space: nowrap;
 			font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+			z-index: 1;
 
 			.chinese {
 				font-size: 12px;
@@ -102,15 +104,12 @@ export default {
 		}
 
 		.content {
-			position: fixed;
-			top: 60px;
-			left: 200px;
-			right: 0;
-			bottom: 0;
+			margin-top: 60px;
+			margin-left: 200px;
 			padding: 50px;
 			padding-bottom: 200px;
-			overflow-y: scroll;
-			overflow-x: hidden;
+			// overflow-y: scroll;
+			// overflow-x: hidden;
 		}
 	}
 }

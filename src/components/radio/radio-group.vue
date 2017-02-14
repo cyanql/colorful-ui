@@ -24,3 +24,9 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss">
+.c-radio-group {
+	display: inline-block;
+}
+</style>

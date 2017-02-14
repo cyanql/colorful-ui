@@ -17,7 +17,7 @@ export default {
 			type: String,
 			default: 'default',
 			validator(value) {
-				return ['default', 'primary', 'success', 'warning', 'error', 'ghost'].includes(value) || value.indexOf('#') === 0
+				return !value || ['default', 'primary', 'success', 'warning', 'error', 'ghost'].includes(value) || value.indexOf('#') === 0
 			}
 		},
 		type: String,
