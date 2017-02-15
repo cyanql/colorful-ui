@@ -82,9 +82,24 @@
 ```html
 <template>
 	<div>
-		<c-button loading>loading</c-button>
+		<c-button :loading="loading" @click="onClick">loading</c-button>
 	</div>
 </template>
+<script>
+export default {
+	data: () => ({
+		loading: false
+	}),
+	methods: {
+		onClick() {
+			this.loading = true
+			setTimeout(() => {
+				this.loading = false
+			}, 2000)
+		}
+	}
+}
+</script>
 ```
 :::
 

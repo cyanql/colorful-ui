@@ -2,7 +2,7 @@
 	<label class="c-checkbox" :class="oClass">
 		<span class="c-checkbox-mark">
 			<span class="c-checkbox-inner" :style="oStyle"></span>
-			<input class="c-checkbox-input" type="checkbox" @change="onChange" v-model="oChecked" :disabled="disabled">
+			<input class="c-checkbox-input" type="checkbox" @change="onChange" v-model="checked" :disabled="disabled">
 		</span>
 		<span class="c-checkbox-text">
 			<slot></slot>
@@ -14,16 +14,16 @@
 export default {
 	name: 'c-checkbox',
 	props: {
+		value: {
+			type: Boolean,
+			default: false
+		},
 		color: {
 			type: String,
 			default: 'primary',
 			validator(value) {
 				return ['primary', 'success', 'warning', 'error'].includes(value) || value.indexOf('#') === 0
 			}
-		},
-		checked: {
-			type: Boolean,
-			default: false
 		},
 		disabled: {
 			type: Boolean,
@@ -32,20 +32,25 @@ export default {
 	},
 	data() {
 		return {
-			oChecked: this.checked
+			checked: this.value === true
+		}
+	},
+	watch: {
+		value(value) {
+			this.checked = value
 		}
 	},
 	computed: {
 		oClass() {
 			return {
 				[this.color]: this.color.indexOf('#') === -1,
-				checked: this.oChecked,
+				checked: this.checked,
 				disabled: this.disabled
 			}
 		},
 		oStyle() {
 			const { color } = this
-			return color.indexOf('#') > -1 && this.oChecked ? {
+			return color.indexOf('#') > -1 && this.checked ? {
 				backgroundColor: color,
 				borderColor: color
 			} : null
@@ -53,7 +58,8 @@ export default {
 	},
 	methods: {
 		onChange(e) {
-			this.$emit('change', this.oChecked, e)
+			this.$emit('input', this.checked, e)
+			this.$emit('change', this.checked, e)
 		}
 	}
 }

@@ -6,7 +6,9 @@
   width: 100%;
   padding: 0 50px;
   line-height: 60px;
+  height: 60px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
+  background-color: #fff;
   z-index: 1;
 }
 .docs-header:after {
@@ -16,10 +18,48 @@
 .docs-header .logo {
     display: inline-block;
     font-weight: bold;
+    font-size: 10px;
+    font-family: fantasy;
+    vertical-align: middle;
+}
+.docs-header .logo > span {
+      font-size: 20px;
+      vertical-align: -webkit-baseline-middle;
+}
+.docs-header .logo > span:nth-child(1) {
+        color: #108ee9;
+}
+.docs-header .logo > span:nth-child(2) {
+        color: #F04134;
+}
+.docs-header .logo > span:nth-child(3) {
+        color: #ffbf00;
+}
+.docs-header .logo > span:nth-child(4) {
+        color: #00A854;
+}
+.docs-header .logo > span:nth-child(5) {
+        color: #F04134;
+}
+.docs-header .logo > span:nth-child(6) {
+        color: #108ee9;
+}
+.docs-header .logo > span:nth-child(7) {
+        color: #ffbf00;
+}
+.docs-header .logo > span:nth-child(8) {
+        color: #00A854;
 }
 .docs-header .nav {
     display: inline-block;
     float: right;
+}
+.docs-header .nav .github {
+      display: inline-block;
+      vertical-align: middle;
+}
+.docs-header .nav .github:hover {
+        opacity: .5;
 }
 .docs-container .sidebar {
   position: fixed;
@@ -55,7 +95,7 @@
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.075);
 }
-.sample .demo, .sample .escape-code {
+.sample .demo, .sample .escape {
     width: 50%;
 }
 .sample .demo {
@@ -66,7 +106,7 @@
 .sample .demo p {
       margin: 0;
 }
-.sample .demo .source-code {
+.sample .demo .source {
       padding: 30px 20px 40px 20px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.075);
 }
@@ -84,7 +124,7 @@
       padding: 30px 20px;
       white-space: pre-wrap;
 }
-.sample .escape-code {
+.sample .escape {
     position: absolute;
     top: 0;
     right: 0;
@@ -94,8 +134,8 @@
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.01);
     background-color: #f8f8f8;
 }
-.sample .escape-code pre,
-    .sample .escape-code code {
+.sample .escape pre,
+    .sample .escape code {
       background-color: #f8f8f8;
 }
 @charset "UTF-8";
@@ -202,8 +242,23 @@ table {
   user-select: none;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-.c-button .c-icon + span, .c-button span + .c-icon {
+.c-button .c-spin + span,
+  .c-button span + .c-spin,
+  .c-button .c-icon + span,
+  .c-button span + .c-icon {
     margin-left: 0.5em;
+}
+.c-button .scale-enter-active, .c-button .scale-leave-active {
+    transition-property: width, opacity, height, border-width;
+    transition-duration: .2s;
+    transition-timing-function: ease;
+}
+.c-button .scale-enter, .c-button .scale-leave-active {
+    letter-spacing: -4px;
+    border-width: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0;
 }
 .c-button[disabled] {
     cursor: not-allowed;
@@ -236,30 +291,48 @@ table {
     background-color: #f7f7f7;
     border-color: #d9d9d9;
 }
+.c-button.default .c-spin {
+      border-left-color: rgba(0, 0, 0, 0.65);
+}
 .c-button.ghost {
     color: rgba(0, 0, 0, 0.65);
     background-color: transparent;
     border-color: transparent;
+}
+.c-button.ghost .c-spin {
+      border-left-color: rgba(0, 0, 0, 0.65);
 }
 .c-button.primary {
     color: white;
     background-color: #108ee9;
     border-color: #0e7fd1;
 }
+.c-button.primary .c-spin {
+      border-left-color: white;
+}
 .c-button.success {
     color: white;
     background-color: #00A854;
     border-color: #008f47;
+}
+.c-button.success .c-spin {
+      border-left-color: white;
 }
 .c-button.warning {
     color: white;
     background-color: #F56A00;
     border-color: #dc5f00;
 }
+.c-button.warning .c-spin {
+      border-left-color: white;
+}
 .c-button.error {
     color: white;
     background-color: #F04134;
     border-color: #ee2b1c;
+}
+.c-button.error .c-spin {
+      border-left-color: white;
 }
 @font-face {
   font-family: 'Material Icons';
@@ -680,6 +753,10 @@ table {
 .c-switch.checked.error .c-switch-thumb {
     background-color: #f2574c;
 }
+.c-switch.disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
 .c-switch-input {
     position: absolute;
     opacity: 0;
@@ -713,6 +790,7 @@ table {
 }
 .c-radio.disabled {
     opacity: .5;
+    cursor: not-allowed;
 }
 .c-radio.checked .c-radio-inner {
     background-color: rgba(0, 0, 0, 0.5);
@@ -969,6 +1047,53 @@ table {
 }
 .c-dropdown-content .c-menu {
       box-shadow: none;
+}
+
+@charset "UTF-8";
+/**
+ * 引用 https://projects.lukehaas.me/css-loaders/
+ */
+.c-spin {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 5px solid transparent;
+  border-left-color: #fff;
+  border-radius: 50%;
+  transform: translateZ(0);
+  vertical-align: middle;
+}
+.c-spin.loading {
+    animation: spinload 1s infinite linear;
+}
+.c-spin-wrapper {
+    position: relative;
+}
+.c-spin-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #fff;
+    text-align: center;
+    transform: translate3d(-50%, -50%, 0);
+    transition: opacity .2s ease;
+    opacity: 0;
+}
+.c-spin-content.loading {
+      opacity: 1;
+}
+.c-spin-container.loading {
+    opacity: .8;
+    filter: blur(1px);
+}
+@keyframes spinload {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
 }
 
 .expand-enter-active, .expand-leave-active {

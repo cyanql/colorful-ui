@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dist": "rm -rf ./dist && NODE_ENV=production webpack",
-    "docs": "NODE_ENV=document webpack-dev-server --progress",
-    "deploy": "rm -rf ./docs && NODE_ENV=deploy webpack --progress",
+    "dev": "NODE_ENV=development webpack-dev-server --progress",
+    "docs": "rm -rf ./docs && NODE_ENV=document webpack --progress",
     "start": "NODE_ENV=test karma start --auto-watch",
     "test": "NODE_ENV=test karma start --single-run"
   },

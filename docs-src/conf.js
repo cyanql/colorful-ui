@@ -191,7 +191,6 @@ export default {
 			english: 'Progress',
 			chinese: '进度条'
 		}, {
-			disabled: true,
 			english: 'Spin',
 			chinese: '加载中'
 		}]

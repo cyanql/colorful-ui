@@ -8,6 +8,7 @@ import Popover from './popover'
 import Menu from './menu'
 import Dropdown from './dropdown'
 import Notification from './notification'
+import Spin from './spin'
 
 export {
 	Button,
@@ -19,5 +20,6 @@ export {
 	Popover,
 	Menu,
 	Dropdown,
-	Notification
+	Notification,
+	Spin
 }

@@ -11,12 +11,12 @@
 ```html
 <template>
 	<div>
-		<c-checkbox checked>default</c-checkbox>
-		<c-checkbox checked color="primary">primary</c-checkbox>
-		<c-checkbox checked color="success">success</c-checkbox>
-		<c-checkbox checked color="warning">warning</c-checkbox>
-		<c-checkbox checked color="error">error</c-checkbox>
-		<c-checkbox checked color="#808">#808</c-checkbox>
+		<c-checkbox value>default</c-checkbox>
+		<c-checkbox value color="primary">primary</c-checkbox>
+		<c-checkbox value color="success">success</c-checkbox>
+		<c-checkbox value color="warning">warning</c-checkbox>
+		<c-checkbox value color="error">error</c-checkbox>
+		<c-checkbox value color="#808">#808</c-checkbox>
 	</div>
 </template>
 ```
@@ -30,7 +30,7 @@
 ```html
 <template>
 	<div>
-		<c-checkbox checked disabled>disabled</c-checkbox>
+		<c-checkbox value disabled>disabled</c-checkbox>
 		<c-checkbox disabled>disabled</c-checkbox>
 	</div>
 </template>
@@ -43,6 +43,7 @@
 | 属性      | 说明                                       | 类型       | 默认值   |
 | ------- | ---------------------------------------- | -------- | ----- |
 | color   | 设置颜色，可选值为`primary` `success` `warning` `error` `16进制` | string   | -     |
-| checked | 设置初始是否选中                                 | string   | false |
+| value | 设置初始是否选中                                 | boolean   | false |
+| @input | 用于`v-model`绑定                              | function | -     |
 | @change | 状态变化时触发                                  | function | -     |
 | $slots.default | 文本内容                                  | component | -     |

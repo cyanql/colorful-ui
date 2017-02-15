@@ -24,6 +24,11 @@ export default {
 	})
 }
 </script>
+<style scoped>
+.c-radio {
+	margin: 20px;
+}
+</style>
 ```
 :::
 
@@ -49,8 +54,17 @@ export default {
 	})
 }
 </script>
+<style scoped>
+.c-radio {
+	margin: 20px;
+}
+</style>
 ```
 :::
+
+## API
+
+### Radio
 
 | 属性      | 说明                                       | 类型       | 默认值   |
 | ------- | ---------------------------------------- | -------- | ----- |
@@ -58,6 +72,15 @@ export default {
 | checked | 设置初始是否选中                                 | string   | false |
 | checkedValue | 设置选中时的值                                 | string   | false |
 | value | 当与`checkedValue`相等时，自动选中                    | string   | false |
-| @input | 状态变化时触发                                  | function | -     |
+| @input | 状态变化时触发，配合`v-model`                         | function | -     |
 | @change | 状态变化时触发                                  | function | -     |
 | $slots.default | 文本内容                                  | component | -     |
+
+
+### Radio.Group
+
+| 属性      | 说明                                       | 类型       | 默认值   |
+| ------- | ---------------------------------------- | -------- | ----- |
+| value | 当与 **Radio** 的`checkedValue`相等时，自动选中         | string   | false |
+| @input | 状态变化时触发，配合`v-model`                         | function | -     |
+| @change | 状态变化时触发                                  | function | -     |

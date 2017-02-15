@@ -10,6 +10,7 @@ import Notification from './notification'
 import Menu from './menu'
 import Ripple from './ripple'
 import Dropdown from './dropdown'
+import Spin from './spin'
 const NotificationContainer = Notification.Container
 const MenuItem = Menu.Item
 const SubMenu = Menu.SubMenu
@@ -33,5 +34,6 @@ export {
 	Checkbox,
 	Switch,
 	Radio,
-	RadioGroup
+	RadioGroup,
+	Spin
 }

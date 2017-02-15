@@ -1,6 +1,9 @@
 <template>
-	<button class="c-button" :class="oClass" :type="type" :style="oStyle" @click="onClick">
+	<button class="c-button" :class="oClass" :type="type" :style="oStyle" @click="onClick" :disabled="loading">
 		<c-icon :icon="icon" v-if="icon"></c-icon>
+		<transition name="scale">
+			<c-spin :radius="10" loading v-if="loading"></c-spin>
+		</transition>
 		<span class="c-button-text" v-if="$slots.default"><slot></slot></span>
 		<c-ripple v-if="rippleVisible"></c-ripple>
 	</button>
@@ -77,6 +80,10 @@ export default {
 	color: $color;
 	background-color: $background-color;
 	border-color: $border-color;
+
+	.c-spin {
+		border-left-color: $color;
+	}
 	// background-image: -webkit-linear-gradient(top, $background, $border);
 }
 
@@ -100,8 +107,29 @@ export default {
 	user-select: none;
 	transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-	& .c-icon + span, & span + .c-icon {
+	.c-spin + span,
+	span + .c-spin,
+	.c-icon + span,
+	span + .c-icon {
 	    margin-left: 0.5em;
+	}
+
+	.scale {
+		&-enter-active,
+		&-leave-active {
+			transition-property: width, opacity, height, border-width;
+			transition-duration: .2s;
+			transition-timing-function: ease;
+		}
+
+		&-enter,
+		&-leave-active {
+			letter-spacing: -4px;
+			border-width: 0 !important;
+			width: 0 !important;
+			height: 0 !important;
+			opacity: 0;
+		}
 	}
 
 	&[disabled] {

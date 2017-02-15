@@ -118,12 +118,8 @@ if (NODE_ENV === 'test') {
 	// }))
 }
 
-if (NODE_ENV === 'document' || NODE_ENV === 'deploy') {
-	config.output.path = path.resolve(DOCS_PATH)
-}
 
-
-if (NODE_ENV === 'development' || NODE_ENV === 'document') {
+if (NODE_ENV === 'development') {
 	for (const name of Object.keys(config.entry)) {
 		if (name !== 'lib') {
 			config.entry[name].unshift('webpack/hot/only-dev-server')
@@ -137,8 +133,11 @@ if (NODE_ENV === 'development' || NODE_ENV === 'document') {
 	config.watch = true
 }
 
+if (NODE_ENV === 'document') {
+	config.output.path = path.resolve(DOCS_PATH)
+}
 
-if (NODE_ENV === 'production' || NODE_ENV === 'deploy') {
+if (NODE_ENV === 'production' || NODE_ENV === 'document') {
 	config.plugins.unshift(new webpack.DefinePlugin({
 		'process.env.NODE_ENV': JSON.stringify('production')
 	}))

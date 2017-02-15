@@ -1,16 +1,18 @@
 <template>
-	<label class="c-radio" :class="oClass" @click="onInput">
+	<label class="c-radio" :class="oClass">
 		<span class="c-radio-circle">
 			<input
 				class="c-radio-input"
 				type="radio"
-				@change="onChange"
 				:value="checkedValue"
+				v-model="oValue"
+				:checked="checked"
+				:disabled="disabled"
 			>
 			<span class="c-radio-outer" :style="oStyle.outer"></span>
 			<span class="c-radio-inner" :style="oStyle.inner"></span>
 		</span>
-		<span class="c-radio-text">
+		<span class="c-radio-text" v-if="$slots.default">
 			<slot></slot>
 		</span>
 	</label>
@@ -27,10 +29,11 @@ export default {
 			type: String,
 			default: 'primary'
 		},
-		value: [String, Number, Boolean],
-		checkedValue: {
-			type: [String, Number, Boolean],
-			required: true
+		value: null,
+		checkedValue: null,
+		checked: {
+			type: Boolean,
+			default: false
 		},
 		disabled: {
 			type: Boolean,
@@ -38,41 +41,42 @@ export default {
 		}
 	},
 	computed: {
-		isGroup() {
-			return this.$parent.$options.name === 'c-radio-group'
-		},
-		oChecked() {
-			return this.value === this.checkedValue || (this.isGroup && this.checkedValue === this.$parent.value)
-		},
 		oClass() {
 			return {
-				checked: this.oChecked,
 				[this.color]: this.color.indexOf('#') === -1,
+				checked: this.oChecked,
 				disabled: this.disabled
 			}
 		},
 		oStyle() {
 			const { color } = this
 			return color.indexOf('#') > -1 && this.oChecked ? {
-				inner: {
-					backgroundColor: color
-				},
-				outer: {
-					borderColor: color
-				}
+				inner: {backgroundColor: color},
+				outer: {borderColor: color}
 			} : {}
-		}
-	},
-	methods: {
-		onInput(e) {
-			if (!this.disabled) {
-				this.$emit('input', this.checkedValue, e)
-				this.bubble('c-radio-group', 'input', this.checkedValue, e)
+		},
+		isGroup() {
+			return this.$parent.$options.name === 'c-radio-group'
+		},
+		oValue: {
+			get() {
+				return this.value
+			},
+			set(value) {
+				if (this.isGroup) {
+					this.bubble('c-radio-group', 'input', value)
+					this.bubble('c-radio-group', 'change', value)
+				}
+				this.$emit('input', value)
+				this.$emit('change', value)
 			}
 		},
-		onChange(e) {
-			this.$emit('change', this.oChecked, e)
-			this.bubble('c-radio-group', 'change', this.oChecked, e)
+		oChecked() {
+			if (this.isGroup) {
+				return this.checkedValue === this.$parent.value
+			} else {
+				return this.checkedValue === this.value
+			}
 		}
 	}
 }
@@ -96,6 +100,7 @@ export default {
 
 	&.disabled {
 		opacity: .5;
+		cursor: not-allowed;
 	}
 
 	&.checked {
