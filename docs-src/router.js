@@ -16,10 +16,10 @@ const routes = Object.keys(Components).map(key => {
 			compMap[compName] = token.value.instance
 
 			return prev + `<sample>
-					<template slot="source-code"><${compName}/></template>
+					<template slot="source"><${compName}/></template>
 					<template slot="title">${token.value.title}</template>
 					<template slot="description">${token.value.description}</template>
-					<template slot="escape-code">${token.value.code.escape}</template>
+					<template slot="escape">${token.value.code.escape}</template>
 				</sample>`
 		} else {
 			return prev + token.value

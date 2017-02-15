@@ -1,6 +1,6 @@
 <template>
 	<label class="c-switch" :class="oClass">
-		<input class="c-switch-input" type="checkbox" @change="onChange" v-model="oChecked">
+		<input class="c-switch-input" type="checkbox" @change="onChange" v-model="checked" :disabled="disabled">
 		<span class="c-switch-track"></span>
 		<span class="c-switch-thumb"></span>
 	</label>
@@ -10,28 +10,39 @@
 export default {
 	name: 'c-switch',
 	props: {
-		checked: Boolean,
+		value: Boolean,
 		color: {
 			type: String,
 			default: 'primary'
+		},
+		disabled: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
 		return {
-			oChecked: this.checked
+			checked: this.value === true
+		}
+	},
+	watch: {
+		value(value) {
+			this.checked = value
 		}
 	},
 	computed: {
 		oClass() {
 			return {
-				checked: this.oChecked,
-				[this.color]: this.color
+				checked: this.checked,
+				[this.color]: this.color,
+				disabled: this.disabled
 			}
 		}
 	},
 	methods: {
 		onChange(e) {
-			this.$emit('change', this.oChecked, e)
+			this.$emit('input', this.checked, e)
+			this.$emit('change', this.checked, e)
 		}
 	}
 }
@@ -84,6 +95,11 @@ $thumb-height: 20px;
 		&.error {
 			@include switch-color($red-1, $red-5);
 		}
+	}
+
+	&.disabled {
+		opacity: .6;
+		cursor: not-allowed;
 	}
 
 	&-input {

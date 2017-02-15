@@ -16,10 +16,6 @@ export default {
 		value: {
 			type: [String, Number, Boolean],
 			required: true
-		},
-		disabled: {
-			type: Boolean,
-			default: false
 		}
 	}
 }
