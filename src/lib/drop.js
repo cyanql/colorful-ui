@@ -26,13 +26,18 @@ const cssText = `
 	}
 }
 `
+function createContainer() {
+	const container = document.createElement('div')
+	container.className = 'c-drop-container'
+	document.body.appendChild(container)
+	return container
+}
 
-const container = document.createElement('div')
-container.className = 'c-drop-container'
-document.body.appendChild(container)
-
+var container = null
 function initElement(drop) {
 	var el = document.createElement('div')
+	container = container || createContainer()
+	
 	el.className = 'drop'
 	// el.style.cssText = cssText
 	el.appendChild(drop.content)
