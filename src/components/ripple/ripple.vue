@@ -23,10 +23,10 @@ export default {
 	name: 'c-ripple',
 	methods: {
 		init() {
-			const parentEl = this.$parent.$el
+			const parentEl = this.$el.parentNode
 
 			if (!parentEl || (parentEl && getComputedStyle(parentEl).position === 'static')) {
-				return console.error('ripple要求存在父级元素且position需要设置为非static的值')
+				return console.error('[c-ripple]要求存在父级元素且position需要设置为非static的值')
 			}
 
 			const container = this.$el

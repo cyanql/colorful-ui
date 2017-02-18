@@ -24,17 +24,21 @@
 		</c-menu>
 
 		<c-menu>
-			<c-menu-item>item 1</c-menu-item>
-			<c-menu-item>item 2</c-menu-item>
-			<c-menu-item>item 3</c-menu-item>
-			<c-sub-menu title="submenu" mode="vertical">
-				<c-menu-item selected>item 4</c-menu-item>
-				<c-menu-item>item 5</c-menu-item>
-				<c-sub-menu title="subsubmenu" mode="vertical">
-					<c-menu-item selected>item 6</c-menu-item>
-					<c-menu-item>item 7</c-menu-item>
+			<c-menu-item-group title="group1">
+				<c-menu-item>item 1</c-menu-item>
+				<c-menu-item>item 2</c-menu-item>
+			</c-menu-item-group>
+			<c-menu-item-group title="group2">
+				<c-menu-item>item 3</c-menu-item>
+				<c-sub-menu title="submenu" mode="vertical">
+					<c-menu-item selected>item 4</c-menu-item>
+					<c-menu-item>item 5</c-menu-item>
+					<c-sub-menu title="subsubmenu" mode="vertical">
+						<c-menu-item selected>item 6</c-menu-item>
+						<c-menu-item>item 7</c-menu-item>
+					</c-sub-menu>
 				</c-sub-menu>
-			</c-sub-menu>
+			</c-menu-item-group>
 		</c-menu>
 	</div>
 </template>

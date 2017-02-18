@@ -8,6 +8,7 @@ import Radio from './radio'
 import Popover from './popover'
 import Notification from './notification'
 import Menu from './menu'
+import Tabs from './tabs'
 import Ripple from './ripple'
 import Dropdown from './dropdown'
 import Spin from './spin'
@@ -16,6 +17,7 @@ const MenuItem = Menu.Item
 const SubMenu = Menu.SubMenu
 const RadioGroup = Radio.Group
 const MenuItemGroup = Menu.ItemGroup
+const Tab = Tabs.Tab
 
 export {
 	Button,
@@ -35,5 +37,7 @@ export {
 	Switch,
 	Radio,
 	RadioGroup,
-	Spin
+	Spin,
+	Tabs,
+	Tab
 }

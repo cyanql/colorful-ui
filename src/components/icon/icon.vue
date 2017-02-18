@@ -73,7 +73,6 @@ export default {
 }
 
 .c-icon {
-	line-height: 1;
 	font-size: initial;
 	vertical-align: middle;
 

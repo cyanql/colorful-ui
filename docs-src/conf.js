@@ -49,7 +49,6 @@ export default {
 			english: 'Steps',
 			chinese: '步骤条'
 		}, {
-			disabled: true,
 			english: 'Tabs',
 			chinese: '标签页'
 		}]
