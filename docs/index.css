@@ -169,7 +169,7 @@ small {
 
 /* 小于 12px 的中文很难阅读，让 small 正常化 */
 /** 重置列表元素 **/
-ul, ol {
+ul, ol, ul > li, ol > li {
   list-style: none; }
 
 /** 重置文本格式元素 **/
@@ -364,7 +364,6 @@ table {
   font-feature-settings: 'liga';
 }
 .c-icon {
-  line-height: 1;
   font-size: initial;
   vertical-align: middle;
 }
@@ -952,6 +951,12 @@ table {
   width: 200px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
+.c-menu,
+  .c-menu ul,
+  .c-menu ol,
+  .c-menu li {
+    list-style: none !important;
+}
 
 .c-sub-menu.vertical {
   position: relative;
@@ -1027,6 +1032,80 @@ table {
   padding: 10px 15px;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.4);
+}
+
+.c-tabs {
+  overflow: hidden;
+}
+.c-tabs.default .c-tabs-nav {
+    color: rgba(0, 0, 0, 0.65);
+    background-color: #f7f7f7;
+}
+.c-tabs.default .c-tabs-nav-indicator {
+      background-color: rgba(0, 0, 0, 0.65);
+}
+.c-tabs.primary .c-tabs-nav {
+    color: white;
+    background-color: #108ee9;
+}
+.c-tabs.primary .c-tabs-nav-indicator {
+      background-color: white;
+}
+.c-tabs.success .c-tabs-nav {
+    color: white;
+    background-color: #00A854;
+}
+.c-tabs.success .c-tabs-nav-indicator {
+      background-color: white;
+}
+.c-tabs.warning .c-tabs-nav {
+    color: white;
+    background-color: #F56A00;
+}
+.c-tabs.warning .c-tabs-nav-indicator {
+      background-color: white;
+}
+.c-tabs.error .c-tabs-nav {
+    color: white;
+    background-color: #F04134;
+}
+.c-tabs.error .c-tabs-nav-indicator {
+      background-color: white;
+}
+.c-tabs-nav {
+    position: relative;
+    display: flex;
+}
+.c-tabs-nav > li {
+      position: relative;
+      display: inline-block;
+      flex: 1;
+      padding: 0 30px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      opacity: .6;
+}
+.c-tabs-nav > li.active {
+        opacity: 1;
+}
+.c-tabs-nav-indicator {
+      position: absolute;
+      bottom: 0;
+      height: 2px;
+      transition: left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.c-tabs-content {
+    word-spacing: -.31em;
+    /* webkit */
+    white-space: nowrap;
+    transition: transform .5s ease;
+}
+
+.c-tab {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
 }
 
 .c-dropdown {
