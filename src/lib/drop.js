@@ -124,6 +124,7 @@ function initMethods(drop) {
 			opacity: '0',
 			display: ''
 		}
+
 		drop.updatePostion = function() {
 			const opts = {}
 			Object.keys(defaultOpts).map(key => {
@@ -131,9 +132,19 @@ function initMethods(drop) {
 			})
 			Object.assign(el.style, defaultOpts)
 
+			const rect = target.getBoundingClientRect()
+			const scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft
+			const scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+
 			alignFn(
-				el,
-				target.getBoundingClientRect(),
+				el, {
+					left: rect.left + scrollLeft,
+					right: rect.right + scrollLeft,
+					top: rect.top + scrollTop,
+					bottom: rect.bottom + scrollTop,
+					width: rect.width,
+					height: rect.height
+				} ,
 				el.getBoundingClientRect(),
 				spacing
 			)
