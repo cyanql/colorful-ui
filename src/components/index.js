@@ -12,6 +12,7 @@ import Tabs from './tabs'
 import Ripple from './ripple'
 import Dropdown from './dropdown'
 import Spin from './spin'
+import Progress from './progress'
 const NotificationContainer = Notification.Container
 const MenuItem = Menu.Item
 const SubMenu = Menu.SubMenu
@@ -38,6 +39,7 @@ export {
 	Radio,
 	RadioGroup,
 	Spin,
+	Progress,
 	Tabs,
 	Tab
 }

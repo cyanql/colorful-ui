@@ -1,6 +1,6 @@
 const cssText = `
 .drop {
-    position: fixed;
+    position: absolute;
     left: -9999px;
     top: -9999px;
     z-index: 1050;
@@ -28,16 +28,16 @@ const cssText = `
 `
 function createContainer() {
 	const container = document.createElement('div')
-	container.className = 'c-drop-container'
+	container.className = 'drop-container'
 	document.body.appendChild(container)
 	return container
 }
 
-var container = null
+let container = null
 function initElement(drop) {
 	var el = document.createElement('div')
 	container = container || createContainer()
-	
+
 	el.className = 'drop'
 	// el.style.cssText = cssText
 	el.appendChild(drop.content)
@@ -47,59 +47,59 @@ function initElement(drop) {
 
 const align = {
 	top: {
-		left(el, tRect, dRect, spacing) {
-			el.style.top = tRect.top - dRect.height - spacing + 'px'
-			el.style.left = tRect.left + 'px'
+		left(dStyle, tRect, dRect, spacing) {
+			dStyle.top = tRect.top - dRect.height - spacing + 'px'
+			dStyle.left = tRect.left + 'px'
 		},
-		center(el, tRect, dRect, spacing) {
-			el.style.top = tRect.top - dRect.height - spacing + 'px'
-			el.style.left = tRect.left - (dRect.width - tRect.width) / 2 + 'px'
+		center(dStyle, tRect, dRect, spacing) {
+			dStyle.top = tRect.top - dRect.height - spacing + 'px'
+			dStyle.left = tRect.left - (dRect.width - tRect.width) / 2 + 'px'
 		},
-		right(el, tRect, dRect, spacing) {
-			el.style.top = tRect.top - dRect.height - spacing + 'px'
-			el.style.left = tRect.left - (dRect.width - tRect.width) + 'px'
+		right(dStyle, tRect, dRect, spacing) {
+			dStyle.top = tRect.top - dRect.height - spacing + 'px'
+			dStyle.left = tRect.left - (dRect.width - tRect.width) + 'px'
 		}
 	},
 	bottom: {
-		left(el, tRect, dRect, spacing) {
-			el.style.top = tRect.bottom + spacing + 'px'
-			el.style.left = tRect.left + 'px'
+		left(dStyle, tRect, dRect, spacing) {
+			dStyle.top = tRect.bottom + spacing + 'px'
+			dStyle.left = tRect.left + 'px'
 		},
-		center(el, tRect, dRect, spacing) {
-			el.style.top = tRect.bottom + spacing + 'px'
-			el.style.left = tRect.left - (dRect.width - tRect.width) / 2 + 'px'
+		center(dStyle, tRect, dRect, spacing) {
+			dStyle.top = tRect.bottom + spacing + 'px'
+			dStyle.left = tRect.left - (dRect.width - tRect.width) / 2 + 'px'
 		},
-		right(el, tRect, dRect, spacing) {
-			el.style.top = tRect.bottom + spacing + 'px'
-			el.style.left = tRect.left - (dRect.width - tRect.width) + 'px'
+		right(dStyle, tRect, dRect, spacing) {
+			dStyle.top = tRect.bottom + spacing + 'px'
+			dStyle.left = tRect.left - (dRect.width - tRect.width) + 'px'
 		}
 	},
 	left: {
-		top(el, tRect, dRect, spacing) {
-			el.style.top = tRect.top + 'px'
-			el.style.left = tRect.left - dRect.width - spacing + 'px'
+		top(dStyle, tRect, dRect, spacing) {
+			dStyle.top = tRect.top + 'px'
+			dStyle.left = tRect.left - dRect.width - spacing + 'px'
 		},
-		center(el, tRect, dRect, spacing) {
-			el.style.top = tRect.top - (dRect.height - tRect.height) / 2 + 'px'
-			el.style.left = tRect.left - dRect.width - spacing + 'px'
+		center(dStyle, tRect, dRect, spacing) {
+			dStyle.top = tRect.top - (dRect.height - tRect.height) / 2 + 'px'
+			dStyle.left = tRect.left - dRect.width - spacing + 'px'
 		},
-		bottom(el, tRect, dRect, spacing) {
-			el.style.top = tRect.top - (dRect.height - tRect.height) + 'px'
-			el.style.left = tRect.left - dRect.width - spacing + 'px'
+		bottom(dStyle, tRect, dRect, spacing) {
+			dStyle.top = tRect.top - (dRect.height - tRect.height) + 'px'
+			dStyle.left = tRect.left - dRect.width - spacing + 'px'
 		}
 	},
 	right: {
-		top(el, tRect, dRect, spacing) {
-			el.style.top = tRect.top + 'px'
-			el.style.left = tRect.right + spacing + 'px'
+		top(dStyle, tRect, dRect, spacing) {
+			dStyle.top = tRect.top + 'px'
+			dStyle.left = tRect.right + spacing + 'px'
 		},
-		center(el, tRect, dRect, spacing) {
-			el.style.top = tRect.top - (dRect.height - tRect.height) / 2 + 'px'
-			el.style.left = tRect.right + spacing + 'px'
+		center(dStyle, tRect, dRect, spacing) {
+			dStyle.top = tRect.top - (dRect.height - tRect.height) / 2 + 'px'
+			dStyle.left = tRect.right + spacing + 'px'
 		},
-		bottom(el, tRect, dRect, spacing) {
-			el.style.top = tRect.top - (dRect.height - tRect.height) + 'px'
-			el.style.left = tRect.right + spacing + 'px'
+		bottom(dStyle, tRect, dRect, spacing) {
+			dStyle.top = tRect.top - (dRect.height - tRect.height) + 'px'
+			dStyle.left = tRect.right + spacing + 'px'
 		}
 	}
 }
@@ -124,6 +124,7 @@ function initMethods(drop) {
 			opacity: '0',
 			display: ''
 		}
+
 		drop.updatePostion = function() {
 			const opts = {}
 			Object.keys(defaultOpts).map(key => {
@@ -131,9 +132,19 @@ function initMethods(drop) {
 			})
 			Object.assign(el.style, defaultOpts)
 
+			const rect = target.getBoundingClientRect()
+			const scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft
+			const scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+
 			alignFn(
-				el,
-				target.getBoundingClientRect(),
+				el.style, {
+					left: rect.left + scrollLeft,
+					right: rect.right + scrollLeft,
+					top: rect.top + scrollTop,
+					bottom: rect.bottom + scrollTop,
+					width: rect.width,
+					height: rect.height
+				} ,
 				el.getBoundingClientRect(),
 				spacing
 			)
@@ -145,28 +156,41 @@ function initMethods(drop) {
 	}
 }
 
-function initEvent(drop) {
-	const { content, target, trigger } = drop
+
+function initEvents(drop) {
+	const { el, target, trigger } = drop
 
 	const open = drop.open.bind(drop)
 	const close = drop.close.bind(drop)
 
+	function clickoutHandle(e) {
+		const element = e.target
+		if (el.contains(element) || target.contains(element)) {
+			return
+		}
+		close()
+	}
+
 	if (trigger === 'hover') {
 		target.addEventListener('mouseover', open, false)
 		target.addEventListener('mouseout', close, false)
-		content.addEventListener('mouseover', open, false)
-		content.addEventListener('mouseout', close, false)
+		el.addEventListener('mouseover', open, false)
+		el.addEventListener('mouseout', close, false)
 	} else if (trigger === 'click') {
-		target.addEventListener('click', () =>{
-			open()
-		}, false)
-		document.addEventListener('click', (e) => {
-			const element = e.target
-			if (content.contains(element) || target.contains(element)) {
-				return
-			}
-			close()
-		}, false)
+		target.addEventListener('click', open, false)
+		document.addEventListener('click', clickoutHandle, false)
+	}
+
+	drop.removeEvents = function() {
+		if (trigger === 'hover') {
+			target.removeEventListener('mouseover', open)
+			target.removeEventListener('mouseout', close)
+			el.removeEventListener('mouseover', open)
+			el.removeEventListener('mouseout', close)
+		} else if (trigger === 'click') {
+			target.removeEventListener('click', open)
+			document.removeEventListener('click', clickoutHandle)
+		}
 	}
 }
 
@@ -196,7 +220,7 @@ export default class Drop {
 
 		initElement(this)
 		initMethods(this)
-		initEvent(this)
+		initEvents(this)
 
 		this.el.style.display = visible ? '' : 'none'
 	}
@@ -206,6 +230,9 @@ export default class Drop {
 	}
 
 	destroy() {
+		clearTimeout(this.timer)
+		this.removeEvents()
+		this.el.parentNode.removeChild(this.el)
 		this.el = null
 	}
 

@@ -105,7 +105,7 @@ export default {
 			display: inline-block;
 			flex: 1;
 			padding: 0 30px;
-			height:40px;
+			height: 40px;
 			line-height: 40px;
 			text-align: center;
 			opacity: .6;

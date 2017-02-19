@@ -30,7 +30,6 @@ export default {
 		})
 	},
 	beforeDestroy() {
-		this.drop.remove()
 		this.drop.destroy()
 	},
 	data() {
@@ -44,7 +43,7 @@ export default {
 			,	vm = $parent.$refs[target] || $parent
 			,	targetEl = vm ? vm.$el : null
 
-			const drop = new Drop({
+			this.drop = new Drop({
 				target: targetEl,
 				content: $el,
 				position: position,
@@ -54,8 +53,6 @@ export default {
 				onClose,
 				onToggle
 			})
-
-			this.drop = drop
 		},
 		onOpen(visible) {
 			this.$emit('open', visible)
@@ -81,7 +78,7 @@ export default {
 
 
 .drop {
-    position: fixed;
+    position: absolute;
     left: -9999px;
     top: -9999px;
     z-index: 1050;

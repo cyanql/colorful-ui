@@ -3,29 +3,18 @@
 ## 示例
 
 
-::: 模式
+::: 标题
 ===
-共有`inline`、`vertical`、`horizontal`三种模式
+使用`title`设置标题
 ===
 ```html
 <template>
 	<div>
-		<c-button @click="toggleVisible1">Toggle</c-button>
-		<c-modal title="标题" :visible="visible1">
+		<c-button @click="toggleVisible">Toggle</c-button>
+		<c-modal title="标题" :visible="visible">
 			内容
 			<div slot="footer">
-				<c-button color="ghost" @click="toggleVisible1">Cancel</c-button>
-				<c-button color="primary" @click="toggleVisible1">Enter</c-button>
-			</div>
-		</c-modal>
-
-		<c-button @click="toggleVisible1">Toggle</c-button>
-		<c-modal :visible="visible2">
-			<h1 slot="header">h1</h1>
-			内容
-			<div slot="footer">
-				<c-button color="ghost" @click="toggleVisible2">Cancel</c-button>
-				<c-button color="primary" @click="toggleVisible2">Enter</c-button>
+				<c-button color="primary" @click="toggleVisible">Close</c-button>
 			</div>
 		</c-modal>
 	</div>
@@ -33,15 +22,11 @@
 <script>
 export default {
 	data: () => ({
-		visible1: false,
-		visible2: false
+		visible: false
 	}),
 	methods: {
-		toggleVisible1() {
-			this.visible1 = !this.visible1
-		},
-		toggleVisible2() {
-			this.visible2 = !this.visible2
+		toggleVisible() {
+			this.visible = !this.visible
 		}
 	}
 }
@@ -49,6 +34,39 @@ export default {
 ```
 :::
 
+
+::: 页首、页脚
+===
+使用`$slots.header`自定义页首，使用`$slots.footer`自定义页脚
+===
+```html
+<template>
+	<div>
+		<c-button @click="toggleVisible">Toggle</c-button>
+		<c-modal :visible="visible">
+			<h1 slot="header">h1</h1>
+			内容
+			<div slot="footer">
+				<c-button color="ghost" @click="toggleVisible">Cancel</c-button>
+				<c-button color="primary" @click="toggleVisible">Enter</c-button>
+			</div>
+		</c-modal>
+	</div>
+</template>
+<script>
+export default {
+	data: () => ({
+		visible: false
+	}),
+	methods: {
+		toggleVisible() {
+			this.visible = !this.visible
+		}
+	}
+}
+</script>
+```
+:::
 
 
 ## API

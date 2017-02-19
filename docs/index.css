@@ -855,7 +855,7 @@ table {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 .drop {
-  position: fixed;
+  position: absolute;
   left: -9999px;
   top: -9999px;
   z-index: 1050;
@@ -1163,6 +1163,36 @@ table {
 100% {
     transform: rotate(360deg);
 }
+}
+
+.c-progress {
+  position: relative;
+  display: inline-block;
+}
+.c-progress.active .c-progress-inner {
+    stroke: #108ee9;
+}
+.c-progress.active .c-progress-content {
+    color: #108ee9;
+}
+.c-progress.success .c-progress-inner {
+    stroke: #00A854;
+}
+.c-progress.success .c-progress-content {
+    color: #00A854;
+}
+.c-progress.error .c-progress-inner {
+    stroke: #F04134;
+}
+.c-progress.error .c-progress-content {
+    color: #F04134;
+}
+.c-progress-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
 }
 
 .expand-enter-active, .expand-leave-active {

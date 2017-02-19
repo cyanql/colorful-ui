@@ -79,7 +79,7 @@ export default {
 
 | 属性      | 说明                                       | 类型       | 默认值   |
 | ------- | ---------------------------------------- | -------- | ----- |
-| loading | 是否开启loading动画						 | string   | -     |
-| radius | loading动画半径                                 | number   | 25 |
-| text | loading动画提示信息                                  | function | -     |
+| loading | 是否开启动画								 | boolean   | true     |
+| radius | 动画半径                                 | number   | 25 |
+| text | 动画提示信息                                  | string | -     |
 | $slots.default | 需要被遮挡的内容                                  | component | -     |
