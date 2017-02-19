@@ -23,10 +23,7 @@ export default {
 			type: Boolean,
 			default: true
 		},
-		text: {
-			type: String,
-			default: '#fff'
-		}
+		text: String
 	},
 	computed: {
 		oStyle() {

@@ -1,12 +1,15 @@
 <template>
-	<svg width="100" height="100" :style="{width: radius * 2, height: radius * 2}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
-		<circle cx="50" cy="50" r="40" :stroke="color2" :fill="bgColor" :stroke-width="thick * 1.5" stroke-linecap="round" :stroke-dasharray="length" stroke-dashoffset="0" style="transition: stroke-dashoffset 1s ease"></circle>
-		<circle cx="50" cy="50" r="40" :stroke="color1" fill="none" :stroke-width="thick" stroke-linecap="round" :stroke-dasharray="length" :stroke-dashoffset="(1 - progress) * length" style="transition: stroke-dashoffset 1s ease">
-			<!-- <animate attributeName="stroke-dashoffset" :dur="duration" repeatCount="indefinite" from="0" to="502"></animate> -->
-			<!-- <animate attributeName="stroke-dasharray" :dur="duration" repeatCount="indefinite" values="251 0;1 250;251 0"></animate> -->
-		</circle>
-		<text x="50" y="50" :font-size="fontSize" alignment-baseline="central" :fill="fontColor" text-anchor="middle">{{Math.floor(progress * 100) + '%'}}</text>
-	</svg>
+	<div class="c-progress" :class="oClass" :style="oStyle">
+		<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+			<path d="M 50,50 m 0,-47 a 47,47 0 1 1 0,94 a 47,47 0 1 1 0,-94" stroke="#eee" fill="none" :stroke-width="strokeWidth" stroke-linecap="round" :stroke-dasharray="length" stroke-dashoffset="0"></path>
+			<path class="c-progress-inner" d="M 50,50 m 0,-47 a 47,47 0 1 1 0,94 a 47,47 0 1 1 0,-94" stroke="blue" fill="none" :stroke-width="strokeWidth" stroke-linecap="round" :stroke-dasharray="length" :stroke-dashoffset="(1 - oPercent) * length" :style="circleStyle"></path>
+			<!-- <circle cx="50" cy="50" :r="oRadius" stroke="#eee" fill="none" :stroke-width="stroke" stroke-linecap="round" :stroke-dasharray="length" stroke-dashoffset="0"></circle>
+			<circle class="c-progress-inner" cx="50" cy="50" :r="oRadius" stroke="blue" fill="none" :stroke-width="stroke" stroke-linecap="round" :stroke-dasharray="length" :stroke-dashoffset="(1 - oPercent) * length" :style="circleStyle"></circle> -->
+			<text v-if="oStatus === 'active'" x="50" y="50" alignment-baseline="central" text-anchor="middle">{{Math.floor(oPercent * 100) + '%'}}</text>
+		</svg>
+		<c-icon v-if="oStatus === 'error'" class="c-progress-content" icon="clear"></c-icon>
+		<c-icon v-if="oStatus === 'success'" class="c-progress-content" icon="done"></c-icon>
+	</div>
 </template>
 
 <script>
@@ -15,49 +18,90 @@ export default {
 	props:{
 		radius: {
 			type: Number,
-			default: 30
+			default: 25
 		},
-		thick: {
+		status: {
+			type: String,
+			default: 'active'
+		},
+		strokeWidth: {
 			type: Number,
-			default: 8
-		},
-		fontColor: {
-			type: String,
-			default: '#eee'
-		},
-		fontSize: {
-			default: '20'
-		},
-		color1: {
-			type: String,
-			default: '#2b6'
-		},
-		color2: {
-			type: String,
-			default: '#ddd'
-		},
-		bgColor: {
-			type: String,
-			default: 'transparent'
+			default: 5
 		},
 		duration: {
-			type: String,
-			default: '0s'
+			type: Number,
+			default: 500
 		},
-		progress: {
-			default: .5,
-			coerce: function(val) {
-				val = Number(val)
-				val = val < 1 ? val : 1
-				val = val > 0 ? val : 0
-				return val
-			}
+		percent: {
+			type: Number,
+			default: 50
+		}
+	},
+	data() {
+		return {
+			length: 295.416//2 * Math.PI * this.oRadius
 		}
 	},
 	computed: {
-		length() {
-			return 2 * Math.PI * 40
+		oRadius() {
+			return this.radius - this.strokeWidth / 2
+		},
+		oPercent() {
+			let percent = Number(this.percent) / 100
+			percent = percent < 1 ? percent : 1
+			percent = percent > 0 ? percent : 0
+			return percent
+		},
+		oStatus() {
+			return this.oPercent === 1 ? 'success' : this.status
+		},
+		oClass() {
+			return [this.oStatus]
+		},
+		oStyle() {
+			const diameter = this.radius * 2 + 'px'
+			return {
+				width: diameter,
+				height: diameter
+			}
+		},
+		circleStyle() {
+			return {
+				transitionProperty: 'stroke-dashoffset, stroke',
+				transitionDuration: this.duration / 1000 + 's',
+				transitionTimingFunction: 'ease'
+			}
 		}
 	}
 }
 </script>
+
+<style lang="scss">
+@import "~src/styles/variables";
+
+@mixin color-type($color) {
+	.c-progress-inner {
+		stroke: $color;
+	}
+	.c-progress-content {
+		color: $color;
+	}
+}
+
+.c-progress {
+	position: relative;
+	display: inline-block;
+
+	&.active { @include color-type($blue-6);}
+	&.success { @include color-type($green-6);}
+	&.error { @include color-type($red-6);}
+
+	&-content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 20px;
+	}
+}
+</style>

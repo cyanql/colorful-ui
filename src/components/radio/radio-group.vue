@@ -1,7 +1,7 @@
 <template>
-	<label class="c-radio-group">
+	<div class="c-radio-group">
 		<slot></slot>
-	</label>
+	</div>
 </template>
 
 <script>

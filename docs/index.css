@@ -1165,6 +1165,36 @@ table {
 }
 }
 
+.c-progress {
+  position: relative;
+  display: inline-block;
+}
+.c-progress.active .c-progress-inner {
+    stroke: #108ee9;
+}
+.c-progress.active .c-progress-content {
+    color: #108ee9;
+}
+.c-progress.success .c-progress-inner {
+    stroke: #00A854;
+}
+.c-progress.success .c-progress-content {
+    color: #00A854;
+}
+.c-progress.error .c-progress-inner {
+    stroke: #F04134;
+}
+.c-progress.error .c-progress-content {
+    color: #F04134;
+}
+.c-progress-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+}
+
 .expand-enter-active, .expand-leave-active {
   transition: height .2s ease;
 }

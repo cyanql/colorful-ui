@@ -186,7 +186,6 @@ export default {
 			english: 'Popconfirm',
 			chinese: '气泡确认框'
 		}, {
-			disabled: true,
 			english: 'Progress',
 			chinese: '进度条'
 		}, {

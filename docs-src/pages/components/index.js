@@ -10,6 +10,7 @@ import Tabs from './tabs'
 import Dropdown from './dropdown'
 import Notification from './notification'
 import Spin from './spin'
+import Progress from './progress'
 
 export {
 	Button,
@@ -23,5 +24,6 @@ export {
 	Tabs,
 	Dropdown,
 	Notification,
-	Spin
+	Spin,
+	Progress
 }

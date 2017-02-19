@@ -33,11 +33,11 @@ function createContainer() {
 	return container
 }
 
-var container = null
+let container = null
 function initElement(drop) {
 	var el = document.createElement('div')
 	container = container || createContainer()
-	
+
 	el.className = 'drop'
 	// el.style.cssText = cssText
 	el.appendChild(drop.content)
@@ -145,28 +145,41 @@ function initMethods(drop) {
 	}
 }
 
-function initEvent(drop) {
-	const { content, target, trigger } = drop
+
+function initEvents(drop) {
+	const { el, target, trigger } = drop
 
 	const open = drop.open.bind(drop)
 	const close = drop.close.bind(drop)
 
+	function clickoutHandle(e) {
+		const element = e.target
+		if (el.contains(element) || target.contains(element)) {
+			return
+		}
+		close()
+	}
+
 	if (trigger === 'hover') {
 		target.addEventListener('mouseover', open, false)
 		target.addEventListener('mouseout', close, false)
-		content.addEventListener('mouseover', open, false)
-		content.addEventListener('mouseout', close, false)
+		el.addEventListener('mouseover', open, false)
+		el.addEventListener('mouseout', close, false)
 	} else if (trigger === 'click') {
-		target.addEventListener('click', () =>{
-			open()
-		}, false)
-		document.addEventListener('click', (e) => {
-			const element = e.target
-			if (content.contains(element) || target.contains(element)) {
-				return
-			}
-			close()
-		}, false)
+		target.addEventListener('click', open, false)
+		document.addEventListener('click', clickoutHandle, false)
+	}
+
+	drop.removeEvents = function() {
+		if (trigger === 'hover') {
+			target.removeEventListener('mouseover', open)
+			target.removeEventListener('mouseout', close)
+			el.removeEventListener('mouseover', open)
+			el.removeEventListener('mouseout', close)
+		} else if (trigger === 'click') {
+			target.removeEventListener('click', open)
+			document.removeEventListener('click', clickoutHandle)
+		}
 	}
 }
 
@@ -196,7 +209,7 @@ export default class Drop {
 
 		initElement(this)
 		initMethods(this)
-		initEvent(this)
+		initEvents(this)
 
 		this.el.style.display = visible ? '' : 'none'
 	}
@@ -206,6 +219,9 @@ export default class Drop {
 	}
 
 	destroy() {
+		clearTimeout(this.timer)
+		this.removeEvents()
+		this.el.parentNode.removeChild(this.el)
 		this.el = null
 	}
 
