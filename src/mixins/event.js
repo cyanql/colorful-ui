@@ -1,3 +1,4 @@
+import getAncester from 'src/utils/getAncester'
 const slice = Array.prototype.slice
 
 export default {
@@ -5,14 +6,7 @@ export default {
 		bubble(componentName) {
 			const params = slice.call(arguments, 1)
 
-			let parent = this.$parent
-
-			while(parent) {
-				if (parent.$options.name === componentName) {
-					break
-				}
-				parent = parent.$parent
-			}
+			const parent = getAncester(this, componentName)
 
 			if (parent)
 				parent.$emit.apply(parent, params)

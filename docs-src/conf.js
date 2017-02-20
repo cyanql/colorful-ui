@@ -88,20 +88,19 @@ export default {
 			english: 'Radio',
 			chinese: '单选框'
 		}, {
+			english: 'Switch',
+			chinese: '开关'
+		}, {
 			disabled: true,
 			english: 'Rate',
 			chinese: '评分'
 		}, {
-			disabled: true,
 			english: 'Select',
 			chinese: '选择器'
 		}, {
 			disabled: true,
 			english: 'Slider',
 			chinese: '滑动输入条'
-		}, {
-			english: 'Switch',
-			chinese: '开关'
 		}, {
 			disabled: true,
 			english: 'TimePicker',

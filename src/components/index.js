@@ -11,6 +11,7 @@ import Menu from './menu'
 import Tabs from './tabs'
 import Ripple from './ripple'
 import Dropdown from './dropdown'
+import Select from './select'
 import Spin from './spin'
 import Progress from './progress'
 const NotificationContainer = Notification.Container
@@ -19,6 +20,7 @@ const SubMenu = Menu.SubMenu
 const RadioGroup = Radio.Group
 const MenuItemGroup = Menu.ItemGroup
 const Tab = Tabs.Tab
+const Option = Select.Option
 
 export {
 	Button,
@@ -32,6 +34,8 @@ export {
 	NotificationContainer,
 	Ripple,
 	Dropdown,
+	Select,
+	Option,
 	Modal,
 	Input,
 	Checkbox,
