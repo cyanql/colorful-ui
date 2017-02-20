@@ -25,4 +25,5 @@
 - 新增`spin`组件和文档
 - 新增`switch`组件和文档
 - 新增`tabs`组件和文档
+- 新增`select`组件和文档
 - 新增`docs-loader`markdown处理模块

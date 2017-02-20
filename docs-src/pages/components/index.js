@@ -6,6 +6,7 @@ import Switch from './switch'
 import Radio from './radio'
 import Popover from './popover'
 import Menu from './menu'
+import Select from './select'
 import Tabs from './tabs'
 import Dropdown from './dropdown'
 import Notification from './notification'
@@ -23,6 +24,7 @@ export {
 	Menu,
 	Tabs,
 	Dropdown,
+	Select,
 	Notification,
 	Spin,
 	Progress

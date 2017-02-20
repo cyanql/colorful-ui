@@ -110,8 +110,7 @@ export default {
 	},
 	data() {
 		return {
-			isFocus: false,
-			hasValue: this.value
+			isFocus: false
 		}
 	},
 	computed: {
@@ -120,7 +119,7 @@ export default {
 				[this.hintColor]: this.hintVisible,
 				'focus': this.isFocus,
 				'disabled': this.disabled,
-				'has-value': this.hasValue,
+				'has-value': this.value,
 				'has-floating-label': this.floatingLabel
 			}
 		}
@@ -132,7 +131,6 @@ export default {
 			if (this.controlled) {
 				e.target.value = this.value || ''
 			}
-			this.hasValue = !!e.target.value
 		},
 		onChange(e) {
 			this.$emit('change', e.target.value, e)
@@ -144,7 +142,6 @@ export default {
 		onBlur(e) {
 			this.isFocus = false
 			this.$emit('blur', e)
-			this.hasValue = !!this.value
 		}
 	},
 	mounted() {
@@ -204,6 +201,12 @@ $inner-vertical-padding: 4px;
 	padding: $input-vertical-padding 0;
 	color: $text-color;
 	font-size: $font-normal-size;
+
+	&:hover {
+		.c-input-inner {
+			border-bottom-color: rgba(0,0,0,.35);
+		}
+	}
 
 	&.has-value {
 		.c-input-placeholder {

@@ -4,23 +4,7 @@
 $icon-url               : url('https://fonts.gstatic.com/s/materialicons/v16/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2') format('woff2');
 
 // Color
-$primary-color          : $blue-6;
-$success-color          : $green-6;
-$error-color            : $red-6;
-$highlight-color        : $red-6;
-$warning-color          : $yellow-6;
 $normal-color           : #d9d9d9;
-
-$primary-1: lighten($primary-color, 25%);
-$primary-2: lighten($primary-color, 20%);
-$primary-3: lighten($primary-color, 15%);
-$primary-4: lighten($primary-color, 10%);
-$primary-5: lighten($primary-color, 5%);
-$primary-6: $primary-color;
-$primary-7: darken($primary-color, 5%);
-$primary-8: darken($primary-color, 10%);
-$primary-9: darken($primary-color, 15%);
-$primary-10: darken($primary-color, 20%);
 
 // ------ Base & Require ------
 $body-background        : #fff;
@@ -42,9 +26,6 @@ $border-radius-base     : 4px;
 $border-radius-small    : 2px;
 
 // LINK
-$link-color             : $primary-color;
-$link-hover-color       : $primary-5;
-$link-active-color      : $primary-7;
 $link-hover-decoration  : none;
 
 // Border color
@@ -54,7 +35,6 @@ $border-color-split     : #e9e9e9;        // split border inside a component
 // Outline
 $outline-blur-size      : 0;
 $outline-width          : 2px;
-$outline-color          : $primary-color;
 
 // Background color
 $background-color-base  : #f7f7f7;        // basic gray background
@@ -74,8 +54,6 @@ $btn-border-radius-base : $border-radius-base;
 $btn-border-radius-small   : $border-radius-small;
 
 $btn-primary-color      : #fff;
-$btn-primary-bg         : $primary-color;
-$btn-group-border       : $primary-7;
 
 $btn-default-color      : $text-color;
 $btn-default-bg         : $background-color-base;
