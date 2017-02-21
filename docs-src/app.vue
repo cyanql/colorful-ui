@@ -17,9 +17,9 @@
 			</nav>
 		</header>
 		<div class="docs-container">
-			<c-menu class="sidebar">
+			<c-menu class="sidebar" :value="selectRouteName" :indent="30">
 				<c-menu-item-group v-for="group in groups" :title="group.title">
-					<c-menu-item v-for="item in group.items" :data="item.index" :disabled="item.disabled" :selected="selectRouteName === item.name" auto-trigger-href>
+					<c-menu-item v-for="item in group.items" :value="item.name" auto-trigger-href>
 						<router-link :to="item.name">
 							<span>{{item.english}}</span>
 							<span class="chinese">{{item.chinese}}</span>

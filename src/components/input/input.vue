@@ -202,12 +202,6 @@ $inner-vertical-padding: 4px;
 	color: $text-color;
 	font-size: $font-normal-size;
 
-	&:hover {
-		.c-input-inner {
-			border-bottom-color: rgba(0,0,0,.35);
-		}
-	}
-
 	&.has-value {
 		.c-input-placeholder {
 			opacity: 0;
@@ -304,6 +298,10 @@ $inner-vertical-padding: 4px;
 	    background: 0 0;
 	    font-size: $font-normal-size;
 	    text-align: left;
+
+		&:hover {
+			border-bottom-color: rgba(0,0,0,.35);
+		}
 	}
 
 	&.error {

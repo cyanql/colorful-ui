@@ -1,5 +1,5 @@
 <template>
-	<i class="c-icon material-icons" :class="oClass" :style="oStyle">{{icon}}</i>
+	<i class="c-icon material-icons" :class="oClass" :style="oStyle" @click="onClick">{{icon}}</i>
 </template>
 
 <script>
@@ -32,6 +32,11 @@ export default {
 			oClass: {
 				[colorClass]: colorClass
 			}
+		}
+	},
+	methods: {
+		onClick(e) {
+			this.$emit('click', e)
 		}
 	}
 }

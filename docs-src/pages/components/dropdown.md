@@ -6,7 +6,7 @@
 
 ::: 颜色
 ===
-`Dropdown`配置项同`Popover`一致，可以理解为`Popover`的另一种使用方式，默认`slot`为宿主元素，`slot="content"`为内容
+`Dropdown`配置项同`Popover`一致，可以理解为`Popover`的另一种使用方式，`$slot.default`为宿主元素，`$slot.content`为内容
 ===
 ```html
 <template>

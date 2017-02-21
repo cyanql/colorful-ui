@@ -1,6 +1,6 @@
 <template>
 	<li class="c-menu-item-group">
-		<div class="c-menu-item-group-title">{{title}}</div>
+		<div class="c-menu-item-group-title" :style="titleStyle">{{title}}</div>
 		<ul>
 			<slot></slot>
 		</ul>
@@ -8,10 +8,25 @@
 </template>
 
 <script>
+import mixin from './mixin'
+
 export default {
 	name: 'c-menu-item-group',
+	mixins: [mixin],
 	props: {
-		title: String
+		title: String,
+		indent: Number,
+	},
+	computed: {
+		titleStyle() {
+			const indent = this.indent || this.menuParent.indent
+			let level = this.subMenuParent && this.subMenuParent.level
+			level = level ? level + 1 : 1
+
+			return {
+				paddingLeft: (level - 2 / 5) * indent + 'px'
+			}
+		}
 	}
 }
 </script>
@@ -20,7 +35,7 @@ export default {
 
 .c-menu-item-group {
 	&-title {
-		padding: 10px 15px;
+		padding: 8px 12.5px;
 		font-size: 12px;
 		color: rgba(0,0,0,.4);
 	}

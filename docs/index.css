@@ -490,9 +490,6 @@ table {
   color: rgba(0, 0, 0, 0.65);
   font-size: 16px;
 }
-.c-input:hover .c-input-inner {
-    border-bottom-color: rgba(0, 0, 0, 0.35);
-}
 .c-input.has-value .c-input-placeholder {
     opacity: 0;
 }
@@ -587,6 +584,9 @@ table {
     background: 0 0;
     font-size: 16px;
     text-align: left;
+}
+.c-input-inner:hover {
+      border-bottom-color: rgba(0, 0, 0, 0.35);
 }
 .c-input.error .c-input-label-line {
     color: #F04134;
@@ -873,8 +873,8 @@ table {
 }
 @keyframes drop {
 0% {
-    opacity: 0;
-    transform: scale(0);
+    opacity: .5;
+    transform: scale(0.75);
 }
 100% {
     opacity: 1;
@@ -951,6 +951,7 @@ table {
 }
 
 .c-menu {
+  display: inline-block;
   width: 200px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
@@ -1001,6 +1002,22 @@ table {
   transform: scale(0);
   opacity: 0;
 }
+.c-sub-menu-title {
+  position: relative;
+  cursor: pointer;
+  display: block;
+  text-align: left;
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 0;
+}
+.c-sub-menu-title.disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+.c-sub-menu-title:not(.disabled):hover {
+    background: #e7e7e7;
+}
 
 .c-menu-item {
   position: relative;
@@ -1032,7 +1049,7 @@ table {
 }
 
 .c-menu-item-group-title {
-  padding: 10px 15px;
+  padding: 8px 12.5px;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.4);
 }
@@ -1129,6 +1146,13 @@ table {
     transform: rotate(-180deg);
     color: #108ee9;
 }
+.c-select .c-option.not-found {
+    color: #aaa;
+    cursor: not-allowed;
+}
+.c-select .c-option.not-found:hover {
+      background-color: inherit;
+}
 .c-select .c-input-inner {
     overflow: hidden;
 }
@@ -1143,6 +1167,43 @@ table {
       clear: both;
       visibility: hidden;
       opacity: 0;
+}
+.c-select-chip {
+    display: inline-block;
+    padding: 1px 5px 1px 10px;
+    margin-right: 2px;
+    border-radius: 50px;
+    font-size: 12px;
+    background-color: #dedede;
+    cursor: default;
+}
+.c-select-chip-text {
+      vertical-align: middle;
+}
+.c-select-chip .c-icon {
+      font-size: 12px;
+      padding: 1px;
+      cursor: pointer;
+}
+.c-select-chip .c-icon:hover {
+        border-radius: 50%;
+        background-color: #bbb;
+}
+.c-select-input {
+    width: 5px;
+    outline: none;
+    border: none;
+    color: rgba(0, 0, 0, 0.65);
+}
+.c-select-input-mirror {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+      z-index: -9999;
+      visibility: hidden;
+      opacity: 0;
+      white-space: pre;
+      pointer-events: none;
 }
 .c-select-options {
     position: absolute;

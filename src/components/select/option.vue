@@ -1,5 +1,6 @@
 <template>
 	<li
+		v-show="visible"
 		class="c-option"
 		:class="oClass"
 		@click="onClick"
@@ -17,10 +18,18 @@ export default {
 	mixins: [Event],
 	props: {
 		selected: Boolean,
-		value: null,
+		value: {
+			type: String,
+			default: ''
+		},
 		disabled: {
 			type: Boolean,
 			default: false
+		}
+	},
+	created() {
+		if (this.selected) {
+			this.oParent.onSelect(this.value)
 		}
 	},
 	computed: {
@@ -32,7 +41,15 @@ export default {
 		},
 		oSelected() {
 			const parent = this.oParent
-			return parent.multiple ? parent.value.includes(this.value) : parent.value === this.value
+			return this.selected || (parent.multiple ? parent.value.includes(this.value) : parent.value === this.value)
+		},
+		visible() {
+			const parent = this.oParent
+			if (parent.filterable) {
+				return this.value.includes(parent.filterValue)
+			} else {
+				return true
+			}
 		},
 		oClass() {
 			return {

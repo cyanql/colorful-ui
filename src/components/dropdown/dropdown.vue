@@ -1,7 +1,7 @@
 <template>
 	<div class="c-dropdown">
 		<slot></slot>
-		<c-popover class="c-dropdown-content" :visible="visible" :trigger="trigger" :position="position">
+		<c-popover class="c-dropdown-content" :visible="visible" :trigger="trigger" :position="position" @click="onClick">
 			<slot name="content"></slot>
 		</c-popover>
 	</div>
@@ -16,6 +16,11 @@ export default {
 		trigger: String,
 		visible: Boolean,
 		position: String
+	},
+	methods: {
+		onClick(e, drop) {
+			drop.close()
+		}
 	},
 	components: {
 		Popover

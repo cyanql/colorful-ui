@@ -11,22 +11,15 @@
 </template>
 
 <script>
-import Event from 'src/mixins/event'
+import mixin from './mixin'
 
 export default {
 	name: 'c-menu-item',
-	mixins: [Event],
+	mixins: [mixin],
 	props: {
 		selected: Boolean,
-		level: {
-			type: Number,
-			default: 1
-		},
-		indent: {
-			type: Number,
-			default: 30
-		},
-		data: null,
+		indent: Number,
+		value: null,
 		disabled: {
 			type: Boolean,
 			default: false
@@ -38,22 +31,35 @@ export default {
 	},
 	computed: {
 		oStyle() {
+			const indent = this.indent || this.menuParent.indent
+			let level = this.subMenuParent && this.subMenuParent.level
+			level = level ? level + 1 : 1
+
 			return {
-				paddingLeft: this.level * this.indent + 'px'
+				paddingLeft: level * indent + 'px'
 			}
+		},
+		oSelected() {
+			const parent = this.menuParent
+			return this.selected || (parent.multiple ? parent.value.includes(this.value) : this.value && parent.value === this.value)
 		},
 		oClass() {
 			return {
-				selected: this.selected,
+				selected: this.oSelected,
 				disabled: this.disabled
 			}
+		}
+	},
+	created() {
+		if (this.selected) {
+			this.menuParent.onSelect(this.value)
 		}
 	},
 	methods: {
 		onClick(e) {
 			if (!this.disabled) {
 				this.$emit('click', e)
-				this.bubble('c-menu', 'select', this.data)
+				this.menuParent.onSelect(this.value)
 				this.triggerHref()
 			}
 		},
