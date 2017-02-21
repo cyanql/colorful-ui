@@ -160,35 +160,35 @@ function initMethods(drop) {
 function initEvents(drop) {
 	const { el, target, trigger } = drop
 
-	const open = drop.open.bind(drop)
-	const close = drop.close.bind(drop)
+	const lazyOpen = drop.lazyOpen.bind(drop)
+	const lazyClose = drop.lazyClose.bind(drop)
 
 	function clickoutHandle(e) {
 		const element = e.target
 		if (el.contains(element) || target.contains(element)) {
 			return
 		}
-		close()
+		lazyClose()
 	}
 
 	if (trigger === 'hover') {
-		target.addEventListener('mouseover', open, false)
-		target.addEventListener('mouseout', close, false)
-		el.addEventListener('mouseover', open, false)
-		el.addEventListener('mouseout', close, false)
+		target.addEventListener('mouseover', lazyOpen, false)
+		target.addEventListener('mouseout', lazyClose, false)
+		el.addEventListener('mouseover', lazyOpen, false)
+		el.addEventListener('mouseout', lazyClose, false)
 	} else if (trigger === 'click') {
-		target.addEventListener('click', open, false)
+		target.addEventListener('click', lazyOpen, false)
 		document.addEventListener('click', clickoutHandle, false)
 	}
 
 	drop.removeEvents = function() {
 		if (trigger === 'hover') {
-			target.removeEventListener('mouseover', open)
-			target.removeEventListener('mouseout', close)
-			el.removeEventListener('mouseover', open)
-			el.removeEventListener('mouseout', close)
+			target.removeEventListener('mouseover', lazyOpen)
+			target.removeEventListener('mouseout', lazyClose)
+			el.removeEventListener('mouseover', lazyOpen)
+			el.removeEventListener('mouseout', lazyClose)
 		} else if (trigger === 'click') {
-			target.removeEventListener('click', open)
+			target.removeEventListener('click', lazyOpen)
 			document.removeEventListener('click', clickoutHandle)
 		}
 	}
@@ -236,38 +236,79 @@ export default class Drop {
 		this.el = null
 	}
 
-	open() {
+	lazyOpen() {
 		clearTimeout(this.timer)
 		this.timer = setTimeout(() => {
 			if (!this.visible) {
-				this.updatePostion()
-				this.el.classList.add('show')
-				this.show()
-				this.visible = true
-				this.onToggle(this.visible)
-				this.onOpen(this.visible)
+				this.open()
 			}
 		}, this.timeout)
 	}
 
-	close() {
+	lazyClose() {
 		clearTimeout(this.timer)
 		this.timer = setTimeout(() => {
 			if (this.visible) {
-				this.el.classList.remove('show')
-				this.hide()
-				this.visible = false
-				this.onToggle(this.visible)
-				this.onClose(this.visible)
+				this.close()
 			}
 		}, this.timeout)
 	}
 
+	open() {
+		this.updatePostion()
+		this.show()
+		this.visible = true
+		this.onToggle(this.visible)
+		this.onOpen(this.visible)
+	}
+
+	close() {
+		this.hide()
+		this.visible = false
+		this.onToggle(this.visible)
+		this.onClose(this.visible)
+	}
+
 	show() {
+		this.el.classList.add('show')
 		this.el.style.display = ''
 	}
 
 	hide() {
+		this.el.classList.remove('show')
 		this.el.style.display = 'none'
 	}
+}
+
+
+function addEnterTransition(el, name) {
+	el.style.display = ''
+	el.classList.add(`${name}-enter`)
+
+	function endTransition() {
+		console.log('removeEventListener')
+		el.classList.remove(`${name}-enter`, `${name}-enter-active`)
+		el.removeEventListener('transitionend', endTransition)
+	}
+
+	setTimeout(() => {
+		el.classList.add(`${name}-enter-active`)
+		console.log('addEnterTransition')
+		el.addEventListener('transitionend', endTransition, false)
+	}, 20)
+}
+
+function addLeaveTransition(el, name) {
+	el.classList.add(`${name}-leave`)
+
+	function endTransition() {
+		el.classList.remove(`${name}-leave`, `${name}-leave-active`)
+		el.removeEventListener('transitionend', endTransition, false)
+	}
+
+	el.classList.add(`${name}-leave-active`)
+	el.addEventListener('transitionend', endTransition, false)
+	setTimeout(() => {
+		el.style.display = 'none'
+	}, 20)
 }

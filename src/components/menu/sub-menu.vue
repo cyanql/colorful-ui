@@ -1,10 +1,11 @@
 <template>
-	<div class="c-sub-menu" :class="mode">
+	<li class="c-sub-menu" :class="mode">
 		<template v-if="mode === 'inline'">
-			<c-menu-item class="c-sub-menu-title c-clear" :level="level" @click="onToggle" color="ghost">
+			<div class="c-sub-menu-title" :style="titleStyle" @click="onToggle">
 				<span class="c-sub-menu-title-text">{{title}}</span>
 				<c-icon class="expand-more" :class="openClass" icon="expand_more"></c-icon>
-			</c-menu-item>
+				<c-ripple v-if="!disabled"></c-ripple>
+			</div>
 			<expand-transition>
 				<ul class="c-sub-menu-content" v-show="opened">
 					<slot></slot>
@@ -12,47 +13,63 @@
 			</expand-transition>
 		</template>
 		<template v-if="mode === 'vertical'">
-			<c-menu-item class="c-sub-menu-title c-clear" :level="level" @mouseover.native="onOpen" @mouseout.native="onClose" color="ghost">
+			<div class="c-sub-menu-title" :style="titleStyle" @mouseover="onOpen" @mouseout="onClose">
 				<span class="c-sub-menu-title-text">{{title}}</span>
 				<c-icon class="expand-more" :class="openClass" icon="expand_more"></c-icon>
-			</c-menu-item>
+				<c-ripple v-if="!disabled"></c-ripple>
+			</div>
 			<transition name="scale">
 				<ul class="c-sub-menu-content" v-show="opened" @mouseover="onOpen" @mouseout="onClose">
 					<slot></slot>
 				</ul>
 			</transition>
 		</template>
-	</div>
+	</li>
 </template>
 
 <script>
 import MenuItem from './menu-item'
+import mixin from './mixin'
 
 export default {
 	name: 'c-sub-menu',
+	mixins: [mixin],
 	props: {
 		title: String,
 		mode: {
 			type: String,
 			default: 'inline'
 		},
-		level: {
-			type: Number,
-			default: 1
-		},
+		indent: Number,
 		expand: {
+			type: Boolean,
+			default: false
+		},
+		disabled: {
 			type: Boolean,
 			default: false
 		}
 	},
 	data() {
 		return {
-			subLevel: this.level + 1,
 			opened: this.expand,
 			timer: null
 		}
 	},
 	computed: {
+		level() {
+			if (this.mode !== 'inline') {
+				return
+			}
+			const level = this.subMenuParent && this.subMenuParent.level
+			return level ? level + 1 : 1
+		},
+		titleStyle() {
+			const indent = this.indent || this.menuParent.indent
+			return {
+				paddingLeft: this.level * indent + 'px'
+			}
+		},
 		openClass() {
 			return this.opened ? 'expand' : ''
 		}
@@ -78,17 +95,6 @@ export default {
 		},
 		onToggle() {
 			this.opened = !this.opened
-		}
-	},
-	created() {
-		if (this.mode === 'inline') {
-			const defaultSlots = this.$slots.default
-			defaultSlots && defaultSlots.forEach(vm => {
-				const opts = vm.componentOptions
-				if (opts) {
-					opts.propsData.level = this.level + 1
-				}
-			})
 		}
 	}
 }
@@ -159,6 +165,26 @@ export default {
 		&-leave-active {
 			transform: scale(0);
 			opacity: 0;
+		}
+	}
+
+	&-title {
+		position: relative;
+		cursor: pointer;
+		display: block;
+		text-align: left;
+		width: 100%;
+		padding: 10px 20px;
+		border-radius: 0;
+
+
+		&.disabled {
+			opacity: .6;
+			cursor: not-allowed;
+		}
+
+		&:not(.disabled):hover {
+			background: #e7e7e7;
 		}
 	}
 }

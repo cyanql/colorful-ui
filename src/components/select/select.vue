@@ -1,7 +1,25 @@
 <template>
 	<div class="c-input c-select" :class="oClass" @click="onClick">
 		<div class="c-input-inner">
-			<span>{{oValue}}</span>
+			<template v-if="multiple">
+				<span
+					class="c-select-chip"
+					v-for="(subValue, index) in value"
+					>
+					<span class="c-select-chip-text">{{subValue}}</span>
+					<c-icon icon="clear" @click.stop="removeChip(index)"></c-icon>
+				</span>
+			</template>
+			<span v-if="!multiple">{{value}}</span>
+			<input
+				v-if="filterable"
+				ref="input"
+				class="c-select-input"
+				:disabled="disabled"
+				:value="filterValue"
+				@input="onInput"
+			>
+			<span v-if="filterable" class="c-select-input-mirror" ref="inputMirror"></span>
 			<c-icon icon="expand_more"></c-icon>
 		</div>
 		<span class="c-input-placeholder" v-if="placeholder">{{placeholder}}</span>
@@ -9,6 +27,8 @@
 		<span class="c-input-hint" v-if="hint" v-show="hintVisible">{{hint}}</span>
 		<transition name="scale">
 			<ul class="c-select-options" v-if="$slots.default" v-show="isFocus" @click.stop>
+				<li class="c-option not-found" v-show="!addible && !hasFilterOptions">Not Found</li>
+				<li class="c-option" v-show="addible && filterValue" @click="onSelect(filterValue)">{{filterValue}}<c-ripple></c-ripple></li>
 				<slot></slot>
 			</ul>
 		</transition>
@@ -27,7 +47,10 @@ export default {
 		label: String,
 		placeholder: String,
 		multiple: Boolean,
-		value: null,
+		filterable: Boolean,
+		addible: Boolean,
+		disabled: Boolean,
+		value: [String, Array],
 		hint: String,
 		hintVisible: {
 			type: Boolean,
@@ -41,7 +64,14 @@ export default {
 	data() {
 		return {
 			isFocus: false,
+			filterValue: '',
+			hasFilterOptions: true,
 			removeClickoutListener: null
+		}
+	},
+	watch: {
+		isFocus(value) {
+			value && this.inputFocus()
 		}
 	},
 	computed: {
@@ -50,17 +80,18 @@ export default {
 				[this.hintColor]: this.hintVisible,
 				'focus': this.isFocus,
 				'disabled': this.disabled,
-				'has-value': this.multiple ? this.value.length > 0 : this.value,
+				'has-value': (this.multiple ? this.value.length > 0 : this.value) || this.filterValue,
 				'has-floating-label': this.floatingLabel
 			}
-		},
-		oValue() {
-			return this.multiple ? this.value.join(', ') : this.value
 		}
 	},
 	methods: {
+		removeChip(index) {
+			this.value.splice(index, 1)
+		},
 		onClick() {
 			this.isFocus = true
+			this.inputFocus()
 		},
 		onSelect(optionValue) {
 			if (this.multiple) {
@@ -70,10 +101,26 @@ export default {
 				} else {
 					this.value.push(optionValue)
 				}
+				this.inputFocus()
+				this.filterValue = ''
 			} else {
 				this.$emit('input', optionValue)
 				this.$emit('select', optionValue)
 				this.isFocus = false
+			}
+		},
+		onInput(e) {
+			const input = e.target
+			const inputMirror = this.$refs.inputMirror
+			// 加一位空格占位符，增大容差
+			inputMirror.textContent = input.value + ' '
+			input.style.width = inputMirror.offsetWidth + 'px'
+			this.filterValue = input.value
+			this.hasFilterOptions = this.$children.some(vm => vm.visible)
+		},
+		inputFocus() {
+			if (this.filterable) {
+				this.$refs.input.focus()
 			}
 		}
 	},
@@ -82,7 +129,7 @@ export default {
 			this.isFocus = false
 		})
 	},
-	destroy() {
+	beforeDestroy() {
 		this.removeClickoutListener()
 	}
 }
@@ -105,6 +152,15 @@ export default {
 		}
 	}
 
+	.c-option.not-found {
+		color: #aaa;
+		cursor: not-allowed;
+
+		&:hover {
+			background-color: inherit;
+		}
+	}
+
 	.c-input-inner {
 		overflow: hidden;
 
@@ -120,6 +176,49 @@ export default {
 			clear: both;
 			visibility: hidden;
 			opacity: 0;
+		}
+	}
+
+	&-chip {
+		display: inline-block;
+		padding: 1px 5px 1px 10px;
+		margin-right: 2px;
+		border-radius: 50px;
+		font-size: 12px;
+		background-color: #dedede;
+		cursor: default;
+
+		&-text {
+			vertical-align: middle;
+		}
+
+		.c-icon {
+			font-size: 12px;
+			padding: 1px;
+			cursor: pointer;
+
+			&:hover {
+				border-radius: 50%;
+				background-color: #bbb;
+			}
+		}
+	}
+
+	&-input {
+		width: 5px;
+		outline: none;
+		border: none;
+		color: $text-color;
+
+		&-mirror {
+		    position: absolute;
+		    top: -9999px;
+		    left: -9999px;
+			z-index: -9999;
+			visibility: hidden;
+			opacity: 0;
+		    white-space: pre;
+		    pointer-events: none;
 		}
 	}
 

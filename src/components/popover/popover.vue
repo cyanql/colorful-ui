@@ -1,5 +1,5 @@
 <template>
-	<div class="c-popover">
+	<div class="c-popover" @click="onClick">
 		<slot></slot>
     </div>
 </template>
@@ -24,17 +24,15 @@ export default {
 		},
 		visible: Boolean
 	},
-	mounted() {
-		this.$nextTick(() => {
-			this.init()
-		})
-	},
-	beforeDestroy() {
-		this.drop.destroy()
-	},
 	data() {
 		return {
 			drop: null
+		}
+	},
+	watch: {
+		visible(value) {
+			console.log('visible', value)
+			// value ? this.drop.open() : this.drop.close()
 		}
 	},
 	methods: {
@@ -53,16 +51,26 @@ export default {
 				onClose,
 				onToggle
 			})
+			global.drop = this.drop
 		},
 		onOpen(visible) {
-			this.$emit('open', visible)
+			this.$emit('open', visible, this.drop)
 		},
 		onClose(visible) {
-			this.$emit('close', visible)
+			this.$emit('close', visible, this.drop)
 		},
 		onToggle(visible) {
-			this.$emit('toggle', visible)
+			this.$emit('toggle', visible, this.drop)
+		},
+		onClick(e) {
+			this.$emit('click', e, this.drop)
 		}
+	},
+	beforeDestroy() {
+		this.drop.destroy()
+	},
+	mounted() {
+		this.init()
 	}
 }
 </script>
@@ -87,6 +95,8 @@ export default {
     font-weight: normal;
     line-height: 1.5;
     transform-origin: 0 0;
+	// transition: transform .2s cubic-bezier(.4,0,.2,1);
+
 
 	&.show {
 		animation: drop .2s cubic-bezier(.4,0,.2,1);
@@ -95,8 +105,8 @@ export default {
 
 @keyframes drop {
 	0% {
-		opacity: 0;
-		transform: scale(0);
+		opacity: .5;
+		transform: scale(.75);
 	}
 	100% {
 		opacity: 1;
