@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const base = require('./base')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const DOCS_SRC_PATH = path.resolve(__dirname, '..', 'docs-src')
 const DOCS_PATH = path.resolve(__dirname, '..', 'docs')
@@ -42,6 +43,7 @@ for (const name of Object.keys(config.entry)) {
 			// favicon: './src/img/favicon.ico', //favicon路径，通过webpack引入同时可以生成hash值
 			title: name,
 			chunks: [name, 'lib'], //需要引入的chunk，不配置就会引入所有页面的资源
+			template: path.resolve(DOCS_SRC_PATH, 'template/index.html'),
 			filename: './' + name + '.html', //生成的html存放路径，相对于path
 			inject: 'body', //js插入的位置，true/'head'/'body'/false
 			hash: true, //为静态资源生成hash值
@@ -65,11 +67,20 @@ if (NODE_ENV === 'development') {
 }
 
 if (NODE_ENV === 'production') {
-	config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-		compress: {
-			warnings: false
-		}
-	}))
+	config.plugins.push(
+		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false
+			}
+		})
+		// new OptimizeCssAssetsPlugin({
+		// 	cssProcessorOptions: { discardComments: {removeAll: true } },
+		// 	canPrint: true
+		// })
+	)
+	config.externals = {
+		vue: 'Vue'
+	}
 }
 
 module.exports = config

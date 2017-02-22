@@ -18,8 +18,8 @@ export default {
 		position: String
 	},
 	methods: {
-		onClick(e, drop) {
-			drop.close()
+		onClick(e, pop) {
+			pop.close()
 		}
 	},
 	components: {

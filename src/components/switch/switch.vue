@@ -1,12 +1,14 @@
 <template>
 	<label class="c-switch" :class="oClass">
 		<input class="c-switch-input" type="checkbox" @change="onChange" v-model="checked" :disabled="disabled">
-		<span class="c-switch-track"></span>
-		<span class="c-switch-thumb"></span>
+		<span class="c-switch-track" :style="oStyle.track"></span>
+		<span class="c-switch-thumb" :style="oStyle.thumb"></span>
 	</label>
 </template>
 
 <script>
+import shadeColor from 'src/utils/shadeColor'
+
 export default {
 	name: 'c-switch',
 	props: {
@@ -32,11 +34,19 @@ export default {
 	},
 	computed: {
 		oClass() {
-			return {
-				checked: this.checked,
-				[this.color]: this.color,
-				disabled: this.disabled
-			}
+			const { checked, color, disabled } = this
+			return [{
+				[color]: color.indexOf('#') === -1,
+				checked,
+				disabled
+			}]
+		},
+		oStyle() {
+			const { color } = this
+			return color.indexOf('#') > -1 && this.checked ? {
+				track: {backgroundColor: shadeColor(color, .5)},
+				thumb: {backgroundColor: color}
+			} : {}
 		}
 	},
 	methods: {

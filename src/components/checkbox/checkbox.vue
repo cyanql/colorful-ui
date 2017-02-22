@@ -42,11 +42,12 @@ export default {
 	},
 	computed: {
 		oClass() {
-			return {
-				[this.color]: this.color.indexOf('#') === -1,
-				checked: this.checked,
-				disabled: this.disabled
-			}
+			const { checked, color, disabled } = this
+			return [{
+				[color]: color.indexOf('#') === -1,
+				checked,
+				disabled
+			}]
 		},
 		oStyle() {
 			const { color } = this

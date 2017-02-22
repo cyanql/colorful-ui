@@ -4,6 +4,7 @@
 
 ::: 颜色
 ===
+同[**Checkbox**](#/checkbox)一致
 ===
 ```html
 <template>

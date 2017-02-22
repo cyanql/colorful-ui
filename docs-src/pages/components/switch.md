@@ -6,7 +6,7 @@
 
 ::: 颜色
 ===
-
+同[**Checkbox**](#/checkbox)一致
 ===
 ```html
 <template>
@@ -15,6 +15,7 @@
 		<c-switch value color="success">success</c-switch>
 		<c-switch value color="warning">warning</c-switch>
 		<c-switch value color="error">error</c-switch>
+		<c-switch value color="#808">#808</c-switch>
 	</div>
 </template>
 ```

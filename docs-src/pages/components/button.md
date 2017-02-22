@@ -5,8 +5,9 @@
 
 ::: 颜色
 ===
-除默认`default`、主要`primary`、成功`success`、警告`warning`、错误`error`、幽灵`ghost`这6种基本类型以外，还可以通过设置`16进制`颜色来设置字体颜色
-注：幽灵`ghost`和`16进制`类型默认背景色为透明
+除默认`default`、主要`primary`、成功`success`、警告`warning`、错误`error`这5种基本类型以外，还可以设置`16进制`颜色
+> 除`default`外，字体颜色都为白色
+
 ===
 ```html
 <template>
@@ -16,13 +17,29 @@
 		<c-button color="success">success</c-button>
 		<c-button color="warning">warning</c-button>
 		<c-button color="error">error</c-button>
-		<c-button color="ghost">ghost</c-button>
 		<c-button color="#808">#808</c-button>
 	</div>
 </template>
 ```
 :::
 
+::: 幽灵模式
+===
+背景色为透明，字体颜色为`color`各自对应的颜色属性
+===
+```html
+<template>
+	<div>
+		<c-button ghost>default</c-button>
+		<c-button ghost color="primary">primary</c-button>
+		<c-button ghost color="success">success</c-button>
+		<c-button ghost color="warning">warning</c-button>
+		<c-button ghost color="error">error</c-button>
+		<c-button ghost color="#808">#808</c-button>
+	</div>
+</template>
+```
+:::
 
 ::: 涟漪
 ===

@@ -6,7 +6,7 @@
 
 ::: 单选
 ===
-
+只能选择一个选项
 ===
 ```html
 <template>
@@ -23,7 +23,7 @@
 <script>
 export default {
 	data: () => ({
-		value: ''
+		value: 'none'
 	})
 }
 </script>
@@ -33,7 +33,7 @@ export default {
 
 ::: 多选
 ===
-
+可以选择多个选项，`value`需要为数组
 ===
 ```html
 <template>
@@ -60,7 +60,7 @@ export default {
 
 ::: 过滤
 ===
-
+通过输入内容过滤选项
 ===
 ```html
 <template>
@@ -86,7 +86,7 @@ export default {
 
 ::: 新建
 ===
-
+可将输入内容做为自定义选项进行添加
 ===
 ```html
 <template>

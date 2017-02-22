@@ -35,7 +35,7 @@ module.exports = {
                 loaders: {
                     scss: ExtractTextPlugin.extract({
 						fallback: 'vue-style-loader',
-						loader: 'css-loader!sass-loader'
+						use: 'css-loader!sass-loader'
 					})
                 },
                 postcss: [autoprefixer({ browsers: ['> 1%', 'last 2 versions'] })]
@@ -44,7 +44,7 @@ module.exports = {
 			test: /\.s?css$/,
 			loader: ExtractTextPlugin.extract({
 				fallback: 'vue-style-loader',
-				loader: 'css-loader!sass-loader'
+				use: 'css-loader!sass-loader'
 			})
 		}, {
 			test: /\.(jpg|png)$/,

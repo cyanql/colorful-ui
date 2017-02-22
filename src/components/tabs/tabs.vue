@@ -1,10 +1,10 @@
 <template>
 	<div class="c-tabs" :class="oClass">
-		<ul class="c-tabs-nav">
+		<ul class="c-tabs-nav" ref="nav">
 			<li
 				v-for="(item, index) in tabs"
 				:class="index === activeTabIndex && 'active'"
-				@click="onChange(item, index)"
+				@click="ctrlClick($event, item, index)"
 				>
 				<c-icon icon="item.icon" v-if="item.icon"></c-icon>
 				<span>{{item.title}}</span>
@@ -22,53 +22,55 @@
 export default {
 	name: 'c-tabs',
 	props: {
-		data: null,
+		value: null,
 		color: {
 			type: String,
 			default: 'default',
 			validator(value) {
-				return !value || ['default', 'primary', 'success', 'warning', 'error', 'ghost'].includes(value) || value.indexOf('#') === 0
+				return !value || ['default', 'primary', 'success', 'warning', 'error'].includes(value) || value.indexOf('#') === 0
 			}
 		}
 	},
 	data() {
 		return {
 			tabs: [],
-			activeTabIndex: NaN
+			activeTabIndex: NaN,
+			indicatorStyle: null
 		}
 	},
 	watch: {
 		tabs(value) {
-			this.activeTabIndex = value.findIndex(v => v.data === this.data)
+			this.activeTabIndex = value.findIndex(v => v.value === this.value)
 		}
 	},
 	computed: {
 		oClass() {
-			return {
-				[this.color]: this.color
-			}
+			return [this.color]
 		},
 		contentStyle() {
 			return {
 				transform: `translateX(-${this.activeTabIndex}00%)`
 			}
-		},
-		indicatorStyle() {
-			const widthPer = 100 / this.tabs.length
-			return {
-				left: widthPer * this.activeTabIndex + '%',
-				width: widthPer + '%'
-			}
 		}
 	},
 	methods: {
-		onChange(item, index) {
+		ctrlClick(e, item, index) {
 			this.activeTabIndex = index
-			this.$emit('change', item.data, index)
+			this.adjustIndicatorPostion(e.currentTarget)
+			this.$emit('change', item.value, index)
+		},
+		adjustIndicatorPostion(el) {
+			this.indicatorStyle = {
+				left: el.offsetLeft + 'px',
+				right: this.$refs.nav.offsetWidth - el.offsetLeft - el.offsetWidth + 'px'
+			}
 		}
 	},
 	mounted() {
 		this.tabs = this.$children.map((vm, i) => vm.$options.propsData)
+		this.$nextTick(() => {
+			this.adjustIndicatorPostion(this.$refs.nav.children[this.activeTabIndex])
+		})
 	}
 }
 </script>
@@ -119,7 +121,7 @@ export default {
 			position: absolute;
 			bottom: 0;
 			height: 2px;
-			transition: left .3s cubic-bezier(.645,.045,.355,1);
+			transition: left .3s cubic-bezier(.645,.045,.355,1), right .3s cubic-bezier(.645,.045,.355,1);
 		}
 	}
 

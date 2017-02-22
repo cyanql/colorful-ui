@@ -74,17 +74,18 @@ export default {
 	border-radius: inherit;
 
 	overflow: hidden;
+	-webkit-mask-image: -webkit-radial-gradient(circle, white, black);
 }
 
 .c-ripple {
+	position: absolute;
+	top: 0;
+	left: 0;
+
     border-radius: 50%;
 	pointer-events: none;
 	user-select: none;
 	background-color: currentColor;
-
-    position: absolute;
-    top: 0;
-    left: 0;
 
 	opacity: .2;
 	transform: scale(0);
@@ -97,7 +98,6 @@ export default {
 
 	&.done {
 		opacity: 0;
-		transform: scale(1);
 	}
 }
 </style>
