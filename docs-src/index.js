@@ -8,10 +8,6 @@ import './styles/init.scss'
 Vue.use(ColorfulUI)
 Vue.use(DocsUI)
 
-const div = document.createElement('div')
-div.id = 'app'
-document.body.appendChild(div)
-
 new Vue({
 	el: '#app',
 	router,

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Drop from 'src/lib/drop'
+import Pop from 'src/lib/pop'
 
 export default {
 	name: 'c-popover',
@@ -26,13 +26,13 @@ export default {
 	},
 	data() {
 		return {
-			drop: null
+			pop: null
 		}
 	},
 	watch: {
 		visible(value) {
 			console.log('visible', value)
-			// value ? this.drop.open() : this.drop.close()
+			// value ? this.pop.open() : this.pop.close()
 		}
 	},
 	methods: {
@@ -41,7 +41,7 @@ export default {
 			,	vm = $parent.$refs[target] || $parent
 			,	targetEl = vm ? vm.$el : null
 
-			this.drop = new Drop({
+			this.pop = new Pop({
 				target: targetEl,
 				content: $el,
 				position: position,
@@ -51,23 +51,23 @@ export default {
 				onClose,
 				onToggle
 			})
-			global.drop = this.drop
+			global.pop = this.pop
 		},
 		onOpen(visible) {
-			this.$emit('open', visible, this.drop)
+			this.$emit('open', visible, this.pop)
 		},
 		onClose(visible) {
-			this.$emit('close', visible, this.drop)
+			this.$emit('close', visible, this.pop)
 		},
 		onToggle(visible) {
-			this.$emit('toggle', visible, this.drop)
+			this.$emit('toggle', visible, this.pop)
 		},
 		onClick(e) {
-			this.$emit('click', e, this.drop)
+			this.$emit('click', e, this.pop)
 		}
 	},
 	beforeDestroy() {
-		this.drop.destroy()
+		this.pop.destroy()
 	},
 	mounted() {
 		this.init()
@@ -85,7 +85,7 @@ export default {
 }
 
 
-.drop {
+.pop {
     position: absolute;
     left: -9999px;
     top: -9999px;
@@ -99,11 +99,11 @@ export default {
 
 
 	&.show {
-		animation: drop .2s cubic-bezier(.4,0,.2,1);
+		animation: pop .2s cubic-bezier(.4,0,.2,1);
 	}
 }
 
-@keyframes drop {
+@keyframes pop {
 	0% {
 		opacity: .5;
 		transform: scale(.75);

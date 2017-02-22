@@ -47,7 +47,7 @@ export default {
 			<h1 slot="header">h1</h1>
 			内容
 			<div slot="footer">
-				<c-button color="ghost" @click="toggleVisible">Cancel</c-button>
+				<c-button ghost @click="toggleVisible">Cancel</c-button>
 				<c-button color="primary" @click="toggleVisible">Enter</c-button>
 			</div>
 		</c-modal>

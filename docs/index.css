@@ -66,6 +66,7 @@
   top: 60px;
   left: 0;
   bottom: 0;
+  height: 100%;
   overflow-y: scroll;
   padding-top: 20px;
   padding-bottom: 200px;
@@ -282,6 +283,9 @@ table {
     padding: 0;
     border-radius: 50%;
 }
+.c-button.circle .c-icon {
+      line-height: 1.5;
+}
 .c-button.has-ripple {
     position: relative;
     overflow: hidden;
@@ -294,13 +298,10 @@ table {
 .c-button.default .c-spin {
       border-left-color: rgba(0, 0, 0, 0.65);
 }
-.c-button.ghost {
-    color: rgba(0, 0, 0, 0.65);
-    background-color: transparent;
-    border-color: transparent;
-}
-.c-button.ghost .c-spin {
-      border-left-color: rgba(0, 0, 0, 0.65);
+.c-button.default.ghost {
+      color: rgba(0, 0, 0, 0.65);
+      background-color: transparent;
+      border-color: transparent;
 }
 .c-button.primary {
     color: white;
@@ -310,6 +311,14 @@ table {
 .c-button.primary .c-spin {
       border-left-color: white;
 }
+.c-button.primary.ghost {
+      color: #108ee9;
+      background-color: transparent;
+      border-color: transparent;
+}
+.c-button.primary.ghost .c-spin {
+        border-left-color: #108ee9;
+}
 .c-button.success {
     color: white;
     background-color: #00A854;
@@ -317,6 +326,14 @@ table {
 }
 .c-button.success .c-spin {
       border-left-color: white;
+}
+.c-button.success.ghost {
+      color: #00A854;
+      background-color: transparent;
+      border-color: transparent;
+}
+.c-button.success.ghost .c-spin {
+        border-left-color: #00A854;
 }
 .c-button.warning {
     color: white;
@@ -326,6 +343,14 @@ table {
 .c-button.warning .c-spin {
       border-left-color: white;
 }
+.c-button.warning.ghost {
+      color: #F56A00;
+      background-color: transparent;
+      border-color: transparent;
+}
+.c-button.warning.ghost .c-spin {
+        border-left-color: #F56A00;
+}
 .c-button.error {
     color: white;
     background-color: #F04134;
@@ -333,6 +358,17 @@ table {
 }
 .c-button.error .c-spin {
       border-left-color: white;
+}
+.c-button.error.ghost {
+      color: #F04134;
+      background-color: transparent;
+      border-color: transparent;
+}
+.c-button.error.ghost .c-spin {
+        border-left-color: #F04134;
+}
+.c-button.hex {
+    color: white;
 }
 
 @font-face {
@@ -391,15 +427,16 @@ table {
   height: 100%;
   border-radius: inherit;
   overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
 }
 .c-ripple {
+  position: absolute;
+  top: 0;
+  left: 0;
   border-radius: 50%;
   pointer-events: none;
   user-select: none;
   background-color: currentColor;
-  position: absolute;
-  top: 0;
-  left: 0;
   opacity: .2;
   transform: scale(0);
   transition: transform .4s ease-out, opacity .4s ease-out;
@@ -410,7 +447,6 @@ table {
 }
 .c-ripple.done {
     opacity: 0;
-    transform: scale(1);
 }
 
 .c-modal {
@@ -857,7 +893,7 @@ table {
   background: white;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
-.drop {
+.pop {
   position: absolute;
   left: -9999px;
   top: -9999px;
@@ -868,10 +904,10 @@ table {
   line-height: 1.5;
   transform-origin: 0 0;
 }
-.drop.show {
-    animation: drop 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+.pop.show {
+    animation: pop 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
-@keyframes drop {
+@keyframes pop {
 0% {
     opacity: .5;
     transform: scale(0.75);
@@ -1113,7 +1149,7 @@ table {
       position: absolute;
       bottom: 0;
       height: 2px;
-      transition: left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      transition: left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), right 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .c-tabs-content {
     word-spacing: -.31em;
@@ -1168,6 +1204,13 @@ table {
       visibility: hidden;
       opacity: 0;
 }
+.c-select .chip-enter-active, .c-select .chip-leave-active {
+    transition: transform .2s ease, opacity .2s ease;
+}
+.c-select .chip-enter, .c-select .chip-leave-active {
+    opacity: 0;
+    transform: scale(0.5);
+}
 .c-select-chip {
     display: inline-block;
     padding: 1px 5px 1px 10px;
@@ -1176,6 +1219,7 @@ table {
     font-size: 12px;
     background-color: #dedede;
     cursor: default;
+    vertical-align: middle;
 }
 .c-select-chip-text {
       vertical-align: middle;
@@ -1209,17 +1253,19 @@ table {
     position: absolute;
     left: 0;
     width: 100%;
+    max-height: 250px;
     margin-top: 5px;
     font-size: 12px;
     background-color: #fff;
     z-index: 1050;
+    overflow-y: scroll;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
-.c-select .scale-enter-active, .c-select .scale-leave-active {
+.c-select .options-enter-active, .c-select .options-leave-active {
     transform-origin: center 0;
     transition: transform .2s ease, opacity .2s ease;
 }
-.c-select .scale-enter, .c-select .scale-leave-active {
+.c-select .options-enter, .c-select .options-leave-active {
     transform: scale(1, 0);
     opacity: 0;
 }

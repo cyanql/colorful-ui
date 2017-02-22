@@ -9,7 +9,7 @@ export default {
 	name: 'c-tab',
 	props: {
 		title: String,
-		data: null
+		value: null
 	}
 }
 </script>

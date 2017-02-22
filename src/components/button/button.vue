@@ -1,5 +1,5 @@
 <template>
-	<button class="c-button" :class="oClass" :type="type" :style="oStyle" @click="onClick" :disabled="loading">
+	<button class="c-button" :class="oSelf.oClass" :type="type" :style="oSelf.oStyle" @click="onClick" :disabled="loading">
 		<c-icon :icon="icon" v-if="icon"></c-icon>
 		<transition name="scale">
 			<c-spin :radius="10" loading v-if="loading"></c-spin>
@@ -20,8 +20,12 @@ export default {
 			type: String,
 			default: 'default',
 			validator(value) {
-				return !value || ['default', 'primary', 'success', 'warning', 'error', 'ghost'].includes(value) || value.indexOf('#') === 0
+				return !value || ['default', 'primary', 'success', 'warning', 'error'].includes(value) || value.indexOf('#') === 0
 			}
+		},
+		ghost: {
+			type: Boolean,
+			default: false
 		},
 		type: String,
 		icon: String,
@@ -45,24 +49,31 @@ export default {
 			this.$emit('click', e)
 		}
 	},
-	data() {
-		const { shape, color } = this
-		const oStyle = {}
-		let colorClass
+	computed: {
+		oSelf() {
+			const { shape, color, ghost } = this
+			const oStyle = {}
+			let colorClass, hex
 
-		// 当使用16进制颜色时，背景默认为transparent
-		if (color.indexOf('#') > -1) {
-			oStyle.color = color
-		} else {
-			colorClass = color
-		}
+			hex = color.indexOf('#') > -1
+			// 当使用16进制颜色时，背景默认为transparent
+			if (hex) {
+				if (ghost) {
+					oStyle.color = color
+				} else {
+					oStyle.backgroundColor = color
+				}
+			} else {
+				colorClass = color
+			}
 
-		return {
-			oStyle,
-			oClass: {
-				[shape]: shape,
-				[colorClass]: colorClass,
-				'has-ripple': this.rippleVisible
+			return {
+				oStyle,
+				oClass: [shape, colorClass, {
+					hex,
+					ghost,
+					'has-ripple': this.rippleVisible
+				}]
 			}
 		}
 	},
@@ -76,15 +87,24 @@ export default {
 <style lang="scss">
 @import "~src/styles/variables";
 
-@mixin color-background-border($color, $background-color, $border-color: transparent) {
-	color: $color;
+@mixin color-type($background-color, $border-color) {
+	color: white;
 	background-color: $background-color;
 	border-color: $border-color;
 
 	.c-spin {
-		border-left-color: $color;
+		border-left-color: white;
 	}
-	// background-image: -webkit-linear-gradient(top, $background, $border);
+
+	&.ghost {
+		color: $background-color;
+		background-color: transparent;
+		border-color: transparent;
+
+		.c-spin {
+			border-left-color: $background-color;
+		}
+	}
 }
 
 .c-button {
@@ -160,6 +180,10 @@ export default {
 		height: 40px;
 		padding: 0;
 		border-radius: 50%;
+
+		.c-icon {
+			line-height: 1.5;
+		}
 	}
 
 	&.has-ripple {
@@ -168,27 +192,39 @@ export default {
 	}
 
 	&.default {
-		@include color-background-border($text-color, #f7f7f7, #d9d9d9);
-	}
+		color: $text-color;
+		background-color: #f7f7f7;
+		border-color: #d9d9d9;
 
-	&.ghost {
-		@include color-background-border($text-color, transparent);
+		.c-spin {
+			border-left-color: $text-color;
+		}
+
+		&.ghost {
+			color: $text-color;
+			background-color: transparent;
+			border-color: transparent;
+		}
 	}
 
 	&.primary {
-		@include color-background-border(white, $blue-6, $blue-7);
+		@include color-type($blue-6, $blue-7);
 	}
 
 	&.success {
-		@include color-background-border(white, $green-6, $green-7);
+		@include color-type($green-6, $green-7);
 	}
 
 	&.warning {
-		@include color-background-border(white, $orange-6, $orange-7);
+		@include color-type($orange-6, $orange-7);
 	}
 
 	&.error {
-		@include color-background-border(white, $red-6, $red-7);
+		@include color-type($red-6, $red-7);
+	}
+
+	&.hex {
+		color: white;
 	}
 }
 </style>

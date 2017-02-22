@@ -2,13 +2,16 @@
 	<div class="c-input c-select" :class="oClass" @click="onClick">
 		<div class="c-input-inner">
 			<template v-if="multiple">
-				<span
-					class="c-select-chip"
-					v-for="(subValue, index) in value"
-					>
-					<span class="c-select-chip-text">{{subValue}}</span>
-					<c-icon icon="clear" @click.stop="removeChip(index)"></c-icon>
-				</span>
+				<transition-group name="chip">
+					<span
+						class="c-select-chip"
+						v-for="(subValue, index) in value"
+						:key="index"
+						>
+						<span class="c-select-chip-text">{{subValue}}</span>
+						<c-icon icon="clear" @click.stop="removeChip(index)"></c-icon>
+					</span>
+				</transition-group>
 			</template>
 			<span v-if="!multiple">{{value}}</span>
 			<input
@@ -25,7 +28,7 @@
 		<span class="c-input-placeholder" v-if="placeholder">{{placeholder}}</span>
 		<span class="c-input-label-line">{{label}}</span>
 		<span class="c-input-hint" v-if="hint" v-show="hintVisible">{{hint}}</span>
-		<transition name="scale">
+		<transition name="options">
 			<ul class="c-select-options" v-if="$slots.default" v-show="isFocus" @click.stop>
 				<li class="c-option not-found" v-show="!addible && !hasFilterOptions">Not Found</li>
 				<li class="c-option" v-show="addible && filterValue" @click="onSelect(filterValue)">{{filterValue}}<c-ripple></c-ripple></li>
@@ -179,6 +182,19 @@ export default {
 		}
 	}
 
+	.chip {
+		&-enter-active,
+		&-leave-active {
+			transition: transform .2s ease, opacity .2s ease;
+		}
+
+		&-enter,
+		&-leave-active {
+			opacity: 0;
+			transform: scale(.5);
+		}
+	}
+
 	&-chip {
 		display: inline-block;
 		padding: 1px 5px 1px 10px;
@@ -187,6 +203,7 @@ export default {
 		font-size: 12px;
 		background-color: #dedede;
 		cursor: default;
+		vertical-align: middle;
 
 		&-text {
 			vertical-align: middle;
@@ -226,14 +243,16 @@ export default {
 		position: absolute;
 		left: 0;
 		width: 100%;
+    	max-height: 250px;
 		margin-top: 5px;
 		font-size: 12px;
 		background-color: #fff;
 		z-index: $zindex-menu;
+		overflow-y: scroll;
 		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 	}
 
-	.scale {
+	.options {
 		&-enter-active,
 		&-leave-active {
 			transform-origin: center 0;

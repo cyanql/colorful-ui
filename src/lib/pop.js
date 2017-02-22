@@ -1,5 +1,5 @@
 const cssText = `
-.drop {
+.pop {
     position: absolute;
     left: -9999px;
     top: -9999px;
@@ -11,11 +11,11 @@ const cssText = `
     transform-origin: 0 0;
 
 	&.show {
-		animation: drop .2s cubic-bezier(.4,0,.2,1);
+		animation: pop .2s cubic-bezier(.4,0,.2,1);
 	}
 }
 
-@keyframes drop {
+@keyframes pop {
 	0% {
 		opacity: 0;
 		transform: scale(0);
@@ -28,21 +28,21 @@ const cssText = `
 `
 function createContainer() {
 	const container = document.createElement('div')
-	container.className = 'drop-container'
+	container.className = 'pop-container'
 	document.body.appendChild(container)
 	return container
 }
 
 let container = null
-function initElement(drop) {
+function initElement(pop) {
 	var el = document.createElement('div')
 	container = container || createContainer()
 
-	el.className = 'drop'
+	el.className = 'pop'
 	// el.style.cssText = cssText
-	el.appendChild(drop.content)
+	el.appendChild(pop.content)
 	container.appendChild(el)
-	drop.el = el
+	pop.el = el
 }
 
 const align = {
@@ -104,8 +104,8 @@ const align = {
 	}
 }
 
-function initMethods(drop) {
-	const { target, position, el, spacing } = drop
+function initMethods(pop) {
+	const { target, position, el, spacing } = pop
 	,	posArr = position.split('-')
 	,	posA = posArr[0]
 	,	posB = posArr[1] || 'center'
@@ -125,7 +125,7 @@ function initMethods(drop) {
 			display: ''
 		}
 
-		drop.updatePostion = function() {
+		pop.updatePostion = function() {
 			const opts = {}
 			Object.keys(defaultOpts).map(key => {
 				opts[key] = el.style[key]
@@ -157,11 +157,11 @@ function initMethods(drop) {
 }
 
 
-function initEvents(drop) {
-	const { el, target, trigger } = drop
+function initEvents(pop) {
+	const { el, target, trigger } = pop
 
-	const lazyOpen = drop.lazyOpen.bind(drop)
-	const lazyClose = drop.lazyClose.bind(drop)
+	const lazyOpen = pop.lazyOpen.bind(pop)
+	const lazyClose = pop.lazyClose.bind(pop)
 
 	function clickoutHandle(e) {
 		const element = e.target
@@ -181,7 +181,7 @@ function initEvents(drop) {
 		document.addEventListener('click', clickoutHandle, false)
 	}
 
-	drop.removeEvents = function() {
+	pop.removeEvents = function() {
 		if (trigger === 'hover') {
 			target.removeEventListener('mouseover', lazyOpen)
 			target.removeEventListener('mouseout', lazyClose)
@@ -196,7 +196,7 @@ function initEvents(drop) {
 
 function noop() {}
 
-export default class Drop {
+export default class Pop {
 	constructor(opts) {
 		const { target, content, position, trigger, visible, spacing, onOpen, onClose, onToggle, timeout } = opts
 		if (!target)

@@ -6,7 +6,7 @@
 
 ::: 颜色
 ===
-在**Button**颜色的基础上，将默认颜色改为`primary`，并去除`default` `ghost`两种颜色类型
+在**Button**颜色的基础上，将默认颜色改为`primary`，并去除`default`颜色类型
 ===
 ```html
 <template>
