@@ -48,8 +48,10 @@ export default {
 			return [this.color]
 		},
 		contentStyle() {
+			const transform = `translate(-${this.activeTabIndex}00%, 0)`
 			return {
-				transform: `translateX(-${this.activeTabIndex}00%)`
+				transform,
+				'-ms-transform': transform
 			}
 		}
 	},

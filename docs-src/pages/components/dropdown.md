@@ -7,6 +7,8 @@
 ::: 颜色
 ===
 `Dropdown`配置项同`Popover`一致，可以理解为`Popover`的另一种使用方式，`$slot.default`为宿主元素，`$slot.content`为内容
+> 默认`$slots.content`中的子组件的`click`事件会触发菜单关闭，可通过阻止冒泡禁止此行为
+
 ===
 ```html
 <template>
@@ -17,7 +19,7 @@
 				<c-menu-item>item 1</c-menu-item>
 				<c-menu-item>item 2</c-menu-item>
 				<c-menu-item>item 3</c-menu-item>
-				<c-sub-menu title="submenu" expand>
+				<c-sub-menu title="submenu" @click.stop expand>
 					<c-menu-item>item 4</c-menu-item>
 					<c-menu-item>item 5</c-menu-item>
 				</c-sub-menu>

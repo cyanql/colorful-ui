@@ -29,12 +29,6 @@ export default {
 			pop: null
 		}
 	},
-	watch: {
-		visible(value) {
-			console.log('visible', value)
-			// value ? this.pop.open() : this.pop.close()
-		}
-	},
 	methods: {
 		init() {
 			const { $parent, $el, target, position, trigger, onOpen, onClose, onToggle, visible } = this
@@ -51,7 +45,6 @@ export default {
 				onClose,
 				onToggle
 			})
-			global.pop = this.pop
 		},
 		onOpen(visible) {
 			this.$emit('open', visible, this.pop)

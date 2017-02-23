@@ -74,7 +74,7 @@ export default {
  		top: 50%;
 		color: #fff;
 		text-align: center;
- 		transform: translate3d(-50%, -50%, 0);
+ 		transform: translate(-50%, -50%);
 		transition: opacity .2s ease;
 		opacity: 0;
 
