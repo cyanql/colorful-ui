@@ -21,6 +21,7 @@
 				:disabled="disabled"
 				:value="filterValue"
 				@input="onInput"
+				@keydown.delete="onDeleteKeydown"
 			>
 			<span v-if="filterable" class="c-select-input-mirror" ref="inputMirror"></span>
 			<c-icon icon="expand_more"></c-icon>
@@ -75,6 +76,14 @@ export default {
 	watch: {
 		isFocus(value) {
 			value && this.inputFocus()
+		},
+		filterValue(value) {
+			const input = this.$refs.input
+			const inputMirror = this.$refs.inputMirror
+			// 加一位空格占位符，增大容差
+			inputMirror.textContent = value + ' '
+			input.style.width = inputMirror.offsetWidth + 'px'
+			this.hasFilterOptions = this.$children.some(vm => vm.visible)
 		}
 	},
 	computed: {
@@ -113,13 +122,12 @@ export default {
 			}
 		},
 		onInput(e) {
-			const input = e.target
-			const inputMirror = this.$refs.inputMirror
-			// 加一位空格占位符，增大容差
-			inputMirror.textContent = input.value + ' '
-			input.style.width = inputMirror.offsetWidth + 'px'
-			this.filterValue = input.value
-			this.hasFilterOptions = this.$children.some(vm => vm.visible)
+			this.filterValue = e.target.value
+		},
+		onDeleteKeydown() {
+			if (this.multiple && this.filterValue === '') {
+				this.value.pop()
+			}
 		},
 		inputFocus() {
 			if (this.filterable) {

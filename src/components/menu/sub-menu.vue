@@ -93,8 +93,9 @@ export default {
 				}
 			}, 100)
 		},
-		onToggle() {
+		onToggle(e) {
 			this.opened = !this.opened
+			this.$emit('click', e)
 		}
 	}
 }

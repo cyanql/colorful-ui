@@ -33,7 +33,7 @@ export default {
 	display: inline-block;
 
 	&-content {
-		padding: 10px 0;
+		padding: 0;
 
 		.c-menu {
 			box-shadow: none;

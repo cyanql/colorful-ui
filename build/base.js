@@ -38,7 +38,7 @@ module.exports = {
 						use: 'css-loader!sass-loader'
 					})
                 },
-                postcss: [autoprefixer({ browsers: ['> 1%', 'last 2 versions'] })]
+                postcss: [autoprefixer({ browsers: ['> 1%', 'last 2 versions', 'ie >= 9'] })]
             }
 		}, {
 			test: /\.s?css$/,

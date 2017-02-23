@@ -110,7 +110,7 @@ export default {
 	&.top {
 		top: 0;
 	    left: 50%;
-	    transform: translateX(-50%);
+	    transform: translate(-50%, 0);
 	}
 
 	&.top-right {
@@ -126,7 +126,7 @@ export default {
 	&.bottom {
 		bottom: 0;
 	    left: 50%;
-	    transform: translateX(-50%);
+	    transform: translate(-50%, 0);
 	}
 
 	&.bottom-right {
@@ -144,13 +144,13 @@ export default {
 		.notification {
 			&-enter-active,
 			&-leave-active {
-				transform: translateY(0);
+				transform: translate(0, 0);
 				transition: height .2s, transform .2s;
 			}
 
 			&-enter,
 			&-leave-active {
-				transform: translateY(-20px);
+				transform: translate(0, -20px);
 			}
 		}
 	}
@@ -165,13 +165,13 @@ export default {
 		.notification {
 			&-enter-active,
 			&-leave-active {
-				transform: translateY(0);
+				transform: translate(0, 0);
 				transition: height .2s, transform .2s;
 			}
 
 			&-enter,
 			&-leave-active {
-				transform: translateY(20px);
+				transform: translate(0, 20px);
 			}
 		}
 	}

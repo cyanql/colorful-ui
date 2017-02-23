@@ -87,7 +87,7 @@ $thumb-height: 20px;
 
 	&.checked {
 		.c-switch-thumb {
-			transform: translateX($switch-width - $thumb-width);
+			transform: translate($switch-width - $thumb-width, 0);
 		}
 
 		&.primary {

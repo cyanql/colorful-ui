@@ -1,4 +1,7 @@
 import './styles/reset.scss'
+import 'src/lib/classlist-polyfill'
+import 'core-js/fn/array/find-index'
+import 'core-js/fn/array/includes'
 import * as Components from './components'
 import * as Transitions from './transitions'
 

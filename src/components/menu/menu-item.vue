@@ -66,7 +66,7 @@ export default {
 		triggerHref() {
 			if (this.autoTriggerHref) {
 				const els = this.$el.querySelectorAll('[href]')
-				els && els.forEach(el => el.click())
+				Array.from(els).forEach(el => el.click())
 			}
 		}
 	}

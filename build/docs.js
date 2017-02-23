@@ -12,6 +12,7 @@ const NODE_ENV = process.env.NODE_ENV
 
 const config = Object.assign(base, {
 	devServer: {
+		host: '0.0.0.0',
 		port: 3000,
 		publicPath: '/dist' //模板、样式、脚本、图片等资源对应server上的路径
 	},
@@ -72,11 +73,11 @@ if (NODE_ENV === 'production') {
 			compress: {
 				warnings: false
 			}
+		}),
+		new OptimizeCssAssetsPlugin({
+			cssProcessorOptions: { discardComments: {removeAll: true } },
+			canPrint: true
 		})
-		// new OptimizeCssAssetsPlugin({
-		// 	cssProcessorOptions: { discardComments: {removeAll: true } },
-		// 	canPrint: true
-		// })
 	)
 	config.externals = {
 		vue: 'Vue'
