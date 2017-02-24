@@ -2,7 +2,7 @@
 	<transition name="notification">
 		<div class="c-notification">
 			<span class="c-notification-message">{{message}}</span>
-			<c-button :color="buttonColor" v-if="buttonText">{{buttonText}}</c-button>
+			<c-button :color="buttonColor" ghost v-if="buttonText">{{buttonText}}</c-button>
 		</div>
 	</transition>
 </template>

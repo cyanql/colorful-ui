@@ -41,7 +41,7 @@ export default {
 		},
 		oSelected() {
 			const parent = this.menuParent
-			return this.selected || (parent.multiple ? parent.value.includes(this.value) : this.value && parent.value === this.value)
+			return this.selected || (parent.multiple ? parent.value.indexOf(this.value) > -1 : this.value && parent.value === this.value)
 		},
 		oClass() {
 			return {
