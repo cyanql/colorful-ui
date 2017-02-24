@@ -22,7 +22,7 @@ export default {
 			type: String,
 			default: 'primary',
 			validator(value) {
-				return ['primary', 'success', 'warning', 'error'].includes(value) || value.indexOf('#') === 0
+				return ['primary', 'success', 'warning', 'error'].indexOf(value) > -1 || value.indexOf('#') === 0
 			}
 		},
 		disabled: {

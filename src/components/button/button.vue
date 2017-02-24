@@ -20,7 +20,7 @@ export default {
 			type: String,
 			default: 'default',
 			validator(value) {
-				return !value || ['default', 'primary', 'success', 'warning', 'error'].includes(value) || value.indexOf('#') === 0
+				return !value || ['default', 'primary', 'success', 'warning', 'error'].indexOf(value) > -1 || value.indexOf('#') === 0
 			}
 		},
 		ghost: {
@@ -32,7 +32,7 @@ export default {
 		shape: {
 			type: String,
 			validator(value) {
-				return ['circle', undefined].includes(value)
+				return ['circle', undefined].indexOf(value) > -1
 			}
 		},
 		loading: {
@@ -55,7 +55,7 @@ export default {
 			const oStyle = {}
 			let colorClass, hex
 
-			hex = color.indexOf('#') > -1
+			hex = color.indexOf('#') === 0
 			// 当使用16进制颜色时，背景默认为transparent
 			if (hex) {
 				if (ghost) {
@@ -109,7 +109,7 @@ export default {
 
 .c-button {
 	font-size: 12px;
-    padding: 8px 16px;
+    padding: 7px 14px;
 	border-radius: 3px;
 	border: 1px solid transparent;
 	outline: none;
@@ -180,10 +180,6 @@ export default {
 		height: 40px;
 		padding: 0;
 		border-radius: 50%;
-
-		.c-icon {
-			line-height: 1.5;
-		}
 	}
 
 	&.has-ripple {

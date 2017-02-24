@@ -50,56 +50,68 @@ const align = {
 		left(dStyle, tRect, dRect, spacing) {
 			dStyle.top = tRect.top - dRect.height - spacing + 'px'
 			dStyle.left = tRect.left + 'px'
+			dStyle.transformOrigin = 'left bottom 0px'
 		},
 		center(dStyle, tRect, dRect, spacing) {
 			dStyle.top = tRect.top - dRect.height - spacing + 'px'
 			dStyle.left = tRect.left - (dRect.width - tRect.width) / 2 + 'px'
+			dStyle.transformOrigin = 'center bottom 0px'
 		},
 		right(dStyle, tRect, dRect, spacing) {
 			dStyle.top = tRect.top - dRect.height - spacing + 'px'
 			dStyle.left = tRect.left - (dRect.width - tRect.width) + 'px'
+			dStyle.transformOrigin = 'right bottom 0px'
 		}
 	},
 	bottom: {
 		left(dStyle, tRect, dRect, spacing) {
 			dStyle.top = tRect.bottom + spacing + 'px'
 			dStyle.left = tRect.left + 'px'
+			dStyle.transformOrigin = 'left top 0px'
 		},
 		center(dStyle, tRect, dRect, spacing) {
 			dStyle.top = tRect.bottom + spacing + 'px'
 			dStyle.left = tRect.left - (dRect.width - tRect.width) / 2 + 'px'
+			dStyle.transformOrigin = 'center top 0px'
 		},
 		right(dStyle, tRect, dRect, spacing) {
 			dStyle.top = tRect.bottom + spacing + 'px'
 			dStyle.left = tRect.left - (dRect.width - tRect.width) + 'px'
+			dStyle.transformOrigin = 'right top 0px'
 		}
 	},
 	left: {
 		top(dStyle, tRect, dRect, spacing) {
 			dStyle.top = tRect.top + 'px'
 			dStyle.left = tRect.left - dRect.width - spacing + 'px'
+			dStyle.transformOrigin = 'right top 0px'
 		},
 		center(dStyle, tRect, dRect, spacing) {
 			dStyle.top = tRect.top - (dRect.height - tRect.height) / 2 + 'px'
 			dStyle.left = tRect.left - dRect.width - spacing + 'px'
+			dStyle.transformOrigin = 'right center 0px'
 		},
 		bottom(dStyle, tRect, dRect, spacing) {
 			dStyle.top = tRect.top - (dRect.height - tRect.height) + 'px'
 			dStyle.left = tRect.left - dRect.width - spacing + 'px'
+			dStyle.transformOrigin = 'right bottom 0px'
 		}
 	},
 	right: {
 		top(dStyle, tRect, dRect, spacing) {
 			dStyle.top = tRect.top + 'px'
 			dStyle.left = tRect.right + spacing + 'px'
+			dStyle.transformOrigin = 'left top 0px'
 		},
 		center(dStyle, tRect, dRect, spacing) {
 			dStyle.top = tRect.top - (dRect.height - tRect.height) / 2 + 'px'
 			dStyle.left = tRect.right + spacing + 'px'
+			dStyle.transformOrigin = 'left center 0px'
 		},
 		bottom(dStyle, tRect, dRect, spacing) {
 			dStyle.top = tRect.top - (dRect.height - tRect.height) + 'px'
 			dStyle.left = tRect.right + spacing + 'px'
+			dStyle.transformOrigin = 'left bottom 0px'
 		}
 	}
 }
@@ -198,7 +210,7 @@ function noop() {}
 
 export default class Pop {
 	constructor(opts) {
-		const { target, content, position, trigger, visible, spacing, onOpen, onClose, onToggle, timeout } = opts
+		const { target, content, position, trigger, visible, spacing, onOpen, onClose, onToggle, delay } = opts
 		if (!target)
 			throw new Error('target cann\'t be null')
 
@@ -213,7 +225,7 @@ export default class Pop {
 			onOpen: onOpen || noop,
 			onClose: onClose || noop,
 			onToggle: onToggle || noop,
-			timeout: timeout || 100,
+			delay: delay || 100,
 			timer: null,
 			el: null
 		})
@@ -238,11 +250,9 @@ export default class Pop {
 
 	lazyOpen() {
 		clearTimeout(this.timer)
-		this.timer = setTimeout(() => {
-			if (!this.visible) {
-				this.open()
-			}
-		}, this.timeout)
+		if (!this.visible) {
+			this.open()
+		}
 	}
 
 	lazyClose() {
@@ -251,7 +261,7 @@ export default class Pop {
 			if (this.visible) {
 				this.close()
 			}
-		}, this.timeout)
+		}, this.delay)
 	}
 
 	open() {

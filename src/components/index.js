@@ -1,49 +1,56 @@
 import Button from './button'
-import Icon from './icon'
-import Modal from './modal'
-import Input from './input'
 import Checkbox from './checkbox'
-import Switch from './switch'
-import Radio from './radio'
-import Popover from './popover'
-import Notification from './notification'
-import Menu from './menu'
-import Tabs from './tabs'
-import Ripple from './ripple'
 import Dropdown from './dropdown'
+import Icon from './icon'
+import Input from './input'
+import Menu from './menu'
+import Modal from './modal'
+import Notification from './notification'
+import Popover from './popover'
+import Progress from './progress'
+import Radio from './radio'
+import Ripple from './ripple'
 import Select from './select'
 import Spin from './spin'
-import Progress from './progress'
-const NotificationContainer = Notification.Container
+import Switch from './switch'
+import Tabs from './tabs'
+import Tooltip from './tooltip'
+
 const MenuItem = Menu.Item
-const SubMenu = Menu.SubMenu
-const RadioGroup = Radio.Group
 const MenuItemGroup = Menu.ItemGroup
+const SubMenu = Menu.SubMenu
+
+const NotificationContainer = Notification.Container
+
+const RadioGroup = Radio.Group
+
 const Tab = Tabs.Tab
+
 const Option = Select.Option
 
 export {
 	Button,
+	Checkbox,
+	Dropdown,
 	Icon,
-	Popover,
+	Input,
 	Menu,
-	SubMenu,
+	Modal,
+	Notification,
+	Popover,
+	Progress,
+	Radio,
+	Ripple,
+	Select,
+	Spin,
+	Switch,
+	Tabs,
 	MenuItem,
 	MenuItemGroup,
-	Notification,
+	SubMenu,
 	NotificationContainer,
-	Ripple,
-	Dropdown,
-	Select,
-	Option,
-	Modal,
-	Input,
-	Checkbox,
-	Switch,
-	Radio,
 	RadioGroup,
-	Spin,
-	Progress,
-	Tabs,
-	Tab
+	Tab,
+	Tooltip,
+	Option
 }

@@ -27,7 +27,7 @@ export default {
 			type: String,
 			default: 'default',
 			validator(value) {
-				return !value || ['default', 'primary', 'success', 'warning', 'error'].includes(value) || value.indexOf('#') === 0
+				return !value || ['default', 'primary', 'success', 'warning', 'error'].indexOf(value) > -1 || value.indexOf('#') === 0
 			}
 		}
 	},

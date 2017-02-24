@@ -15,7 +15,7 @@ export default {
 			type: String,
 			default: 'hover',
 			validator(value) {
-				return ['hover', 'click'].includes(value)
+				return ['hover', 'click'].indexOf(value) > -1
 			}
 		},
 		position: {
@@ -27,6 +27,11 @@ export default {
 	data() {
 		return {
 			pop: null
+		}
+	},
+	watch: {
+		visible(value) {
+			value ? this.pop.lazyOpen() : this.pop.lazyClose()
 		}
 	},
 	methods: {

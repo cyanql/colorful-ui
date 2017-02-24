@@ -1,18 +1,16 @@
 <template>
 	<div class="c-input c-select" :class="oClass" @click="onClick">
 		<div class="c-input-inner">
-			<template v-if="multiple">
-				<transition-group name="chip">
-					<span
-						class="c-select-chip"
-						v-for="(subValue, index) in value"
-						:key="index"
-						>
-						<span class="c-select-chip-text">{{subValue}}</span>
-						<c-icon icon="clear" @click.stop="removeChip(index)"></c-icon>
-					</span>
-				</transition-group>
-			</template>
+			<transition-group v-if="multiple" class="c-select-chips" name="chip">
+				<span
+					class="c-select-chip"
+					v-for="(subValue, index) in value"
+					:key="index"
+					>
+					<span class="c-select-chip-text">{{subValue}}</span>
+					<c-icon icon="clear" @click.stop="removeChip(index)"></c-icon>
+				</span>
+			</transition-group>
 			<span v-if="!multiple">{{value}}</span>
 			<input
 				v-if="filterable"
@@ -177,7 +175,6 @@ export default {
 
 		& > .c-icon {
 			float: right;
-			line-height: 1.5;
 			transition: transform .2s ease;
 		}
 
@@ -203,24 +200,23 @@ export default {
 		}
 	}
 
+	&-chips {
+	}
+
 	&-chip {
 		display: inline-block;
 		padding: 1px 5px 1px 10px;
 		margin-right: 2px;
 		border-radius: 50px;
-		font-size: 12px;
 		background-color: #dedede;
 		cursor: default;
-		vertical-align: middle;
-
-		&-text {
-			vertical-align: middle;
-		}
+		font-size: 14px;
 
 		.c-icon {
-			font-size: 12px;
 			padding: 1px;
 			cursor: pointer;
+			line-height: 1;
+			vertical-align: text-bottom;
 
 			&:hover {
 				border-radius: 50%;

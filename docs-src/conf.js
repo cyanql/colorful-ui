@@ -5,9 +5,11 @@ export default {
 			english: 'Button',
 			chinese: '按钮'
 		}, {
-			disabled: true,
 			english: 'Icon',
 			chinese: '图标'
+		}, {
+			english: 'Ripple',
+			chinese: '涟漪'
 		}]
 	}, {
 		title: 'Layout',
@@ -34,9 +36,6 @@ export default {
 			disabled: true,
 			english: 'Breadcrumb',
 			chinese: '面包屑'
-		}, {
-			english: 'Dropdown',
-			chinese: '下拉菜单'
 		}, {
 			english: 'Menu',
 			chinese: '导航菜单'
@@ -141,6 +140,9 @@ export default {
 			english: 'Calendar',
 			chinese: '日历'
 		}, {
+			english: 'Dropdown',
+			chinese: '下拉菜单'
+		}, {
 			english: 'Popover',
 			chinese: '气泡卡片'
 		}, {
@@ -156,7 +158,6 @@ export default {
 			english: 'Timeline',
 			chinese: '时间轴'
 		}, {
-			disabled: true,
 			english: 'Tooltip',
 			chinese: '文字提示'
 		}, {

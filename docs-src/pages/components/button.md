@@ -59,7 +59,7 @@
 
 ::: 图标
 ===
-当设置`icon`属性时左边将出现对应的图标，具体值参照[material design icons](https://material.io/icons)官网
+当设置`icon`属性时左边将出现对应的图标，参考[**Icon**](#/icon)
 ===
 ```html
 <template>

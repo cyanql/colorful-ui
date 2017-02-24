@@ -41,12 +41,12 @@ export default {
 		},
 		oSelected() {
 			const parent = this.oParent
-			return this.selected || (parent.multiple ? parent.value.includes(this.value) : parent.value === this.value)
+			return this.selected || (parent.multiple ? parent.value.indexOf(this.value) > -1 : parent.value === this.value)
 		},
 		visible() {
 			const parent = this.oParent
 			if (parent.filterable) {
-				return this.value.includes(parent.filterValue)
+				return this.value.indexOf(parent.filterValue) > -1
 			} else {
 				return true
 			}
