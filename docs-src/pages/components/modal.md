@@ -28,6 +28,9 @@ export default {
 		toggleVisible() {
 			this.visible = !this.visible
 		}
+	},
+	mounted() {
+		global.toggleVisible = this.toggleVisible
 	}
 }
 </script>

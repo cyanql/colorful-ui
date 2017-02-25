@@ -1,23 +1,42 @@
 const isArray = Array.isArray
 const toString = Object.prototype.toString
 
-export default function(keys) {
+function isObject(value) {
+	return toString.call(value) === '[object Object]'
+}
+
+function mapPropToState(value) {
+	if (isArray(value))
+		return value.slice()
+	else if (isObject(value))
+		return JSON.parse(JSON.stringify(value))
+	else
+		return value
+}
+
+export default function(...args) {
 	return {
 		data() {
 			const states = {}
-			let i, len = keys.length, prop, value
+			let arg, argProp, prop, watched
 
-			for (i = 0; i < len; i++) {
-				prop = keys[i]
-				value = this[prop]
-
-				prop = prop + 'State'
-				if (isArray(value))
-					states[prop] = value.slice()
-				else if (toString.call(value) === '[object Object]')
-					states[prop] = JSON.parse(JSON.stringify(value))
-				else
-					states[prop] = value
+			for (arg of args) {
+				if (isObject(arg)) {
+					for (argProp of Object.keys(arg)) {
+						prop = argProp + 'State'
+						states[prop] = mapPropToState(this[argProp])
+						watched = arg[argProp]
+						watched && this.$watch(argProp, function(value) {
+							this[prop] = value
+						})
+					}
+				} else {
+					prop = arg + 'State'
+					states[prop] = mapPropToState(this[arg])
+					this.$watch(arg, function(value) {
+						this[prop] = value
+					})
+				}
 			}
 			return states
 		}

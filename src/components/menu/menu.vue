@@ -15,15 +15,27 @@ export default {
 			default: 20
 		}
 	},
+	data() {
+		return {
+			valueState: this.multiple ? this.value.slice() : this.value
+		}
+	},
+	watch: {
+		value(val) {
+			this.valueState = val
+		}
+	},
 	methods: {
 		onSelect(itemValue) {
 			if (this.multiple) {
-				const index = this.value.indexOf(itemValue)
+				const index = this.valueState.indexOf(itemValue)
 				if (index > -1) {
-					this.value.splice(index, 1)
+					this.valueState.splice(index, 1)
 				} else {
-					this.value.push(itemValue)
+					this.valueState.push(itemValue)
 				}
+				this.$emit('input', this.valueState, itemValue)
+				this.$emit('select', this.valueState, itemValue)
 			} else {
 				this.$emit('input', itemValue)
 				this.$emit('select', itemValue)
