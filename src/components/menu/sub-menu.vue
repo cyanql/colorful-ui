@@ -1,9 +1,9 @@
 <template>
 	<li class="c-sub-menu" :class="mode">
 		<template v-if="mode === 'inline'">
-			<div class="c-sub-menu-title" :style="titleStyle" @click="onToggle">
+			<div class="c-sub-menu-title" :class="titleClass" :style="titleStyle" @click="onToggle">
 				<span class="c-sub-menu-title-text">{{title}}</span>
-				<c-icon class="expand-more" :class="openClass" icon="expand_more"></c-icon>
+				<c-icon class="expand-more" icon="expand_more"></c-icon>
 				<c-ripple v-if="!disabled"></c-ripple>
 			</div>
 			<expand-transition>
@@ -13,9 +13,9 @@
 			</expand-transition>
 		</template>
 		<template v-if="mode === 'vertical'">
-			<div class="c-sub-menu-title" :style="titleStyle" @mouseover="onOpen" @mouseout="onClose">
+			<div class="c-sub-menu-title" :class="titleClass" :style="titleStyle" @mouseover="onOpen" @mouseout="onClose">
 				<span class="c-sub-menu-title-text">{{title}}</span>
-				<c-icon class="expand-more" :class="openClass" icon="expand_more"></c-icon>
+				<c-icon class="expand-more" icon="expand_more"></c-icon>
 				<c-ripple v-if="!disabled"></c-ripple>
 			</div>
 			<transition name="scale">
@@ -53,6 +53,7 @@ export default {
 	data() {
 		return {
 			opened: this.expand,
+			childSelectedValue: {},
 			timer: null
 		}
 	},
@@ -70,19 +71,22 @@ export default {
 				paddingLeft: this.level * indent + 'px'
 			}
 		},
-		openClass() {
-			return this.opened ? 'expand' : ''
+		titleClass() {
+			const parent = this.menuParent
+			const val = this.childSelectedValue
+			return {
+				expand: this.opened,
+				'has-child-selected': (parent.multiple ? parent.valueState.some(v => val[v]) : val && val === parent.value)
+			}
 		}
 	},
 	methods: {
 		onOpen(e) {
 			clearTimeout(this.timer)
-			this.timer = setTimeout(() => {
-				if (!this.opened) {
-					this.$emit('open', e)
-					this.opened = true
-				}
-			}, 100)
+			if (!this.opened) {
+				this.$emit('open', e)
+				this.opened = true
+			}
 		},
 		onClose(e) {
 			clearTimeout(this.timer)
@@ -91,11 +95,19 @@ export default {
 					this.$emit('close', e)
 					this.opened = false
 				}
-			}, 100)
+			}, 50)
 		},
 		onToggle(e) {
 			this.opened = !this.opened
 			this.$emit('click', e)
+		},
+		onSelect(val) {
+			if (this.menuParent.multiple) {
+				this.childSelectedValue[val] = !this.childSelectedValue[val]
+			} else {
+				this.childSelectedValue = val
+			}
+			this.subMenuParent && this.subMenuParent.onSelect(val)
 		}
 	}
 }
@@ -109,7 +121,11 @@ export default {
 		position: relative;
 
 		& > .c-sub-menu-title {
-			& .c-icon.expand-more {
+			&.expand {
+				background-color: #f6f6f6;
+			}
+
+			& > .c-icon.expand-more {
 				transform: rotate(-90deg);
 				float: right;
 			}
@@ -140,13 +156,15 @@ export default {
 		overflow: hidden;
 
 		& > .c-sub-menu-title {
-			& .c-icon.expand-more {
-				transition: transform .2s ease;
-				float: right;
-
-				&.expand {
+			&.expand {
+				& > .c-icon.expand-more {
 					transform: rotate(-180deg);
 				}
+			}
+
+			& > .c-icon.expand-more {
+				transition: transform .2s ease;
+				float: right;
 			}
 		}
 
@@ -185,7 +203,11 @@ export default {
 		}
 
 		&:not(.disabled):hover {
-			background: #e7e7e7;
+			background: #e7e7e7 !important;
+		}
+
+		&.has-child-selected {
+			color: $blue-8;
 		}
 	}
 }

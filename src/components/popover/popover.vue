@@ -100,8 +100,8 @@ export default {
 
 @keyframes pop {
 	0% {
-		opacity: .5;
-		transform: scale(.75);
+		opacity: 0;
+		transform: scale(.65);
 	}
 	100% {
 		opacity: 1;
