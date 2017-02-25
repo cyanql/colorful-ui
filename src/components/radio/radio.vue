@@ -19,11 +19,10 @@
 </template>
 
 <script>
-import Event from 'src/mixins/event'
+import getAncester from 'src/utils/getAncester'
 
 export default {
 	name: 'c-radio',
-	mixins: [Event],
 	props: {
 		color: {
 			type: String,
@@ -55,25 +54,25 @@ export default {
 				outer: {borderColor: color}
 			} : {}
 		},
-		isGroup() {
-			return this.$parent.$options.name === 'c-radio-group'
+		oParent() {
+			return getAncester(this, 'c-radio-group')
 		},
 		oValue: {
 			get() {
 				return this.value
 			},
 			set(value) {
-				if (this.isGroup) {
-					this.bubble('c-radio-group', 'input', value)
-					this.bubble('c-radio-group', 'change', value)
+				if (this.oParent) {
+					this.oParent.$emit('input', value)
+					this.oParent.$emit('change', value)
 				}
 				this.$emit('input', value)
 				this.$emit('change', value)
 			}
 		},
 		oChecked() {
-			if (this.isGroup) {
-				return this.checkedValue === this.$parent.value
+			if (this.oParent) {
+				return this.checkedValue === this.oParent.value
 			} else {
 				return this.checkedValue === this.value
 			}

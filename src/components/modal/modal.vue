@@ -32,22 +32,29 @@ export default {
 		}
 	},
 	methods: {
+		updateTriggerEl(e) {
+			this.triggerEl = e.target
+		},
 		enter(el) {
 			let containerEl, triggerRect, x, y
 
 			containerEl = this.$refs.cModalContainer
-			triggerRect = this.triggerEl.getBoundingClientRect()
 
-			x = triggerRect.left - containerEl.offsetLeft + 'px'
-			y = triggerRect.top - containerEl.offsetTop + 'px'
+			if (this.triggerEl) {
+				triggerRect = this.triggerEl.getBoundingClientRect()
+
+				x = triggerRect.left - containerEl.offsetLeft + 'px'
+				y = triggerRect.top - containerEl.offsetTop + 'px'
+			}
 
 			containerEl.style.transformOrigin = [x, y].join(' ')
 		}
 	},
 	mounted() {
-		document.addEventListener('mousedown', e => {
-			this.triggerEl = e.target
-		})
+		document.addEventListener('mousedown', this.updateTriggerEl)
+	},
+	beforeDestroy() {
+		document.removeEventListener('mousedown', this.updateTriggerEl)
 	}
 }
 </script>

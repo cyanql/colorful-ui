@@ -1,3 +1,5 @@
+import throttle from 'src/utils/throttle'
+
 const cssText = `
 .pop {
     position: absolute;
@@ -26,24 +28,6 @@ const cssText = `
 	}
 }
 `
-function createContainer() {
-	const container = document.createElement('div')
-	container.className = 'pop-container'
-	document.body.appendChild(container)
-	return container
-}
-
-let container = null
-function initElement(pop) {
-	var el = document.createElement('div')
-	container = container || createContainer()
-
-	el.className = 'pop'
-	// el.style.cssText = cssText
-	el.appendChild(pop.content)
-	container.appendChild(el)
-	pop.el = el
-}
 
 const align = {
 	top: {
@@ -116,6 +100,15 @@ const align = {
 	}
 }
 
+function getHideOffsetSize(el) {
+	const offset = {}, display = el.style.display
+	el.style.display = ''
+	offset.width = el.offsetWidth
+	offset.height = el.offsetHeight
+	el.style.display = display
+	return offset
+}
+
 function initMethods(pop) {
 	const { target, position, el, spacing } = pop
 	,	posArr = position.split('-')
@@ -130,20 +123,8 @@ function initMethods(pop) {
 			throw new Error()
 		}
 
-		const defaultOpts = {
-			zIndex: '-9999',
-			visibility: 'hidden',
-			opacity: '0',
-			display: ''
-		}
-
 		pop.updatePostion = function() {
-			const opts = {}
-			Object.keys(defaultOpts).map(key => {
-				opts[key] = el.style[key]
-			})
-			Object.assign(el.style, defaultOpts)
-
+			console.log('update')
 			const rect = target.getBoundingClientRect()
 			const scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft
 			const scrollTop = document.body.scrollTop || document.documentElement.scrollTop
@@ -157,11 +138,9 @@ function initMethods(pop) {
 					width: rect.width,
 					height: rect.height
 				} ,
-				el.getBoundingClientRect(),
+				getHideOffsetSize(el),
 				spacing
 			)
-
-			Object.assign(el.style, opts)
 		}
 	} catch(e) {
 		throw new Error('position is not in conformity with the requirements')
@@ -193,30 +172,45 @@ function initEvents(pop) {
 		document.addEventListener('click', clickoutHandle, false)
 	}
 
+
 	pop.removeEvents = function() {
 		if (trigger === 'hover') {
-			target.removeEventListener('mouseover', lazyOpen)
-			target.removeEventListener('mouseout', lazyClose)
-			el.removeEventListener('mouseover', lazyOpen)
-			el.removeEventListener('mouseout', lazyClose)
+			target.removeEventListener('mouseover', lazyOpen, false)
+			target.removeEventListener('mouseout', lazyClose, false)
+			el.removeEventListener('mouseover', lazyOpen, false)
+			el.removeEventListener('mouseout', lazyClose, false)
 		} else if (trigger === 'click') {
-			target.removeEventListener('click', lazyOpen)
-			document.removeEventListener('click', clickoutHandle)
+			target.removeEventListener('click', lazyOpen, false)
+			document.removeEventListener('click', clickoutHandle, false)
 		}
 	}
+
 }
 
 function noop() {}
 
+function createContainer() {
+	const container = document.createElement('div')
+	container.className = 'pop-container'
+	document.body.appendChild(container)
+	return container
+}
+
+let container = null
+
 export default class Pop {
 	constructor(opts) {
-		const { target, content, position, trigger, visible, spacing, onOpen, onClose, onToggle, delay } = opts
+		const { target, el, position, trigger, visible, spacing, onOpen, onClose, onToggle, delay } = opts
 		if (!target)
 			throw new Error('target cann\'t be null')
 
+		container = container || createContainer()
+		el.classList.add('pop')
+
 		Object.assign(this, {
+			container,
 			target,
-			content,
+			el,
 			trigger,
 			visible,
 			position: position || 'left bottom',
@@ -227,30 +221,45 @@ export default class Pop {
 			onToggle: onToggle || noop,
 			delay: delay || 100,
 			timer: null,
-			el: null
+			resizeUpdatePostion: null
 		})
 
-		initElement(this)
 		initMethods(this)
 		initEvents(this)
 
+		this.resizeUpdatePostion = throttle(this.updatePostion.bind(this), 50)
+		this.insert()
+		this.remove()
 		this.el.style.display = visible ? '' : 'none'
 	}
 
+	insert() {
+		window.addEventListener('resize', this.resizeUpdatePostion, false)
+		this.container.appendChild(this.el)
+	}
+
 	remove() {
+		window.removeEventListener('resize', this.resizeUpdatePostion, false)
 		this.el.parentNode.removeChild(this.el)
 	}
 
 	destroy() {
 		clearTimeout(this.timer)
 		this.removeEvents()
-		this.el.parentNode.removeChild(this.el)
+		// 当元素已被删除时，忽略此步骤
+		this.el.parentNode && this.remove()
 		this.el = null
+		this.container = null
+	}
+
+	static destroy() {
+		container = null
 	}
 
 	lazyOpen() {
 		clearTimeout(this.timer)
 		if (!this.visible) {
+			this.insert()
 			this.open()
 		}
 	}
@@ -260,6 +269,7 @@ export default class Pop {
 		this.timer = setTimeout(() => {
 			if (this.visible) {
 				this.close()
+				this.remove()
 			}
 		}, this.delay)
 	}
@@ -288,37 +298,4 @@ export default class Pop {
 		this.el.classList.remove('show')
 		this.el.style.display = 'none'
 	}
-}
-
-
-function addEnterTransition(el, name) {
-	el.style.display = ''
-	el.classList.add(`${name}-enter`)
-
-	function endTransition() {
-		console.log('removeEventListener')
-		el.classList.remove(`${name}-enter`, `${name}-enter-active`)
-		el.removeEventListener('transitionend', endTransition)
-	}
-
-	setTimeout(() => {
-		el.classList.add(`${name}-enter-active`)
-		console.log('addEnterTransition')
-		el.addEventListener('transitionend', endTransition, false)
-	}, 20)
-}
-
-function addLeaveTransition(el, name) {
-	el.classList.add(`${name}-leave`)
-
-	function endTransition() {
-		el.classList.remove(`${name}-leave`, `${name}-leave-active`)
-		el.removeEventListener('transitionend', endTransition, false)
-	}
-
-	el.classList.add(`${name}-leave-active`)
-	el.addEventListener('transitionend', endTransition, false)
-	setTimeout(() => {
-		el.style.display = 'none'
-	}, 20)
 }

@@ -36,8 +36,8 @@ export default {
 		}
 	},
 	watch: {
-		value(value) {
-			this.checked = value
+		value(val) {
+			this.checked = val
 		}
 	},
 	computed: {

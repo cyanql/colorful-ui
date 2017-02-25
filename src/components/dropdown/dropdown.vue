@@ -12,20 +12,18 @@
 <script>
 import align from './align'
 import addClickoutListener from 'src/utils/addClickoutListener'
-import mapPropsToStates from 'src/mixins/mapPropsToStates'
 
 function getHideOffsetSize(el) {
-	const offset = {}
+	const offset = {}, display = el.style.display
 	el.style.display = ''
 	offset.offsetWidth = el.offsetWidth
 	offset.offsetHeight = el.offsetHeight
-	el.style.display = 'none'
+	el.style.display = display
 	return offset
 }
 
 export default {
 	name: 'c-dropdown',
-	mixins: [mapPropsToStates(['visible'])],
 	props: {
 		position: {
 			type: String,
@@ -46,6 +44,7 @@ export default {
 	},
 	data() {
 		return {
+			visibleState: this.visible,
 			timer: null,
 			triggerEl: null,
 			removeClickoutListener: null
@@ -53,7 +52,6 @@ export default {
 	},
 	watch: {
 		visible(value) {
-			console.log(value)
 			value ? this.onOpen() : this.onClose()
 		}
 	},
@@ -119,7 +117,6 @@ export default {
 				this.onClose()
 			})
 		}
-
 		this.triggerEl = triggerEl
 		this.updatePosition()
 	},

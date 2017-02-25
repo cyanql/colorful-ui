@@ -4,14 +4,14 @@
 			<transition-group v-if="multiple" class="c-select-chips" name="chip">
 				<span
 					class="c-select-chip"
-					v-for="(subValue, index) in value"
-					:key="index"
+					v-for="(subValue, index) in valueState"
+					:key="subValue"
 					>
 					<span class="c-select-chip-text">{{subValue}}</span>
 					<c-icon icon="clear" @click.stop="removeChip(index)"></c-icon>
 				</span>
 			</transition-group>
-			<span v-if="!multiple">{{value}}</span>
+			<span v-if="!multiple">{{valueState}}</span>
 			<input
 				v-if="filterable"
 				ref="input"
@@ -65,6 +65,7 @@ export default {
 	},
 	data() {
 		return {
+			valueState: this.multiple ? this.value.slice() : this.value,
 			isFocus: false,
 			filterValue: '',
 			hasFilterOptions: true,
@@ -72,14 +73,17 @@ export default {
 		}
 	},
 	watch: {
-		isFocus(value) {
-			value && this.inputFocus()
+		value(val) {
+			this.valueState = val
 		},
-		filterValue(value) {
+		isFocus(val) {
+			val && this.inputFocus()
+		},
+		filterValue(val) {
 			const input = this.$refs.input
 			const inputMirror = this.$refs.inputMirror
 			// 加一位空格占位符，增大容差
-			inputMirror.textContent = value + ' '
+			inputMirror.textContent = val + ' '
 			input.style.width = inputMirror.offsetWidth + 'px'
 			this.hasFilterOptions = this.$children.some(vm => vm.visible)
 		}
@@ -90,14 +94,14 @@ export default {
 				[this.hintColor]: this.hintVisible,
 				'focus': this.isFocus,
 				'disabled': this.disabled,
-				'has-value': (this.multiple ? this.value.length > 0 : this.value) || this.filterValue,
+				'has-value': (this.multiple ? this.valueState.length > 0 : this.valueState) || this.filterValue,
 				'has-floating-label': this.floatingLabel
 			}
 		}
 	},
 	methods: {
 		removeChip(index) {
-			this.value.splice(index, 1)
+			this.valueState.splice(index, 1)
 		},
 		onClick() {
 			this.isFocus = true
@@ -105,18 +109,20 @@ export default {
 		},
 		onSelect(optionValue) {
 			if (this.multiple) {
-				const index = this.value.indexOf(optionValue)
+				const index = this.valueState.indexOf(optionValue)
 				if (index > -1) {
-					this.value.splice(index, 1)
+					this.valueState.splice(index, 1)
 				} else {
-					this.value.push(optionValue)
+					this.valueState.push(optionValue)
 				}
 				this.inputFocus()
 				this.filterValue = ''
+				this.$emit('input', this.valueState, optionValue)
+				this.$emit('select', this.valueState, optionValue)
 			} else {
+				this.isFocus = false
 				this.$emit('input', optionValue)
 				this.$emit('select', optionValue)
-				this.isFocus = false
 			}
 		},
 		onInput(e) {
@@ -124,7 +130,7 @@ export default {
 		},
 		onDeleteKeydown() {
 			if (this.multiple && this.filterValue === '') {
-				this.value.pop()
+				this.valueState.pop()
 			}
 		},
 		inputFocus() {

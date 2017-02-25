@@ -35,22 +35,6 @@ export default {
 		}
 	},
 	methods: {
-		init() {
-			const { $parent, $el, target, position, trigger, onOpen, onClose, onToggle, visible } = this
-			,	vm = $parent.$refs[target] || $parent
-			,	targetEl = vm ? vm.$el : null
-
-			this.pop = new Pop({
-				target: targetEl,
-				content: $el,
-				position: position,
-				trigger: trigger,
-				visible,
-				onOpen,
-				onClose,
-				onToggle
-			})
-		},
 		onOpen(visible) {
 			this.$emit('open', visible, this.pop)
 		},
@@ -68,7 +52,20 @@ export default {
 		this.pop.destroy()
 	},
 	mounted() {
-		this.init()
+		const { $parent, $el, target, position, trigger, onOpen, onClose, onToggle, visible } = this
+		,	vm = $parent.$refs[target] || $parent
+		,	targetEl = vm ? vm.$el : null
+
+		this.pop = new Pop({
+			target: targetEl,
+			el: $el,
+			position: position,
+			trigger: trigger,
+			visible,
+			onOpen,
+			onClose,
+			onToggle
+		})
 	}
 }
 </script>

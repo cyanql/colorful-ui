@@ -116,14 +116,14 @@ export default {
 
 | 属性      | 说明                                       | 类型       | 默认值   |
 | ------- | ---------------------------------------- | -------- | ----- |
-| value | 设置选中的 **Option** 的值                         | any   | - |
+| value | 设置选中的 **Option** 的值                         | string, array   | - |
 | floating-label | 同[**Input**](#/input)一致          	      | boolean   | false |
 | label | 同[**Input**](#/input)一致                				| string   | - |
 | placeholder | 同[**Input**](#/input)一致          		      | string   | - |
 | hint           | 同[**Input**](#/input)一致			| string | - |
 | hint-visible   | 同[**Input**](#/input)一致			| boolean | false     |
 | hint-color     | 同[**Input**](#/input)一致			| string  | `primary` |
-| multiple | 设置多选，此时`value`需要为数组                   | boolean   | - |
+| multiple | 设置多选，此时`value`格式需要设置为数组                   | boolean   | - |
 | filterable | 设置可否过滤					                   | boolean   | - |
 | addible | 设置可否新增					                   | boolean   | - |
 | @select | 状态变化时触发                                  | function | -     |
