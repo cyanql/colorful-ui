@@ -2,7 +2,6 @@ const marked = require('marked')
 const loaderUtils = require('loader-utils')
 const highlight = require('highlight.js')
 const renderer = new marked.Renderer()
-const cache = require('./cache')
 
 const defaultOpts = {
 	renderer,
@@ -82,8 +81,9 @@ function parseToken(text) {
 	return tokens
 }
 
+const path = require('path')
+const selectorPath = path.resolve(__dirname, 'selector')
 
-cache.clean()
 module.exports = function(source) {
 	this.cacheable()
 
@@ -92,17 +92,19 @@ module.exports = function(source) {
 	marked.setOptions(opts)
 
 	const tokens = parseToken(source)
-	const filename = this.resourcePath.split('/').pop()
+	const filePath = this.resourcePath
 
 	let text = `var tokens = ${JSON.stringify(tokens)};`
+	,	request
+	,	sampleIndex = 0
 
 	tokens.forEach((token, index) => {
 		if (token.type === 'sample') {
-			const filePath = cache.save(filename + '.' + index + '.vue', token.value.code.source)
-			const instance = `require(${loaderUtils.stringifyRequest(this, '!!vue-loader!' + filePath)})`
+			request = loaderUtils.stringifyRequest(this, `!!vue-loader!${selectorPath}?index=${sampleIndex}!${filePath}`)
 			text += `
-				tokens[${index}].value.instance = ${instance};
+				tokens[${index}].value.instance = require(${request});
 			`
+			sampleIndex++
 		}
 	})
 
