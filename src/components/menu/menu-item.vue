@@ -60,6 +60,7 @@ export default {
 			if (!this.disabled) {
 				this.$emit('click', e)
 				this.menuParent.onSelect(this.value)
+				this.subMenuParent && this.subMenuParent.onSelect(this.value)
 				this.triggerHref()
 			}
 		},
@@ -74,6 +75,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~src/styles/variables";
+
 .c-menu-item {
 	position: relative;
 	cursor: pointer;
@@ -89,12 +92,13 @@ export default {
 	}
 
 	&:not(.disabled):hover {
-		background: #e7e7e7;
+		background-color: #e7e7e7;
 	}
 
 	&.selected {
-		border-right: 2px solid #108ee9;
-		background: #f6f6f6;
+		color: $blue-8;
+		border-right: 2px solid $blue-6;
+		background-color: #f6f6f6;
 	}
 
 	a,

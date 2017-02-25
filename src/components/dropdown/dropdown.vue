@@ -154,13 +154,13 @@ export default {
 	.scale {
 		&-enter-active,
 		&-leave-active {
-			transition: transform .2s ease, opacity .2s ease-out;
+			transition: transform .2s ease, opacity .2s ease;
 		}
 
 		&-enter,
 		&-leave-active {
-			opacity: .5;
-			transform: scale(.5);
+			opacity: 0;
+			transform: scale(.65);
 		}
 	}
 }
