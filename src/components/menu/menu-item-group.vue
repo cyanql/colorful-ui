@@ -32,12 +32,13 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~src/styles/variables";
 
 .c-menu-item-group {
 	&-title {
-		padding: 8px 12.5px;
-		font-size: 12px;
-		color: rgba(0,0,0,.4);
+		padding: $menu-item-group-title-padding;
+		font-size: $menu-item-group-title-font-size;
+		color: $menu-item-group-title-color;
 	}
 }
 </style>

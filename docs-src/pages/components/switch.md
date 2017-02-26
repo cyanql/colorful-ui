@@ -11,10 +11,10 @@
 ```html
 <template>
 	<div>
-		<c-switch value>primary</c-switch>
-		<c-switch value color="success">success</c-switch>
-		<c-switch value color="warning">warning</c-switch>
-		<c-switch value color="error">error</c-switch>
+		<c-switch value>Primary</c-switch>
+		<c-switch value color="success">Success</c-switch>
+		<c-switch value color="warning">Warning</c-switch>
+		<c-switch value color="error">Error</c-switch>
 		<c-switch value color="#808">#808</c-switch>
 	</div>
 </template>

@@ -11,11 +11,11 @@
 ```html
 <template>
 	<div>
-		<c-checkbox value>default</c-checkbox>
-		<c-checkbox value color="primary">primary</c-checkbox>
-		<c-checkbox value color="success">success</c-checkbox>
-		<c-checkbox value color="warning">warning</c-checkbox>
-		<c-checkbox value color="error">error</c-checkbox>
+		<c-checkbox value>Default</c-checkbox>
+		<c-checkbox value color="primary">Primary</c-checkbox>
+		<c-checkbox value color="success">Success</c-checkbox>
+		<c-checkbox value color="warning">Warning</c-checkbox>
+		<c-checkbox value color="error">Error</c-checkbox>
 		<c-checkbox value color="#808">#808</c-checkbox>
 	</div>
 </template>
@@ -30,8 +30,8 @@
 ```html
 <template>
 	<div>
-		<c-checkbox value disabled>disabled</c-checkbox>
-		<c-checkbox disabled>disabled</c-checkbox>
+		<c-checkbox value disabled>Disabled</c-checkbox>
+		<c-checkbox disabled>Disabled</c-checkbox>
 	</div>
 </template>
 ```

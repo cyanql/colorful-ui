@@ -11,9 +11,9 @@
 <template>
 	<div>
 		<c-button>
-			<span>父级</span>
+			<span>parentNode</span>
 			<c-popover>
-				<p>popover文本内容</p>
+				<p>popover text content</p>
 			</c-popover>
 		</c-button>
 
@@ -21,7 +21,7 @@
 			<span>ref & target</span>
 		</c-button>
 		<c-popover target="xxxx">
-			<p>popover文本内容</p>
+			<p>popover text content</p>
 		</c-popover>
 	</div>
 </template>
@@ -39,14 +39,14 @@
 		<c-button>
 			<span>hover</span>
 			<c-popover trigger="hover">
-				<p>popover文本内容</p>
+				<p>popover text content</p>
 			</c-popover>
 		</c-button>
 
 		<c-button>
 			<span>click</span>
 			<c-popover trigger="click">
-				<p>popover文本内容</p>
+				<p>popover text content</p>
 			</c-popover>
 		</c-button>
 	</div>
@@ -65,7 +65,7 @@
 		<c-button v-for="position in positions">
 			<span v-text="position"></span>
 			<c-popover :position="position">
-				<p>popover文本内容</p>
+				<p>popover text content</p>
 				<p v-text="position"></p>
 			</c-popover>
 		</c-button>

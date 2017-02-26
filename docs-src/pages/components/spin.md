@@ -28,9 +28,11 @@ export default {
 </script>
 <style>
 .test {
-	display: inline-block;
+	text-align: center;
+	display: block;
 	background-color: #108ee9;
 	padding: 20px;
+	margin-right: 20px;
 }
 </style>
 ```
@@ -47,9 +49,9 @@ export default {
 	<div>
 		<div class="test">
 			<c-spin :radius="20" text="loading..." :loading="loading">
-				文本内容 文本内容 文本内容 文本内容
-				文本内容 文本内容 文本内容 文本内容
-				文本内容 文本内容 文本内容 文本内容
+				TEXT CONTENT TEXT CONTENT TEXT CONTENT TEXT CONTENT
+				TEXT CONTENT TEXT CONTENT TEXT CONTENT TEXT CONTENT
+				TEXT CONTENT TEXT CONTENT TEXT CONTENT TEXT CONTENT
 			</c-spin>
 		</div>
 
@@ -66,9 +68,11 @@ export default {
 </script>
 <style>
 .test {
-	display: inline-block;
+	text-align: center;
+	display: block;
 	background-color: #108ee9;
 	padding: 20px;
+	margin-bottom: 20px;
 }
 </style>
 ```

@@ -1,9 +1,11 @@
-@import "./variables";
+@import "variables";
 
 html {
+	box-sizing: border-box;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+	-webkit-tap-highlight-color: transparent;
 }
 
 /** 清除内外边距 **/
@@ -19,12 +21,12 @@ th, td /* table elements 表格元素 */ {
 /** 设置默认字体 **/
 body,
 button, input, select, textarea /* for ie */ {
-  font: 12px/1.5 $font-family; //tahoma, arial, '/5b8b/4f53', sans-serif;
+  font: #{$font-size}/1.5 $font-family; //tahoma, arial, '/5b8b/4f53', sans-serif;
 }
 h1, h2, h3, h4, h5, h6 { font-size: 100%; }
 address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
 code, kbd, pre, samp { font-family: $code-family; } /* 统一等宽字体 */
-small { font-size: 12px; } /* 小于 12px 的中文很难阅读，让 small 正常化 */
+small { font-size: $font-size-small; } /* 小于 12px 的中文很难阅读，让 small 正常化 */
 
 /** 重置列表元素 **/
 ul, ol, ul > li, ol > li { list-style: none; }
@@ -52,9 +54,9 @@ button, input, select, textarea { font-size: 100%; } /* 使得表单元素在 ie
 table { border-collapse: collapse; border-spacing: 0; }
 
 * {
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: inherit;
 }
 
 *, *:before, *:after {
-    box-sizing: border-box;
+    box-sizing: inherit;
 }

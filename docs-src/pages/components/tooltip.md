@@ -11,8 +11,8 @@
 ```html
 <template>
 	<div>
-		<c-tooltip v-for="position in positions" :position="position" :text="position">
-			<span v-text="position"></span>
+		<c-tooltip v-for="position in positions" :position="position" text="tooltip text content">
+			<c-button v-text="position"></c-button>
 		</c-tooltip>
 	</div>
 </template>
@@ -35,6 +35,7 @@ export default {
 <style scoped>
 .c-tooltip {
 	margin: 20px;
+	position: relative;
 }
 </style>
 ```

@@ -25,11 +25,11 @@
 ```html
 <template>
 	<div>
-		<c-icon icon="check">default</c-icon>
-		<c-icon icon="close" color="primary">primary</c-icon>
-		<c-icon icon="chevron_left" color="success">success</c-icon>
-		<c-icon icon="chevron_right" color="warning">warning</c-icon>
-		<c-icon icon="expand_less" color="error">error</c-icon>
+		<c-icon icon="check">Default</c-icon>
+		<c-icon icon="close" color="primary">Primary</c-icon>
+		<c-icon icon="chevron_left" color="success">Success</c-icon>
+		<c-icon icon="chevron_right" color="warning">Warning</c-icon>
+		<c-icon icon="expand_less" color="error">Error</c-icon>
 		<c-icon icon="expand_more" color="#808">#808</c-icon>
 	</div>
 </template>

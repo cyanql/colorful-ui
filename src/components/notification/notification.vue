@@ -1,7 +1,7 @@
 <template>
 	<transition name="notification">
 		<div class="c-notification">
-			<span class="c-notification-message">{{message}}</span>
+			<span class="c-notification-text">{{text}}</span>
 			<c-button :color="buttonColor" ghost v-if="buttonText">{{buttonText}}</c-button>
 		</div>
 	</transition>
@@ -11,7 +11,7 @@
 export default {
 	name: 'c-notification',
 	props: {
-		message: {
+		text: {
 			type: String,
 			required: true
 		},
@@ -31,17 +31,17 @@ export default {
 
 .c-notification {
 	position: relative;
-	color: white;
-	padding: 0 20px;
-	border-radius: 3px;
-	background: #323232;
-	box-shadow: 0 0 5px $shadow-color;
+	padding: $notification-padding;
+	border-radius: $notification-border-radius;
+	background: $notification-bg-color;
+	box-shadow: $notification-box-shadow;
 	overflow: hidden;
 
-	&-message {
+	&-text {
 		display: inline-block;
-		width: 200px;
-		padding: 15px;
+		width: $notification-text-width;
+		padding: $notification-text-padding;
+		color: $notification-text-color;
 		vertical-align: middle;
 	}
 }

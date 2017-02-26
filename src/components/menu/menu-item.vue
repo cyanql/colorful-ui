@@ -81,10 +81,8 @@ export default {
 	position: relative;
 	cursor: pointer;
 	display: block;
-	text-align: left;
 	width: 100%;
-	padding: 10px 20px;
-	border-radius: 0;
+	padding: $menu-item-padding;
 
 	&.disabled {
 		opacity: .6;
@@ -92,13 +90,13 @@ export default {
 	}
 
 	&:not(.disabled):hover {
-		background-color: #e7e7e7;
+		background-color: $menu-item-hover-bg-color;
 	}
 
 	&.selected {
-		color: $blue-8;
+		color: $blue-6;
 		border-right: 2px solid $blue-6;
-		background-color: #f6f6f6;
+		background-color: $menu-item-selected-bg-color;
 	}
 
 	a,

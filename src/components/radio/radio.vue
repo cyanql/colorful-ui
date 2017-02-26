@@ -130,8 +130,8 @@ export default {
 	&-circle {
 	    display: inline-block;
 		position: relative;
-	    width: 20px;
-	    height: 20px;
+	    width: $radio-size;
+	    height: $radio-size;
 		vertical-align: middle;
 	}
 
@@ -166,7 +166,7 @@ export default {
 	}
 
 	&-text {
-		padding: 0 8px;
+		padding: $radio-text-padding;
 	}
 }
 </style>

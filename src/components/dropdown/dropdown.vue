@@ -147,8 +147,8 @@ export default {
 	&-content {
 		position: absolute;
 		white-space: nowrap;
-		background-color: #fff;
-		z-index: $zindex-menu;
+		background-color: $dropdown-bg-color;
+		z-index: $zindex-dropdown;
 	}
 
 	.scale {

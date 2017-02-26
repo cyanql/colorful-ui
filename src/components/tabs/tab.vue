@@ -15,10 +15,12 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~src/styles/variables";
+
 .c-tab {
 	display: inline-block;
 	width: 100%;
-	padding: 10px;
+	padding: $tab-padding;
 }
 
 </style>

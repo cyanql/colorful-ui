@@ -1,0 +1,149 @@
+// z-index list
+$zindex-affix						: 10;
+$zindex-back-top        			: 10;
+$zindex-modal-mask      			: 1000;
+$zindex-modal           			: 1000;
+$zindex-notification    			: 1010;
+$zindex-message         			: 1010;
+$zindex-popover         			: 1030;
+$zindex-menu	        			: 1050;
+$zindex-picker          			: 1050;
+$zindex-dropdown        			: 1050;
+$zindex-tooltip         			: 1060;
+
+// Button
+$btn-circle-size					: 36px;
+$btn-font-size	        			: $font-size;
+$btn-font-weight        			: 500;
+$btn-padding						: 6px 12px;
+$btn-border-radius					: $border-radius;
+
+$btn-default-color					: $text-color;
+$btn-default-bg-color				: $bg-color-l-light;
+$btn-default-border-color			: darken($bg-color-l, 5%);
+
+$btn-other-color					: $component-color;
+
+// Checkbox
+$checkbox-color						: $component-color;
+$checkbox-size						: 16px;
+$checkbox-border-radius				: $border-radius;
+$checkbox-border-color				: $bg-color-l-dark;
+$checkbox-hover-border-color		: $blue-3;
+$checkbox-bg-color					: $component-bg-color;
+$checkbox-text-spacing				: 8px;
+
+// Dropdown
+$dropdown-bg-color					: $component-bg-color;
+
+// Input
+$input-width						: 300px;
+$input-color						: $text-color;
+$input-font-size					: $font-size-large;
+$input-vertical-padding				: 20px;
+$input-inner-vertical-padding		: 4px;
+$input-label-font-size				: $font-size-small;
+$input-hint-font-size				: $font-size-small;
+$input-placeholder-font-size		: $font-size-large;
+$input-secondary-color				: $secondary-color;
+$input-secondary-hover-color		: $secondary-color-dark;
+
+$input-primary						: $blue-6;
+
+// Menu
+$menu-width							: 200px;
+$menu-bg-color						: $component-bg-color;
+$menu-box-shadow					: $box-shadow;
+
+$menu-item-padding					: 10px 20px;
+$menu-item-bg-color					: $bg-color-l;
+$menu-item-selected-bg-color		: $bg-color-l-light;
+$menu-item-expand-bg-color			: $bg-color-l-light;
+$menu-item-hover-bg-color			: $bg-color-l;
+
+$submenu-has-child-selected-color	: $blue-6;
+
+$menu-item-group-title-padding		: 8px 12.5px;
+$menu-item-group-title-color		: $secondary-color;
+$menu-item-group-title-font-size	: $font-size-small;
+
+// Modal
+$model-width						: 520px;
+$model-padding						: 0 20px;
+$model-border-radius				: $border-radius;
+$model-box-shadow					: $box-shadow;
+
+$model-mask-bg-color				: $bg-color-rgba;
+
+$model-header-padding				: 20px 0;
+$model-header-font-size				: $font-size-large;
+
+$model-body-padding					: 0;
+$model-body-font-size				: $font-size;
+
+$model-footer-padding				: 50px 0 15px 0;
+
+
+// Notification
+$notification-container-margin		: 20px;
+$notification-spacing				: 10px;
+
+$notification-bg-color				: $bg-color-d-dark;
+$notification-padding				: 0 20px;
+$notification-text-color			: $component-color;
+$notification-text-width			: 200px;
+$notification-text-padding			: 15px;
+$notification-border-radius			: $border-radius;
+$notification-box-shadow			: $box-shadow-1-down;
+
+// Popover
+$popover-padding					: 10px 20px;
+$popover-bg-color					: $component-bg-color;
+$popover-box-shadow					: $box-shadow;
+
+// Progress
+$progress-font-size					: $font-size-large;
+
+// Radio
+$radio-size							: 20px;
+$radio-text-padding					: 0 8px;
+
+// Select
+$select-options-bg-color			: $component-bg-color;
+$select-options-margin-top			: 5px;
+$select-options-max-height			: 250px;
+$select-options-box-shadow			: $box-shadow;
+
+$option-padding						: 10px 20px;
+$option-hover-bg-color				: $bg-color-l;
+$option-selected-bg-color			: $bg-color-l-light;
+
+// Spin
+$spin-color							: $component-color;
+$spin-size							: 50px;
+$spin-border-width					: 5px;
+
+// Switch
+$switch-width						: 36px;
+$switch-height						: 20px;
+
+$switch-track-width					: $switch-width;
+$switch-track-height				: 14px;
+$switch-track-bg-color				: $bg-color-l;
+
+$switch-thumb-width					: $switch-height;
+$switch-thumb-height				: $switch-height;
+$switch-thumb-bg-color				: $bg-color-l-light;
+$switch-thumb-box-shadow			: $box-shadow;
+
+// Tabs
+$tabs-nav-item-padding				: 10px 30px;
+
+$tab-padding						: 10px;
+
+// Tooltip
+$tooltip-padding					: 5px 10px;
+$tooltip-color						: $component-color;
+$tooltip-bg-color					: $bg-color-rgba;
+$tooltip-font-size					: $font-size-small;
+$tooltip-border-radius				: $border-radius;

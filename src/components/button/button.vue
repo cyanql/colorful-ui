@@ -87,45 +87,43 @@ export default {
 <style lang="scss">
 @import "~src/styles/variables";
 
-@mixin color-type($background-color, $border-color) {
-	color: white;
-	background-color: $background-color;
+@mixin color-type($color, $bg-color, $border-color) {
+	color: $color;
+	background-color: $bg-color;
 	border-color: $border-color;
 
 	.c-spin {
-		border-left-color: white;
+		border-left-color: $color;
 	}
 
 	&.ghost {
-		color: $background-color;
+		color: $bg-color;
 		background-color: transparent;
 		border-color: transparent;
 
 		.c-spin {
-			border-left-color: $background-color;
+			border-left-color: $bg-color;
 		}
 	}
 }
 
 .c-button {
-	font-size: 12px;
-    padding: 7px 14px;
-	border-radius: 3px;
+	font-size: $btn-font-size;
+    padding: $btn-padding;
+	border-radius: $btn-border-radius;
 	border: 1px solid transparent;
 	outline: none;
 	background: none;
 	text-align: center;
-	line-height: 1.5;
-    color: $text-color;
     touch-action: manipulation;
 	cursor: pointer;
 	display: inline-block;
 	margin-bottom: 0;
-	font-weight: 500;
+	font-weight: $btn-font-weight;
 	background-image: none;
 	white-space: nowrap;
 	user-select: none;
-	transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+	transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
 	.c-spin + span,
 	span + .c-spin,
@@ -176,8 +174,8 @@ export default {
 	}
 
 	&.circle {
-		width: 40px;
-		height: 40px;
+		width: $btn-circle-size;
+		height: $btn-circle-size;
 		padding: 0;
 		border-radius: 50%;
 	}
@@ -188,39 +186,39 @@ export default {
 	}
 
 	&.default {
-		color: $text-color;
-		background-color: #f7f7f7;
-		border-color: #d9d9d9;
+		color: $btn-default-color;
+		background-color: $btn-default-bg-color;
+		border-color: $btn-default-border-color;
 
 		.c-spin {
-			border-left-color: $text-color;
+			border-left-color: $btn-default-color;
 		}
 
 		&.ghost {
-			color: $text-color;
+			color: $btn-default-color;
 			background-color: transparent;
 			border-color: transparent;
 		}
 	}
 
 	&.primary {
-		@include color-type($blue-6, $blue-7);
+		@include color-type($btn-other-color, $blue-6, $blue-7);
 	}
 
 	&.success {
-		@include color-type($green-6, $green-7);
+		@include color-type($btn-other-color, $green-6, $green-7);
 	}
 
 	&.warning {
-		@include color-type($orange-6, $orange-7);
+		@include color-type($btn-other-color, $orange-6, $orange-7);
 	}
 
 	&.error {
-		@include color-type($red-6, $red-7);
+		@include color-type($btn-other-color, $red-6, $red-7);
 	}
 
 	&.hex {
-		color: white;
+		color: $btn-other-color;
 	}
 }
 </style>

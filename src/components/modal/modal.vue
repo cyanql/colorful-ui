@@ -69,7 +69,7 @@ export default {
 	width: 100%;
 	height: 100%;
 	text-align: center;
-	z-index: 1050;
+	z-index: $zindex-modal;
 
 	&:before {
 		content: "";
@@ -85,7 +85,7 @@ export default {
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(0,0,0,.5);
+		background-color: $model-mask-bg-color;
 		z-index: -1;
 	}
 
@@ -93,35 +93,31 @@ export default {
 		display: inline-block;
 		vertical-align: middle;
 		text-align: left;
-		width: 520px;
-		padding: 0 20px;
-		border-radius: 3px;
+		width: $model-width;
+		padding: $model-padding;
+		border-radius: $model-border-radius;
 		background-color: #fff;
-		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-
+		box-shadow: $model-box-shadow;
 	}
 
 
 	&-header {
 		display: inline-block;
-	    padding: 20px 0;
-	    font-size: 22px;
-	    line-height: 32px;
+	    padding: $model-header-padding;
+	    font-size: $model-header-font-size;
 	    font-weight: 400;
 	    border-bottom: none;
 	}
 
 	&-body {
-		font-size: 16px;
-	    color: $text-color;
-	    padding: 0 5px;
-		padding-bottom: 25px;
+		font-size: $model-body-font-size;
+	    padding: $model-body-padding;
 	    box-sizing: border-box;
 	    overflow-y: hidden;
 	}
 
 	&-footer {
-		padding: 10px 0;
+		padding: $model-footer-padding;
 		text-align: right;
 	}
 }

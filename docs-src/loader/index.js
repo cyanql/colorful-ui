@@ -94,7 +94,7 @@ module.exports = function(source) {
 	const tokens = parseToken(source)
 	const filePath = this.resourcePath
 
-	let text = `var tokens = ${JSON.stringify(tokens)};`
+	let text = ''
 	,	request
 	,	sampleIndex = 0
 
@@ -109,6 +109,7 @@ module.exports = function(source) {
 	})
 
 	return `
+		var tokens = ${JSON.stringify(tokens)};
 		${text}
 		module.exports = tokens;
 	`

@@ -1,7 +1,7 @@
 <template>
 	<div class="c-input c-select" :class="oClass" @click="onClick">
 		<div class="c-input-inner">
-			<transition-group v-if="multiple" class="c-select-chips" name="chip">
+			<transition-group v-if="multiple" name="chip">
 				<span
 					class="c-select-chip"
 					v-for="(subValue, index) in valueState"
@@ -25,7 +25,7 @@
 			<c-icon icon="expand_more"></c-icon>
 		</div>
 		<span class="c-input-placeholder" v-if="placeholder">{{placeholder}}</span>
-		<span class="c-input-label-line">{{label}}</span>
+		<span class="c-input-label-indicator">{{label}}</span>
 		<span class="c-input-hint" v-if="hint" v-show="hintVisible">{{hint}}</span>
 		<transition name="options">
 			<ul class="c-select-options" v-if="$slots.default" v-show="isFocus" @click.stop>
@@ -206,9 +206,6 @@ export default {
 		}
 	}
 
-	&-chips {
-	}
-
 	&-chip {
 		display: inline-block;
 		padding: 1px 5px 1px 10px;
@@ -216,7 +213,7 @@ export default {
 		border-radius: 50px;
 		background-color: #dedede;
 		cursor: default;
-		font-size: 14px;
+		font-size: $font-size;
 
 		.c-icon {
 			padding: 1px;
@@ -235,7 +232,6 @@ export default {
 		width: 5px;
 		outline: none;
 		border: none;
-		color: $text-color;
 
 		&-mirror {
 		    position: absolute;
@@ -253,13 +249,12 @@ export default {
 		position: absolute;
 		left: 0;
 		width: 100%;
-    	max-height: 250px;
-		margin-top: 5px;
-		font-size: 12px;
-		background-color: #fff;
-		z-index: $zindex-menu;
+    	max-height: $select-options-max-height;
+		margin-top: $select-options-margin-top;
+		background-color: $select-options-bg-color;
+		z-index: $zindex-dropdown;
 		overflow-y: scroll;
-		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+		box-shadow: $select-options-box-shadow;
 	}
 
 	.options {

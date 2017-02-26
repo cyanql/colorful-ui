@@ -70,14 +70,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~src/styles/variables";
+
 .c-option {
 	position: relative;
 	cursor: pointer;
 	display: block;
-	text-align: left;
 	width: 100%;
-	padding: 10px 20px;
-	border-radius: 0;
+	padding: $option-padding;
 
 	&.disabled {
 		opacity: .6;
@@ -85,12 +85,13 @@ export default {
 	}
 
 	&:not(.disabled):hover {
-		background: #e7e7e7;
+		background-color: $option-hover-bg-color;
 	}
 
 	&.selected {
-		border-right: 2px solid #108ee9;
-		background: #f6f6f6;
+		color: $blue-6;
+		border-right: 2px solid $blue-6;
+		background-color: $option-selected-bg-color;
 	}
 
 	a,

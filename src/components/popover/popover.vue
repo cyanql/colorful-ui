@@ -74,22 +74,20 @@ export default {
 @import "~src/styles/variables";
 
 .c-popover {
-	padding: 10px 20px;
-	background: white;
-	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+	padding: $popover-padding;
+	background: $popover-bg-color;
+	box-shadow: $popover-box-shadow;
 }
 
 
 .pop {
+	display: block;
     position: absolute;
     left: -9999px;
     top: -9999px;
-    z-index: 1050;
-    display: block;
     font-size: 12px;
     font-weight: normal;
-    line-height: 1.5;
-    transform-origin: 0 0;
+    z-index: $zindex-popover;
 	// transition: transform .2s cubic-bezier(.4,0,.2,1);
 
 
