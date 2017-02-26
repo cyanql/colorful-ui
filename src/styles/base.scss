@@ -1,0 +1,34 @@
+// ------ Base & Require ------
+$font-family            			: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$code-family            			: Consolas, Menlo, Courier, monospace;
+$font-size-small        			: 12px;
+$font-size         					: 13px;
+$font-size-large        			: 16px;
+$border-radius						: 3px;
+
+// Color
+$text-color             			: rgba(#000, .65);
+$text-color-dark        			: rgba(#000, .9);
+$secondary-color         			: rgba(#000, .25);
+$secondary-color-dark    			: rgba(#000, .35);
+
+// Background color
+$component-color					: #fff;
+$component-bg-color   				: #fff;
+$bg-color-l-light					: #f6f6f6;			// more light
+$bg-color-l							: #e7e7e7;			// light color
+$bg-color-l-dark					: #d8d8d8;			// more dark
+
+$bg-color-d							: #777777;			// dark color
+$bg-color-d-dark					: #323232;
+
+$bg-color-rgba-light				: rgba(0,0,0,.2);
+$bg-color-rgba						: rgba(0,0,0,.5);	// rgba color
+
+// Shadow
+$box-shadow							: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+$box-shadow-color           		: rgba(0, 0, 0, .2);
+$box-shadow-1-up            		: 0 -1px 6px $box-shadow-color;
+$box-shadow-1-down          		: 0 1px 6px $box-shadow-color;
+$box-shadow-1-left          		: -1px 0 6px $box-shadow-color;
+$box-shadow-1-right         		: 1px 0 6px $box-shadow-color;

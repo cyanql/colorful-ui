@@ -12,11 +12,11 @@
 ```html
 <template>
 	<div>
-		<c-button>default</c-button>
-		<c-button color="primary">primary</c-button>
-		<c-button color="success">success</c-button>
-		<c-button color="warning">warning</c-button>
-		<c-button color="error">error</c-button>
+		<c-button>Default</c-button>
+		<c-button color="primary">Primary</c-button>
+		<c-button color="success">Success</c-button>
+		<c-button color="warning">Warning</c-button>
+		<c-button color="error">Error</c-button>
 		<c-button color="#808">#808</c-button>
 	</div>
 </template>
@@ -30,11 +30,11 @@
 ```html
 <template>
 	<div>
-		<c-button ghost>default</c-button>
-		<c-button ghost color="primary">primary</c-button>
-		<c-button ghost color="success">success</c-button>
-		<c-button ghost color="warning">warning</c-button>
-		<c-button ghost color="error">error</c-button>
+		<c-button ghost>Default</c-button>
+		<c-button ghost color="primary">Primary</c-button>
+		<c-button ghost color="success">Success</c-button>
+		<c-button ghost color="warning">Warning</c-button>
+		<c-button ghost color="error">Error</c-button>
 		<c-button ghost color="#808">#808</c-button>
 	</div>
 </template>
@@ -48,9 +48,9 @@
 ```html
 <template>
 	<div>
-		<c-button>ripple</c-button>
-		<c-button :ripple-visible="false">without ripple</c-button>
-		<c-button color="primary" :ripple-visible="false">without ripple</c-button>
+		<c-button>Ripple</c-button>
+		<c-button :ripple-visible="false">Without Ripple</c-button>
+		<c-button color="primary" :ripple-visible="false">Without Ripple</c-button>
 	</div>
 </template>
 ```
@@ -65,10 +65,10 @@
 <template>
 	<div>
 		<c-button icon="email"></c-button>
-		<c-button icon="email">icon</c-button>
-		<c-button icon="email" color="primary">icon</c-button>
+		<c-button icon="email">ICON</c-button>
+		<c-button icon="email" color="primary">ICON</c-button>
 		<c-button color="primary">
-			<span>icon</span>
+			<span>ICON</span>
 			<c-icon icon="email"></c-icon>
 		</c-button>
 	</div>
@@ -84,8 +84,8 @@
 ```html
 <template>
 	<div>
-		<c-button color="primary" disabled>disabled</c-button>
-		<c-button disabled>disabled</c-button>
+		<c-button color="primary" disabled>Disabled</c-button>
+		<c-button disabled>Disabled</c-button>
 	</div>
 </template>
 ```
@@ -99,7 +99,7 @@
 ```html
 <template>
 	<div>
-		<c-button :loading="loading" @click="onClick">loading</c-button>
+		<c-button :loading="loading" @click="onClick">Loading</c-button>
 	</div>
 </template>
 <script>
@@ -128,7 +128,7 @@ export default {
 ```html
 <template>
 	<div>
-		<c-button shape="circle">circle</c-button>
+		<c-button shape="circle">Circle</c-button>
 		<c-button shape="circle" icon="email"></c-button>
 		<c-button shape="circle" icon="email" color="primary"></c-button>
 		<c-button shape="circle" icon="email" color="#808"></c-button>

@@ -69,9 +69,9 @@ export default {
 <style lang="scss">
 @import "~src/styles/variables";
 
-@mixin background-border($background-color, $border-color: transparent) {
+@mixin background-border($bg-color, $border-color: transparent) {
 	.c-checkbox-inner {
-		background-color: $background-color;
+		background-color: $bg-color;
 		border-color: $border-color;
 	}
 	// background-image: -webkit-linear-gradient(top, $background, $border);
@@ -82,7 +82,7 @@ export default {
 
 	&:not(.disabled):hover {
 		.c-checkbox-inner {
-			border-color: $blue-3;
+			border-color: $checkbox-hover-border-color;
 		}
 	}
 
@@ -127,12 +127,12 @@ export default {
 		position: relative;
 		left: 0;
 		top: 0;
-		width: 16px;
-		height: 16px;
-		border: 1px solid #d9d9d9;
-		border-radius: 3px;
-		background-color: #fff;
-		transition: background-color .25s ease, border-color .25s ease;
+		width: $checkbox-size;
+		height: $checkbox-size;
+		border: 1px solid $checkbox-border-color;
+		border-radius: $checkbox-border-radius;
+		background-color: $checkbox-bg-color;
+		transition: background-color .2s ease, border-color .2s ease;
 
 		&:after {
 			position: absolute;
@@ -141,8 +141,8 @@ export default {
 		    top: 1.5px;
 		    width: 5px;
 		    height: 8px;
-		    border-bottom: 2px solid #fff;
-		    border-right: 2px solid #fff;
+		    border-bottom: 2px solid $checkbox-color;
+		    border-right: 2px solid $checkbox-color;
 		    transform: rotate(45deg) scale(0);
 			transition: transform .2s ease;
 		}
@@ -160,7 +160,7 @@ export default {
 	}
 
 	&-text {
-		padding: 0 8px;
+		padding: 0 $checkbox-text-spacing;
 	}
 }
 

@@ -13,7 +13,7 @@
 ```html
 <template>
 	<div>
-		<c-input label="message" v-model="message" floating-label></c-input>
+		<c-input label="text" v-model="text" floating-label></c-input>
 		<c-input label="buttonText" v-model="buttonText" floating-label></c-input>
 		<c-input label="buttonColor" v-model="buttonColor" floating-label></c-input>
 		<c-input type="number" label="duration" v-model="duration" floating-label></c-input>
@@ -29,7 +29,7 @@
 			<c-radio checkedValue="bottom-right">bottom-right</c-radio>
 		</c-radio-group>
 		<br>
-		
+
 		<c-button @click="notice">notice</c-button>
 		<c-notification-container ref="test" :position="position" :only-one="false" enqueued></c-notification-container>
 	</div>
@@ -37,8 +37,8 @@
 <script>
 export default {
 	data: () => ({
-		message: '文本内容',
-		buttonText: '按钮内容',
+		text: 'TEXT CONTENT',
+		buttonText: 'UNDO',
 		buttonColor: '#b8b',
 		duration: 2000,
 		position: 'bottom-left'
@@ -46,7 +46,7 @@ export default {
 	methods: {
 		notice() {
 			const opts = {
-				message: this.message,
+				text: this.text,
 				buttonText: this.buttonText,
 				buttonColor: this.buttonColor,
 				duration: this.duration

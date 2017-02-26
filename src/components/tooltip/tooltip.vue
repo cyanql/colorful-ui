@@ -16,13 +16,15 @@ export default {
 }
 </script>
 <style lang="scss">
+@import "~src/styles/variables";
+
 .c-tooltip {
 	.c-dropdown-content {
-		font-size: 12px;
-		color: white;
-		padding: 5px 10px;
-		border-radius: 3px;
-		background-color: rgba(0,0,0,.5);
+		color: $tooltip-color;
+		font-size: $tooltip-font-size;
+		padding: $tooltip-padding;
+		border-radius: $tooltip-border-radius;
+		background-color: $tooltip-bg-color;
 	}
 }
 </style>

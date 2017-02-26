@@ -11,13 +11,13 @@
 		>
 		<slot
 			v-for="item in queue"
-			:message="item.message"
+			:text="item.text"
 			:buttonText="item.buttonText"
 			:buttonColor="item.buttonColor"
 			>
 			<c-notification
 				:key="item"
-				:message="item.message"
+				:text="item.text"
 				:buttonText="item.buttonText"
 				:buttonColor="item.buttonColor"
 				>
@@ -48,10 +48,10 @@ export default {
 		}
 	},
 	methods: {
-		notice(messageOrOpts) {
-			const opts = typeof messageOrOpts === 'string' ? {
-				message: messageOrOpts
-			} : messageOrOpts
+		notice(textOrOpts) {
+			const opts = typeof textOrOpts === 'string' ? {
+				text: textOrOpts
+			} : textOrOpts
 
 			opts.duration = opts.duration || 2000
 
@@ -99,7 +99,7 @@ export default {
 
 .c-notification-container {
 	position: fixed;
-	margin: 20px;
+	margin: $notification-container-margin;
 	z-index: $zindex-notification;
 
 	&.top-left {
@@ -138,7 +138,7 @@ export default {
 	&.top-left,
 	&.top-right {
 		.c-notification {
-			margin-bottom: 10px;
+			margin-bottom: $notification-spacing;
 		}
 
 		.notification {
@@ -150,7 +150,7 @@ export default {
 
 			&-enter,
 			&-leave-active {
-				transform: translate(0, -20px);
+				transform: translate(0, -$notification-spacing * 2);
 			}
 		}
 	}
@@ -159,7 +159,7 @@ export default {
 	&.bottom-left,
 	&.bottom-right {
 		.c-notification {
-			margin-top: 10px;
+			margin-top: $notification-spacing;
 		}
 
 		.notification {
@@ -171,7 +171,7 @@ export default {
 
 			&-enter,
 			&-leave-active {
-				transform: translate(0, 20px);
+				transform: translate(0, $notification-spacing * 2);
 			}
 		}
 	}

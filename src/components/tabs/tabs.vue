@@ -108,9 +108,7 @@ export default {
 			position: relative;
 			display: inline-block;
 			flex: 1;
-			padding: 0 30px;
-			height: 40px;
-			line-height: 40px;
+			padding: $tabs-nav-item-padding;
 			text-align: center;
 			opacity: .6;
 

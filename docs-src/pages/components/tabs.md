@@ -11,28 +11,19 @@
 ```html
 <template>
 	<div>
-		<c-tabs value="a" color="primary" @change="onChange">
+		<c-tabs value="a" color="primary">
 			<c-tab title="A" value="a">
-				文字内容A
+				<pre>text content A</pre>
 			</c-tab>
 			<c-tab title="B" value="b">
-				文字内容B
+				<pre>text content B</pre>
 			</c-tab>
 			<c-tab title="C" value="c">
-				文字内容C
+				<pre>text content C</pre>
 			</c-tab>
 		</c-tabs>
 	</div>
 </template>
-<script>
-export default {
-	methods: {
-		onChange() {
-			console.log(arguments)
-		}
-	}
-}
-</script>
 ```
 :::
 

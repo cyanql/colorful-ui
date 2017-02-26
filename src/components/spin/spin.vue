@@ -45,6 +45,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~src/styles/variables";
 
 /**
  * 引用 https://projects.lukehaas.me/css-loaders/
@@ -52,10 +53,10 @@ export default {
 .c-spin {
 	position: relative;
 	display: inline-block;
-	width: 50px;
-	height: 50px;
-	border: 5px solid transparent;
-	border-left-color: #fff;
+	width: $spin-size;
+	height: $spin-size;
+	border: $spin-border-width solid transparent;
+	border-left-color: $spin-color;
 	border-radius: 50%;
 	transform: translateZ(0);
 	vertical-align: middle;
@@ -72,7 +73,7 @@ export default {
  		position: absolute;
  		left: 50%;
  		top: 50%;
-		color: #fff;
+		color: $spin-color;
 		text-align: center;
  		transform: translate(-50%, -50%);
 		transition: opacity .2s ease;

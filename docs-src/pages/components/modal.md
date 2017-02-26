@@ -11,8 +11,8 @@
 <template>
 	<div>
 		<c-button @click="toggleVisible">Toggle</c-button>
-		<c-modal title="标题" :visible="visible">
-			内容
+		<c-modal title="Title" :visible="visible">
+			text content text content text content text content text content text content
 			<div slot="footer">
 				<c-button color="primary" @click="toggleVisible">Close</c-button>
 			</div>
@@ -47,8 +47,8 @@ export default {
 	<div>
 		<c-button @click="toggleVisible">Toggle</c-button>
 		<c-modal :visible="visible">
-			<h1 slot="header">h1</h1>
-			内容
+			<h1 slot="header">h1 with margin</h1>
+			text content
 			<div slot="footer">
 				<c-button ghost @click="toggleVisible">Cancel</c-button>
 				<c-button color="primary" @click="toggleVisible">Enter</c-button>

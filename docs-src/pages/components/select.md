@@ -13,10 +13,10 @@
 	<div>
 		<div v-text="value"></div>
 		<c-select label="label" v-model="value" floating-label>
-			<c-option value="apple">apple</c-option>
-			<c-option value="pear">pear</c-option>
-			<c-option value="orange">orange</c-option>
-			<c-option value="banana">banana</c-option>
+			<c-option value="Apple">Apple</c-option>
+			<c-option value="Pear">Pear</c-option>
+			<c-option value="Orange">Orange</c-option>
+			<c-option value="Banana">Banana</c-option>
 		</c-select>
 	</div>
 </template>
@@ -40,10 +40,10 @@ export default {
 	<div>
 		<div v-text="value"></div>
 		<c-select label="label" v-model="value" multiple floating-label>
-			<c-option value="apple">apple</c-option>
-			<c-option value="pear">pear</c-option>
-			<c-option value="orange">orange</c-option>
-			<c-option value="banana">banana</c-option>
+			<c-option value="Apple">Apple</c-option>
+			<c-option value="Pear">Pear</c-option>
+			<c-option value="Orange">Orange</c-option>
+			<c-option value="Banana">Banana</c-option>
 		</c-select>
 	</div>
 </template>
@@ -67,10 +67,10 @@ export default {
 	<div>
 		<div v-text="value"></div>
 		<c-select label="label" v-model="value" filterable multiple floating-label>
-			<c-option value="apple">apple</c-option>
-			<c-option value="pear">pear</c-option>
-			<c-option value="orange">orange</c-option>
-			<c-option value="banana">banana</c-option>
+			<c-option value="Apple">Apple</c-option>
+			<c-option value="Pear">Pear</c-option>
+			<c-option value="Orange">Orange</c-option>
+			<c-option value="Banana">Banana</c-option>
 		</c-select>
 	</div>
 </template>
@@ -93,10 +93,10 @@ export default {
 	<div>
 		<div v-text="value"></div>
 		<c-select label="label" v-model="value" filterable addible multiple floating-label>
-			<c-option value="apple">apple</c-option>
-			<c-option value="pear">pear</c-option>
-			<c-option value="orange">orange</c-option>
-			<c-option value="banana">banana</c-option>
+			<c-option value="Apple">Apple</c-option>
+			<c-option value="Pear">Pear</c-option>
+			<c-option value="Orange">Orange</c-option>
+			<c-option value="Banana">Banana</c-option>
 		</c-select>
 	</div>
 </template>

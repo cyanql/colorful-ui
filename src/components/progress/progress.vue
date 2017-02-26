@@ -5,8 +5,8 @@
 			<path class="c-progress-inner" d="M 50,50 m 0,-47 a 47,47 0 1 1 0,94 a 47,47 0 1 1 0,-94" stroke="blue" fill="none" :stroke-width="strokeWidth" stroke-linecap="round" :stroke-dasharray="length" :stroke-dashoffset="(1 - oPercent) * length" :style="circleStyle"></path>
 			<!-- <circle cx="50" cy="50" :r="oRadius" stroke="#eee" fill="none" :stroke-width="stroke" stroke-linecap="round" :stroke-dasharray="length" stroke-dashoffset="0"></circle>
 			<circle class="c-progress-inner" cx="50" cy="50" :r="oRadius" stroke="blue" fill="none" :stroke-width="stroke" stroke-linecap="round" :stroke-dasharray="length" :stroke-dashoffset="(1 - oPercent) * length" :style="circleStyle"></circle> -->
-			<text v-if="oStatus === 'active'" x="50" y="50" alignment-baseline="central" text-anchor="middle">{{Math.floor(oPercent * 100) + '%'}}</text>
 		</svg>
+		<span v-if="oStatus === 'active'" class="c-progress-content">{{Math.floor(oPercent * 100) + '%'}}</span>
 		<c-icon v-if="oStatus === 'error'" class="c-progress-content" icon="clear"></c-icon>
 		<c-icon v-if="oStatus === 'success'" class="c-progress-content" icon="done"></c-icon>
 	</div>
@@ -101,7 +101,11 @@ export default {
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		font-size: 20px;
+		font-size: $progress-font-size + 6px;
+
+		&:not(i) {
+			font-size: $progress-font-size;
+		}
 	}
 }
 </style>

@@ -2,68 +2,75 @@
 
 ## 示例
 
-::: 模式
+::: 内嵌
 ===
-共有`inline`、`vertical`、`horizontal`三种模式
+
 ===
 ```html
 <template>
 	<div>
-		<div>
-			<c-menu v-model="value1" multiple>
-				<c-menu-item value="item 1">item 1</c-menu-item>
-				<c-menu-item value="item 2">item 2</c-menu-item>
-				<c-menu-item value="item 3">item 3</c-menu-item>
-				<c-sub-menu title="submenu" mode="inline">
-					<c-menu-item value="item 4">item 4</c-menu-item>
-					<c-menu-item value="item 5">item 5</c-menu-item>
-					<c-sub-menu title="sub-submenu" mode="inline">
-						<c-menu-item value="item 6">item 6</c-menu-item>
-						<c-menu-item value="item 7">item 7</c-menu-item>
-					</c-sub-menu>
+		<c-menu v-model="value" multiple>
+			<c-menu-item value="item 1">item 1</c-menu-item>
+			<c-menu-item value="item 2">item 2</c-menu-item>
+			<c-menu-item value="item 3">item 3</c-menu-item>
+			<c-sub-menu title="submenu" mode="inline">
+				<c-menu-item value="item 4">item 4</c-menu-item>
+				<c-menu-item value="item 5">item 5</c-menu-item>
+				<c-sub-menu title="sub-submenu" mode="inline">
+					<c-menu-item value="item 6">item 6</c-menu-item>
+					<c-menu-item value="item 7">item 7</c-menu-item>
 				</c-sub-menu>
-			</c-menu>
-			<span v-text="value1"></span>
-		</div>
-
-		<div>
-			<c-menu v-model="value2">
-				<c-menu-item-group title="group1">
-					<c-menu-item value="item 1">item 1</c-menu-item>
-					<c-menu-item value="item 2">item 2</c-menu-item>
-				</c-menu-item-group>
-				<c-menu-item-group title="group2">
-					<c-menu-item value="item 3">item 3</c-menu-item>
-					<c-sub-menu title="submenu" mode="vertical">
-						<c-menu-item value="item 4">item 4</c-menu-item>
-						<c-menu-item value="item 5">item 5</c-menu-item>
-						<c-sub-menu title="sub-submenu" mode="vertical">
-							<c-menu-item value="item 6">item 6</c-menu-item>
-							<c-menu-item value="item 7">item 7</c-menu-item>
-						</c-sub-menu>
-					</c-sub-menu>
-				</c-menu-item-group>
-			</c-menu>
-			<span v-text="value2"></span>
-		</div>
+			</c-sub-menu>
+		</c-menu>
+		<span v-text="value"></span>
 	</div>
 </template>
 <script>
 export default {
 	data: () => ({
-		value1: [],
-		value2: ''
+		value: []
 	})
 }
 </script>
-<style scoped>
-.c-menu + .c-menu {
-	margin-top: 30px;
-}
-</style>
 ```
 :::
 
+::: 垂直
+===
+
+===
+```html
+<template>
+	<div>
+		<c-menu v-model="value">
+			<c-menu-item-group title="group1">
+				<c-menu-item value="item 1">item 1</c-menu-item>
+				<c-menu-item value="item 2">item 2</c-menu-item>
+			</c-menu-item-group>
+			<c-menu-item-group title="group2">
+				<c-menu-item value="item 3">item 3</c-menu-item>
+				<c-sub-menu title="submenu" mode="vertical">
+					<c-menu-item value="item 4">item 4</c-menu-item>
+					<c-menu-item value="item 5">item 5</c-menu-item>
+					<c-sub-menu title="sub-submenu" mode="vertical">
+						<c-menu-item value="item 6">item 6</c-menu-item>
+						<c-menu-item value="item 7">item 7</c-menu-item>
+					</c-sub-menu>
+				</c-sub-menu>
+			</c-menu-item-group>
+		</c-menu>
+		<span v-text="value"></span>
+	</div>
+</template>
+<script>
+export default {
+	data: () => ({
+		value: ''
+	})
+}
+</script>
+```
+:::
 
 
 ## API
@@ -94,7 +101,7 @@ export default {
 | title   | 标题                                       | string | -      |
 | indent   | 缩进距离，优先级高          | number   |  **Menu**的`indent`值   |
 | expand  | 是否展开子菜单                                  | boolean   | false  |
-| mode    | 子菜单展开模式，可选值为`inline` `vertical` `horizontal` | string   | `inline` |
+| mode    | 子菜单展开模式，可选值为`inline` `vertical` | string   | `inline` |
 | @open   | 子菜单展开时触发                                 | function | -      |
 | @close  | 子菜单收拢时触发                                 | function | -      |
 | @toggle | 子菜单展开收拢都触发                               | function | -      |

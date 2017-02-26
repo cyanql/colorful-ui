@@ -122,7 +122,7 @@ export default {
 
 		& > .c-sub-menu-title {
 			&.expand {
-				background-color: #f6f6f6;
+				background-color: $menu-item-expand-bg-color;
 			}
 
 			& > .c-icon.expand-more {
@@ -135,9 +135,10 @@ export default {
 			position: absolute;
 			left: 100%;
 			top: 0;
-			min-width: 200px;
-			background: white;
-			box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+			white-space: nowrap;
+			min-width: $menu-width;
+			background-color: $menu-bg-color;
+			box-shadow: $menu-box-shadow;
 			z-index: $zindex-menu;
 		}
 
@@ -147,9 +148,6 @@ export default {
 				transition: height .2s ease;
 			}
 		}
-	}
-
-	&.horizontal {
 	}
 
 	&.inline {
@@ -169,7 +167,7 @@ export default {
 		}
 
 		& > .c-sub-menu-content {
-			background: white;
+			background-color: $menu-bg-color;
 		}
 	}
 
@@ -193,8 +191,7 @@ export default {
 		display: block;
 		text-align: left;
 		width: 100%;
-		padding: 10px 20px;
-		border-radius: 0;
+		padding: $menu-item-padding;
 
 
 		&.disabled {
@@ -203,11 +200,11 @@ export default {
 		}
 
 		&:not(.disabled):hover {
-			background: #e7e7e7 !important;
+			background: $menu-item-hover-bg-color !important;
 		}
 
 		&.has-child-selected {
-			color: $blue-8;
+			color: $submenu-has-child-selected-color;
 		}
 	}
 }

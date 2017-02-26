@@ -61,19 +61,12 @@ export default {
 <style lang="scss">
 @import "~src/styles/variables";
 
-$switch-width: 36px;
-$switch-height: 20px;
-$track-height: 14px;
-$track-width: 36px;
-$thumb-width: 20px;
-$thumb-height: 20px;
-
-@mixin switch-color($strack-color, $thumb-color) {
+@mixin switch-color($switch-track-color, $switch-thumb-color) {
 	.c-switch-track {
-		background-color: $strack-color;
+		background-color: $switch-track-color;
 	}
 	.c-switch-thumb {
-		background-color: $thumb-color;
+		background-color: $switch-thumb-color;
 	}
 }
 
@@ -83,11 +76,10 @@ $thumb-height: 20px;
 	width: $switch-width;
 	height: $switch-height;
 	cursor: pointer;
-	line-height: 1.5;
 
 	&.checked {
 		.c-switch-thumb {
-			transform: translate($switch-width - $thumb-width, 0);
+			transform: translate($switch-width - $switch-thumb-width, 0);
 		}
 
 		&.primary {
@@ -121,11 +113,11 @@ $thumb-height: 20px;
 
 	&-track {
 		display: inline-block;
-		width: $track-width;
-		height: $track-height;
-		border-radius: $track-height / 2;
+		width: $switch-track-width;
+		height: $switch-track-height;
+		border-radius: $switch-track-height / 2;
 		vertical-align: middle;
-		background-color: rgba(0,0,0,.25);
+		background-color: $switch-track-bg-color;
 		transition: background-color .2s ease;
 	}
 
@@ -134,11 +126,11 @@ $thumb-height: 20px;
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: $thumb-width;
-		height: $thumb-height;
+		width: $switch-thumb-width;
+		height: $switch-thumb-height;
 		border-radius: 50%;
-		background-color: #fafafa;
-		box-shadow: 0 1px 3px rgba(0,0,0,.4);
+		background-color: $switch-thumb-bg-color;
+		box-shadow: $switch-thumb-box-shadow;
 		transition: transform .2s ease, background-color .2s ease;
 	}
 }

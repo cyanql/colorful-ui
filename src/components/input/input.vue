@@ -38,7 +38,7 @@
 			@blur="onBlur"
 		>
 		<span class="c-input-placeholder" v-if="placeholder">{{placeholder}}</span>
-		<span class="c-input-label-line">{{label}}</span>
+		<span class="c-input-label-indicator">{{label}}</span>
 		<span class="c-input-hint" v-if="hint" v-show="hintVisible">{{hint}}</span>
 	</div>
 </template>
@@ -155,22 +155,14 @@ export default {
 <style lang="scss">
 @import "~src/styles/variables";
 
-$font-normal-size: 16px;
-$font-small-size: 12px;
-
-$input-vertical-padding: 20px;
-$inner-vertical-padding: 4px;
-
-
-@mixin input-text() {
+@mixin input-secondary() {
 	display: block;
 	position: absolute;
-	top: $input-vertical-padding + $inner-vertical-padding;
+	top: $input-vertical-padding + $input-inner-vertical-padding;
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	font-size: $font-normal-size;
-	color: rgba(0,0,0,.25);
+	color: $input-secondary-color;
 	pointer-events: none;
 	overflow: hidden;
 	white-space: nowrap;
@@ -178,7 +170,7 @@ $inner-vertical-padding: 4px;
 }
 
 @mixin hint-color($color) {
-	.c-input-label-line {
+	.c-input-label-indicator {
 		color: $color;
 
 		&:after {
@@ -196,11 +188,10 @@ $inner-vertical-padding: 4px;
 .c-input {
 	display: inline-block;
 	position: relative;
-	width: 300px;
+	width: $input-width;
 	margin: 0;
 	padding: $input-vertical-padding 0;
-	color: $text-color;
-	font-size: $font-normal-size;
+	color: $input-color;
 
 	&.has-value {
 		.c-input-placeholder {
@@ -209,8 +200,8 @@ $inner-vertical-padding: 4px;
 	}
 
 	&.focus {
-		.c-input-label-line {
-			color: $blue-6;
+		.c-input-label-indicator {
+			color: $input-primary;
 
 			&:after {
 				left: 0;
@@ -223,9 +214,9 @@ $inner-vertical-padding: 4px;
 	&.has-floating-label {
 		&.has-value,
 		&.focus {
-			.c-input-label-line {
-				top: $inner-vertical-padding;
-				font-size: $font-small-size;
+			.c-input-label-indicator {
+				top: $input-inner-vertical-padding;
+				font-size: $font-size-small;
 			}
 		}
 
@@ -236,9 +227,9 @@ $inner-vertical-padding: 4px;
 			}
 		}
 
-		.c-input-label-line {
-			top: $input-vertical-padding + $inner-vertical-padding;
-			font-size: $font-normal-size;
+		.c-input-label-indicator {
+			top: $input-vertical-padding + $input-inner-vertical-padding;
+			font-size: $font-size-large;
 		}
 
 		.c-input-placeholder {
@@ -254,10 +245,10 @@ $inner-vertical-padding: 4px;
 		}
 	}
 
-	&-label-line {
-		@include input-text;
-		top: $inner-vertical-padding;
-		font-size: $font-small-size;
+	&-label-indicator {
+		@include input-secondary;
+		top: $input-inner-vertical-padding;
+		font-size: $input-label-font-size;
 		transition-duration: .2s;
 		transition-timing-function: cubic-bezier(.4,0,.2,1);
 
@@ -269,38 +260,39 @@ $inner-vertical-padding: 4px;
 			width: 10px;
 			height: 2px;
 			visibility: hidden;
-			background-color: $blue-6;
+			background-color: $input-primary;
 			transition-duration: .2s;
 			transition-timing-function: cubic-bezier(.4,0,.2,1);
 		}
 	}
 
 	&-placeholder {
-		@include input-text;
+		@include input-secondary;
+		font-size: $input-placeholder-font-size;
 	}
 
 	&-hint {
     	position: absolute;
 		color: rgba(0,0,0,.5);
-		font-size: $font-small-size;
+		font-size: $input-hint-font-size;
 	}
 
 	&-inner {
 		display: block;
 	    width: 100%;
 	    margin: 0;
-	    padding: $inner-vertical-padding 0;
+	    padding: $input-inner-vertical-padding 0;
 		cursor: inherit;
 		outline: none;
 		border: none;
-    	border-bottom: 1px solid rgba(0,0,0,.15);
+    	border-bottom: 1px solid $input-secondary-color;
 		color: inherit;
 	    background: 0 0;
-	    font-size: $font-normal-size;
+	    font-size: $input-font-size;
 	    text-align: left;
 
 		&:hover {
-			border-bottom-color: rgba(0,0,0,.35);
+			border-bottom-color: $input-secondary-hover-color;
 		}
 	}
 
@@ -309,7 +301,7 @@ $inner-vertical-padding: 4px;
 	}
 
 	&.primary {
-		@include hint-color($blue-6);
+		@include hint-color($input-primary);
 	}
 
 	&.success {

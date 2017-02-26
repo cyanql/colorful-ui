@@ -9,13 +9,13 @@
 ```html
 <template>
 	<div>
-		<c-radio checkedValue="1" v-model="value">default</c-radio>
-		<c-radio color="primary" checkedValue="2" v-model="value">primary</c-radio>
-		<c-radio color="success" checkedValue="3" v-model="value">success</c-radio>
-		<c-radio color="warning" checkedValue="4" v-model="value">warning</c-radio>
-		<c-radio color="error" checkedValue="5" v-model="value">error</c-radio>
+		<c-radio checkedValue="1" v-model="value">Default</c-radio>
+		<c-radio color="primary" checkedValue="2" v-model="value">Primary</c-radio>
+		<c-radio color="success" checkedValue="3" v-model="value">Success</c-radio>
+		<c-radio color="warning" checkedValue="4" v-model="value">Warning</c-radio>
+		<c-radio color="error" checkedValue="5" v-model="value">Error</c-radio>
 		<c-radio color="#808" checkedValue="6" v-model="value">#808</c-radio>
-		<c-radio color="error" checkedValue="7" v-model="value" disabled>disabled error</c-radio>
+		<c-radio color="error" checkedValue="7" v-model="value" disabled>Disabled Error</c-radio>
 	</div>
 </template>
 <script>
@@ -39,13 +39,13 @@ export default {
 ```html
 <template>
 	<c-radio-group v-model="value">
-		<c-radio checkedValue="1">default</c-radio>
-		<c-radio color="primary" checkedValue="2">primary</c-radio>
-		<c-radio color="success" checkedValue="3">success</c-radio>
-		<c-radio color="warning" checkedValue="4">warning</c-radio>
-		<c-radio color="error" checkedValue="5">error</c-radio>
+		<c-radio checkedValue="1">Default</c-radio>
+		<c-radio color="primary" checkedValue="2">Primary</c-radio>
+		<c-radio color="success" checkedValue="3">Success</c-radio>
+		<c-radio color="warning" checkedValue="4">Warning</c-radio>
+		<c-radio color="error" checkedValue="5">Error</c-radio>
 		<c-radio color="#808" checkedValue="6">#808</c-radio>
-		<c-radio color="error" checkedValue="7" disabled>disabled error</c-radio>
+		<c-radio color="error" checkedValue="7" disabled>Disabled Error</c-radio>
 	</c-radio-group>
 </template>
 <script>
