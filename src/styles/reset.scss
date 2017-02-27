@@ -2,9 +2,9 @@
 
 html {
 	box-sizing: border-box;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	-webkit-tap-highlight-color: transparent;
 }
 
@@ -54,9 +54,9 @@ button, input, select, textarea { font-size: 100%; } /* 使得表单元素在 ie
 table { border-collapse: collapse; border-spacing: 0; }
 
 * {
-    -webkit-tap-highlight-color: inherit;
+	-webkit-tap-highlight-color: inherit;
 }
 
 *, *:before, *:after {
-    box-sizing: inherit;
+	box-sizing: inherit;
 }

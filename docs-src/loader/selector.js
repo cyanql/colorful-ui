@@ -5,7 +5,7 @@ const SAMPLE_TAG = ':::'
 const CODE_TAG = '```'
 
 function findFragment(source, tag, index = 0) {
-    var start = source.indexOf(tag),
+	var start = source.indexOf(tag),
 		end
 
 	// 标签成双
@@ -25,9 +25,9 @@ function findFragment(source, tag, index = 0) {
 }
 
 module.exports = function(source) {
-    this.cacheable()
-    var query = loaderUtils.parseQuery(this.query)
-    var index = query.index,
+	this.cacheable()
+	var query = loaderUtils.parseQuery(this.query)
+	var index = query.index,
 		sample,
 		code
 

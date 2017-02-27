@@ -1,7 +1,7 @@
 <template>
 	<div class="c-popover" @click="onClick">
 		<slot></slot>
-    </div>
+	</div>
 </template>
 
 <script>
@@ -82,12 +82,12 @@ export default {
 
 .pop {
 	display: block;
-    position: absolute;
-    left: -9999px;
-    top: -9999px;
-    font-size: 12px;
-    font-weight: normal;
-    z-index: $zindex-popover;
+	position: absolute;
+	left: -9999px;
+	top: -9999px;
+	font-size: 12px;
+	font-weight: normal;
+	z-index: $zindex-popover;
 	// transition: transform .2s cubic-bezier(.4,0,.2,1);
 
 

@@ -39,13 +39,13 @@ const routes = Object.keys(Components).map(key => {
 
 
 routes.unshift({
-    path: '',
-    redirect: '/button'
+	path: '',
+	redirect: '/button'
 })
 
 // routes.push({
-//     path: '*',
-//     redirect: '/'
+//	 path: '*',
+//	 redirect: '/'
 // })
 
 export default new VueRouter({

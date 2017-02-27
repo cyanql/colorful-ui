@@ -82,7 +82,7 @@ export default {
 	top: 0;
 	left: 0;
 
-    border-radius: 50%;
+	border-radius: 50%;
 	pointer-events: none;
 	user-select: none;
 	background-color: currentColor;

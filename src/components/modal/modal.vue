@@ -103,17 +103,17 @@ export default {
 
 	&-header {
 		display: inline-block;
-	    padding: $model-header-padding;
-	    font-size: $model-header-font-size;
-	    font-weight: 400;
-	    border-bottom: none;
+		padding: $model-header-padding;
+		font-size: $model-header-font-size;
+		font-weight: 400;
+		border-bottom: none;
 	}
 
 	&-body {
 		font-size: $model-body-font-size;
-	    padding: $model-body-padding;
-	    box-sizing: border-box;
-	    overflow-y: hidden;
+		padding: $model-body-padding;
+		box-sizing: border-box;
+		overflow-y: hidden;
 	}
 
 	&-footer {

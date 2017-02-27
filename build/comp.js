@@ -16,7 +16,9 @@ const config = Object.assign(base, {
 	output: {
 		path: DIST_PATH,
 		publicPath: './',
-		filename: '[name].js'
+		filename: '[name].js',
+		libraryTarget: 'umd',
+		library: 'colorful-ui'
 	}
 })
 

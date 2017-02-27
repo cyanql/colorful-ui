@@ -109,8 +109,8 @@ export default {
 
 	&.top {
 		top: 0;
-	    left: 50%;
-	    transform: translate(-50%, 0);
+		left: 50%;
+		transform: translate(-50%, 0);
 	}
 
 	&.top-right {
@@ -125,8 +125,8 @@ export default {
 
 	&.bottom {
 		bottom: 0;
-	    left: 50%;
-	    transform: translate(-50%, 0);
+		left: 50%;
+		transform: translate(-50%, 0);
 	}
 
 	&.bottom-right {

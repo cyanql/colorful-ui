@@ -89,8 +89,8 @@ export default {
 	&-mark {
 		position: relative;
 		line-height: 1;
-	    display: inline-block;
-	    vertical-align: middle;
+		display: inline-block;
+		vertical-align: middle;
 	}
 
 
@@ -136,14 +136,14 @@ export default {
 
 		&:after {
 			position: absolute;
-		    content: '';
-		    left: 4.5px;
-		    top: 1.5px;
-		    width: 5px;
-		    height: 8px;
-		    border-bottom: 2px solid $checkbox-color;
-		    border-right: 2px solid $checkbox-color;
-		    transform: rotate(45deg) scale(0);
+			content: '';
+			left: 4.5px;
+			top: 1.5px;
+			width: 5px;
+			height: 8px;
+			border-bottom: 2px solid $checkbox-color;
+			border-right: 2px solid $checkbox-color;
+			transform: rotate(45deg) scale(0);
 			transition: transform .2s ease;
 		}
 	}
