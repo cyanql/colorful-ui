@@ -1,28 +1,30 @@
 # Colorful-UI
 
-基于Vue.js的UI组件库
+UI component library based on vue.js
 
-## 须知
+## Help
 
 **由于目前组件数量偏少，API修改频繁，所以未正式发布之前NPM包不会同步更新**
 
-## 特性
+**Because the number of components is scarce and API is modified frequently, the NPM package will not be synchronized until it is officially released**
 
-- 借鉴并融合了 Material Design 和 Ant Design 的设计理念
-- 采用ECMAscript新特性构建
-- 简单且丰富的接口设计
+## Features
 
-## 要求
+- Reference and integrate the design concept of Material Design and Ant Design
+- Using the new features of ECMAScript
+- Simple and Friendly API
+
+## Required
 
 - Vue.js(^2.1.0)
 
-## 安装
+## Install
 
-```js
+```bash
 npm install --save colorful-ui
 ```
 
-## 使用
+## Usage
 
 ```js
 import ColorfulUI from 'colorful-ui'
@@ -31,6 +33,8 @@ import 'colorful-ui/dist/colorful-ui.min.css'
 Vue.use(ColorfulUI)
 ```
 
-## 兼容
+## Support
 
-理论支持现代浏览器和IE9及以上（未测试）
+* Chrome@latest-version (Test)
+* IE9+ (Test)
+* Other (No Test)
