@@ -22,7 +22,7 @@
 				</c-sub-menu>
 			</c-sub-menu>
 		</c-menu>
-		<span v-text="value"></span>
+		<span>{{value}}</span>
 	</div>
 </template>
 <script>
@@ -59,7 +59,7 @@ export default {
 				</c-sub-menu>
 			</c-menu-item-group>
 		</c-menu>
-		<span v-text="value"></span>
+		<span>{{value}}</span>
 	</div>
 </template>
 <script>

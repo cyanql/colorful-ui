@@ -11,8 +11,8 @@
 ```html
 <template>
 	<div>
-		<c-tooltip v-for="position in positions" :position="position" text="tooltip text content">
-			<c-button v-text="position"></c-button>
+		<c-tooltip v-for="position in positions" :position="position" :text="position + ' text content'">
+			<c-button>{{position}}</c-button>
 		</c-tooltip>
 	</div>
 </template>

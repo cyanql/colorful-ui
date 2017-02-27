@@ -1,7 +1,12 @@
 <template>
 	<li class="c-sub-menu" :class="mode">
 		<template v-if="mode === 'inline'">
-			<div class="c-sub-menu-title" :class="titleClass" :style="titleStyle" @click="onToggle">
+			<div
+				class="c-sub-menu-title"
+				:class="titleClass"
+				:style="titleStyle"
+				@click="onToggle"
+				>
 				<span class="c-sub-menu-title-text">{{title}}</span>
 				<c-icon class="expand-more" icon="expand_more"></c-icon>
 				<c-ripple v-if="!disabled"></c-ripple>
@@ -13,7 +18,13 @@
 			</expand-transition>
 		</template>
 		<template v-if="mode === 'vertical'">
-			<div class="c-sub-menu-title" :class="titleClass" :style="titleStyle" @mouseover="onOpen" @mouseout="onClose">
+			<div
+				class="c-sub-menu-title"
+				:class="titleClass"
+				:style="titleStyle"
+				@mouseover="onOpen"
+				@mouseout="onClose"
+				>
 				<span class="c-sub-menu-title-text">{{title}}</span>
 				<c-icon class="expand-more" icon="expand_more"></c-icon>
 				<c-ripple v-if="!disabled"></c-ripple>
