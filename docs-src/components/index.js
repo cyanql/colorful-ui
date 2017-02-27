@@ -5,7 +5,7 @@ export {
 }
 
 export default {
-    install(Vue) {
+	install(Vue) {
 		Vue.component(Sample.name, Sample)
-    }
+	}
 }

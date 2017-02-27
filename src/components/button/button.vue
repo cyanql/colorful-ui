@@ -109,13 +109,13 @@ export default {
 
 .c-button {
 	font-size: $btn-font-size;
-    padding: $btn-padding;
+	padding: $btn-padding;
 	border-radius: $btn-border-radius;
 	border: 1px solid transparent;
 	outline: none;
 	background: none;
 	text-align: center;
-    touch-action: manipulation;
+	touch-action: manipulation;
 	cursor: pointer;
 	display: inline-block;
 	margin-bottom: 0;
@@ -129,7 +129,7 @@ export default {
 	span + .c-spin,
 	.c-icon + span,
 	span + .c-icon {
-	    margin-left: 0.5em;
+		margin-left: 0.5em;
 	}
 
 	.scale {

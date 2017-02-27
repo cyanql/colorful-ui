@@ -15,7 +15,6 @@ import getAncester from 'src/utils/getAncester'
 
 export default {
 	name: 'c-option',
-	mixins: [Event],
 	props: {
 		selected: Boolean,
 		value: {

@@ -3,23 +3,32 @@
 ## 示例
 
 
-::: 使用方式
+::: 目标（宿主）
 ===
-默认父级元素为宿主，若设置了`target`属性，则会查找匹配的`ref`
+`target`默认值为`parentComponent`，其它可选值`parentNode` `[ref]`
+- `parentComponent`父级组件为宿主
+- `parentNode`父级节点为宿主
+- `[ref]`查找匹配的`ref`
+
 ===
 ```html
 <template>
 	<div>
 		<c-button>
-			<span>parentNode</span>
+			<span>parentComponent</span>
 			<c-popover>
 				<p>popover text content</p>
 			</c-popover>
 		</c-button>
 
-		<c-button ref="xxxx">
-			<span>ref & target</span>
-		</c-button>
+		<button>
+			<span>parentNode</span>
+			<c-popover target="parentNode">
+				<p>popover text content</p>
+			</c-popover>
+		</button>
+
+		<span ref="xxxx">[ref] + target</span>
 		<c-popover target="xxxx">
 			<p>popover text content</p>
 		</c-popover>
@@ -63,10 +72,10 @@
 <template>
 	<div>
 		<c-button v-for="position in positions">
-			<span v-text="position"></span>
+			<span>{{position}}</span>
 			<c-popover :position="position">
 				<p>popover text content</p>
-				<p v-text="position"></p>
+				<p>{{position}}</p>
 			</c-popover>
 		</c-button>
 	</div>
@@ -101,7 +110,7 @@ export default {
 
 | 属性       | 说明                                       | 类型       | 默认值           |
 | -------- | ---------------------------------------- | -------- | ------------- |
-| target   | 设置宿主元素的`ref`值                            | string   | -             |
+| target   | 设置`parentNode` `parentComponent` 宿主元素的`ref`值  | string   | `parentComponent` |
 | trigger  | 设置触发事件类型，可选值为`hover` `click` 或者不设        | string   | `hover`       |
 | position | 设置浮动层显示位置，可选值为`top-left` `top` `top-right` 等12种 | string   | `bottom-left` |
 | visible  | 设置初始的浮动层是否显示                             | boolean  | false         |

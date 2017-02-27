@@ -1,8 +1,10 @@
 <template>
 	<div class="c-dropdown">
-		<slot></slot>
+		<div class="c-dropdown-trigger" ref="triggerEl">
+			<slot></slot>
+		</div>
 		<transition name="scale">
-			<div ref="content" class="c-dropdown-content" v-show="visibleState">
+			<div ref="contentEl" class="c-dropdown-content" v-show="visibleState">
 				<slot name="content"></slot>
 			</div>
 		</transition>
@@ -46,7 +48,6 @@ export default {
 		return {
 			visibleState: this.visible,
 			timer: null,
-			triggerEl: null,
 			removeClickoutListener: null
 		}
 	},
@@ -64,7 +65,7 @@ export default {
 				const alignFn = align[posA][posB]
 				if (!alignFn)
 					throw new Error()
-				this.$refs.content.transformOrigin = positionArr.join(' ')
+				this.$refs.contentEl.transformOrigin = positionArr.join(' ')
 				return alignFn
 			} catch(e) {
 				throw new Error(`[${this.$options.name}] prop position is unvalid`)
@@ -73,8 +74,8 @@ export default {
 	},
 	methods: {
 		updatePosition() {
-			const contentEl = this.$refs.content
-			,	triggerEl = this.triggerEl
+			const contentEl = this.$refs.contentEl
+			,	triggerEl = this.$refs.triggerEl
 			,	size = getHideOffsetSize(contentEl)
 
 			this.updatePostionFn(contentEl.style, triggerEl, size)
@@ -99,12 +100,8 @@ export default {
 		}
 	},
 	mounted() {
-		const defaultSlots = this.$slots.default
-		const triggerEl = defaultSlots && defaultSlots[0] && defaultSlots[0].elm
-		if (!triggerEl)
-			throw new Error(`[${this.$options.name}] need $slots.default`)
-
-		const contentEl = this.$refs.content
+		const triggerEl = this.$refs.triggerEl
+		const contentEl = this.$refs.contentEl
 
 		if (this.trigger === 'hover') {
 			triggerEl.addEventListener('mouseover', this.onOpen, false)
@@ -117,12 +114,11 @@ export default {
 				this.onClose()
 			})
 		}
-		this.triggerEl = triggerEl
 		this.updatePosition()
 	},
 	beforeDestroy() {
-		const triggerEl = this.triggerEl
-		const contentEl = this.$refs.content
+		const triggerEl = this.$refs.triggerEl
+		const contentEl = this.$refs.contentEl
 		if (this.trigger === 'hover') {
 			triggerEl.removeEventListener('mouseover', this.onOpen, false)
 			triggerEl.removeEventListener('mouseout', this.onClose, false)
@@ -143,6 +139,10 @@ export default {
 	position: relative;
 	display: inline-block;
 	cursor: pointer;
+
+	&-trigger {
+		display: inline-block;
+	}
 
 	&-content {
 		position: absolute;

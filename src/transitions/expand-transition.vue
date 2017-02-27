@@ -1,5 +1,5 @@
 <template>
-    <transition
+	<transition
 		name="expand"
 		@before-enter="beforeEnter"
 		@enter="enter"
@@ -9,7 +9,7 @@
 		@after-leave="afterLeave"
 		>
 	 	<slot></slot>
-    </transition>
+	</transition>
 </template>
 
 <script>

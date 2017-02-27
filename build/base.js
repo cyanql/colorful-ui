@@ -31,15 +31,15 @@ module.exports = {
 		}, {
 			test: /\.vue$/,
 			loader: 'vue-loader',
-            options: {
-                loaders: {
-                    scss: ExtractTextPlugin.extract({
+			options: {
+				loaders: {
+					scss: ExtractTextPlugin.extract({
 						fallback: 'vue-style-loader',
 						use: 'css-loader!sass-loader'
 					})
-                },
-                postcss: [autoprefixer({ browsers: ['> 1%', 'last 2 versions', 'ie >= 9'] })]
-            }
+				},
+				postcss: [autoprefixer({ browsers: ['> 1%', 'last 2 versions', 'ie >= 9'] })]
+			}
 		}, {
 			test: /\.s?css$/,
 			loader: ExtractTextPlugin.extract({

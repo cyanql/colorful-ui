@@ -1,7 +1,7 @@
 <template>
 	<div class="c-popover" @click="onClick">
 		<slot></slot>
-    </div>
+	</div>
 </template>
 
 <script>
@@ -10,7 +10,10 @@ import Pop from 'src/lib/pop'
 export default {
 	name: 'c-popover',
 	props: {
-		target: String,
+		target: {
+			type: String,
+			default: 'parentComponent'	// 'parentComponent' or ref
+		},
 		trigger: {
 			type: String,
 			default: 'hover',
@@ -52,9 +55,17 @@ export default {
 		this.pop.destroy()
 	},
 	mounted() {
-		const { $parent, $el, target, position, trigger, onOpen, onClose, onToggle, visible } = this
-		,	vm = $parent.$refs[target] || $parent
-		,	targetEl = vm ? vm.$el : null
+		const { $parent, $vnode, $el, target, position, trigger, onOpen, onClose, onToggle, visible } = this
+		let targetEl
+
+		if (target === 'parentNode') {
+			targetEl = $el.parentNode
+		} else if (target === 'parentComponent') {
+			targetEl = $parent.$el
+		} else {
+			targetEl = $vnode.context.$refs[target]
+			targetEl = targetEl._isVue ? targetEl.$el : targetEl
+		}
 
 		this.pop = new Pop({
 			target: targetEl,
@@ -82,12 +93,12 @@ export default {
 
 .pop {
 	display: block;
-    position: absolute;
-    left: -9999px;
-    top: -9999px;
-    font-size: 12px;
-    font-weight: normal;
-    z-index: $zindex-popover;
+	position: absolute;
+	left: -9999px;
+	top: -9999px;
+	font-size: 12px;
+	font-weight: normal;
+	z-index: $zindex-popover;
 	// transition: transform .2s cubic-bezier(.4,0,.2,1);
 
 

@@ -128,7 +128,7 @@ export default {
 	&-content {
 		// display: table;
 		// word-spacing: -1em;
-    	word-spacing: -.31em; /* webkit */
+		word-spacing: -.31em; /* webkit */
 		white-space: nowrap;
 		transition: transform .5s ease;
 	}

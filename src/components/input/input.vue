@@ -50,38 +50,38 @@ export default {
 	name: 'c-input',
 	props: {
 		name: String,
-        type: {
-            type: String,
-            default: 'text'
-        },
-        required: {
-            type: Boolean,
-            default: false
-        },
+		type: {
+			type: String,
+			default: 'text'
+		},
+		required: {
+			type: Boolean,
+			default: false
+		},
 		readonly: {
 			type: Boolean,
 			default: false
 		},
-        disabled: {
-            type: Boolean,
-            default: false
-        },
-        autocomplete: String,
-        autofocus: {
-            type: Boolean,
-            default: false
-        },
-        maxlength: Number,
+		disabled: {
+			type: Boolean,
+			default: false
+		},
+		autocomplete: String,
+		autofocus: {
+			type: Boolean,
+			default: false
+		},
+		maxlength: Number,
 		minlength: Number,
-        min: Number,
-        max: Number,
+		min: Number,
+		max: Number,
 		floatingLabel: {
 			type: Boolean,
 			default: false
 		},
-        label: String,
-        placeholder: String,
-        value: [String, Number],
+		label: String,
+		placeholder: String,
+		value: [String, Number],
 		controlled: {
 			type: Boolean,
 			default: false
@@ -99,14 +99,14 @@ export default {
 			type: Boolean,
 			default: false
 		},
-        rows: {
-            type: Number,
-            default: 2
-        },
-        autosize: {
-            type: Boolean,
-            default: true
-        }
+		rows: {
+			type: Number,
+			default: 2
+		},
+		autosize: {
+			type: Boolean,
+			default: true
+		}
 	},
 	data() {
 		return {
@@ -272,24 +272,24 @@ export default {
 	}
 
 	&-hint {
-    	position: absolute;
+		position: absolute;
 		color: rgba(0,0,0,.5);
 		font-size: $input-hint-font-size;
 	}
 
 	&-inner {
 		display: block;
-	    width: 100%;
-	    margin: 0;
-	    padding: $input-inner-vertical-padding 0;
+		width: 100%;
+		margin: 0;
+		padding: $input-inner-vertical-padding 0;
 		cursor: inherit;
 		outline: none;
 		border: none;
-    	border-bottom: 1px solid $input-secondary-color;
+		border-bottom: 1px solid $input-secondary-color;
 		color: inherit;
-	    background: 0 0;
-	    font-size: $input-font-size;
-	    text-align: left;
+		background: 0 0;
+		font-size: $input-font-size;
+		text-align: left;
 
 		&:hover {
 			border-bottom-color: $input-secondary-hover-color;

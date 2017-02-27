@@ -2,15 +2,15 @@ import throttle from 'src/utils/throttle'
 
 const cssText = `
 .pop {
-    position: absolute;
-    left: -9999px;
-    top: -9999px;
-    z-index: 1050;
-    display: block;
-    font-size: 12px;
-    font-weight: normal;
-    line-height: 1.5;
-    transform-origin: 0 0;
+	position: absolute;
+	left: -9999px;
+	top: -9999px;
+	z-index: 1050;
+	display: block;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 1.5;
+	transform-origin: 0 0;
 
 	&.show {
 		animation: pop .2s cubic-bezier(.4,0,.2,1);

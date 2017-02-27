@@ -128,10 +128,10 @@ export default {
 	}
 
 	&-circle {
-	    display: inline-block;
+		display: inline-block;
 		position: relative;
-	    width: $radio-size;
-	    height: $radio-size;
+		width: $radio-size;
+		height: $radio-size;
 		vertical-align: middle;
 	}
 

@@ -11,7 +11,7 @@
 ```html
 <template>
 	<div>
-		<div v-text="value"></div>
+		<div>{{value}}</div>
 		<c-select label="label" v-model="value" floating-label>
 			<c-option value="Apple">Apple</c-option>
 			<c-option value="Pear">Pear</c-option>
@@ -38,7 +38,7 @@ export default {
 ```html
 <template>
 	<div>
-		<div v-text="value"></div>
+		<div>{{value}}</div>
 		<c-select label="label" v-model="value" multiple floating-label>
 			<c-option value="Apple">Apple</c-option>
 			<c-option value="Pear">Pear</c-option>
@@ -65,7 +65,7 @@ export default {
 ```html
 <template>
 	<div>
-		<div v-text="value"></div>
+		<div>{{value}}</div>
 		<c-select label="label" v-model="value" filterable multiple floating-label>
 			<c-option value="Apple">Apple</c-option>
 			<c-option value="Pear">Pear</c-option>
@@ -91,7 +91,7 @@ export default {
 ```html
 <template>
 	<div>
-		<div v-text="value"></div>
+		<div>{{value}}</div>
 		<c-select label="label" v-model="value" filterable addible multiple floating-label>
 			<c-option value="Apple">Apple</c-option>
 			<c-option value="Pear">Pear</c-option>

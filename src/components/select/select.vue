@@ -234,14 +234,14 @@ export default {
 		border: none;
 
 		&-mirror {
-		    position: absolute;
-		    top: -9999px;
-		    left: -9999px;
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
 			z-index: -9999;
 			visibility: hidden;
 			opacity: 0;
-		    white-space: pre;
-		    pointer-events: none;
+			white-space: pre;
+			pointer-events: none;
 		}
 	}
 
@@ -249,7 +249,7 @@ export default {
 		position: absolute;
 		left: 0;
 		width: 100%;
-    	max-height: $select-options-max-height;
+		max-height: $select-options-max-height;
 		margin-top: $select-options-margin-top;
 		background-color: $select-options-bg-color;
 		z-index: $zindex-dropdown;

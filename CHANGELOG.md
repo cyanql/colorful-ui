@@ -11,6 +11,12 @@
 
 ## 0.0.2
 - 新增`tooltip`组件和文档
+- 新增`select`组件和文档
+- 新增`tabs`组件和文档
+- 优化`dropdown`
+- 优化`menu`
+- 优化`modal`
+- 优化`popover`
 - 优化`docs-loader`模块
 - 优化样式文件结构及相关变量
 
@@ -29,8 +35,6 @@
 - 新增`progress`组件和文档
 - 新增`radio`组件和文档
 - 新增`ripple`组件和文档
-- 新增`select`组件和文档
 - 新增`spin`组件和文档
 - 新增`switch`组件和文档
-- 新增`tabs`组件和文档
 - 新增`docs-loader`markdown处理模块

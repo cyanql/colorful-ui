@@ -2,24 +2,31 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import * as Components from './pages/components'
 
-
 Vue.use(VueRouter)
+
+const sepRE = /({{|}})/g
+
+function replaceSeparators(text) {
+	return text.replace(sepRE, '<span>$1</span>')
+}
 
 const routes = Object.keys(Components).map(key => {
 	const name = key.toLowerCase()
 	const tokens = Components[key]
 	const compMap = {}
+	let compName, value
 
 	const text = tokens.reduce((prev, token, index) => {
 		if (token.type === 'sample') {
-			const compName = 'sample-case' + index
-			compMap[compName] = token.value.instance
+			compName = 'sample-case' + index
+			value = token.value
+			compMap[compName] = value.instance
 
 			return prev + `<sample>
 					<template slot="source"><${compName}/></template>
-					<template slot="title">${token.value.title}</template>
-					<template slot="description">${token.value.description}</template>
-					<template slot="escape">${token.value.code.escape}</template>
+					<template slot="title">${value.title}</template>
+					<template slot="description">${value.description}</template>
+					<template slot="escape">${replaceSeparators(value.code.escape)}</template>
 				</sample>`
 		} else {
 			return prev + token.value
@@ -39,13 +46,13 @@ const routes = Object.keys(Components).map(key => {
 
 
 routes.unshift({
-    path: '',
-    redirect: '/button'
+	path: '',
+	redirect: '/button'
 })
 
 // routes.push({
-//     path: '*',
-//     redirect: '/'
+//	 path: '*',
+//	 redirect: '/'
 // })
 
 export default new VueRouter({
