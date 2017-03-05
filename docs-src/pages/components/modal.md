@@ -11,7 +11,7 @@
 <template>
 	<div>
 		<c-button @click="toggleVisible">Toggle</c-button>
-		<c-modal title="Title" :visible="visible">
+		<c-modal title="Title" :visible="visible" @close="onClose">
 			text content text content text content text content text content text content
 			<div slot="footer">
 				<c-button color="primary" @click="toggleVisible">Close</c-button>
@@ -27,10 +27,10 @@ export default {
 	methods: {
 		toggleVisible() {
 			this.visible = !this.visible
+		},
+		onClose(val) {
+			this.visible = val
 		}
-	},
-	mounted() {
-		global.toggleVisible = this.toggleVisible
 	}
 }
 </script>
@@ -64,6 +64,9 @@ export default {
 	methods: {
 		toggleVisible() {
 			this.visible = !this.visible
+		},
+		onClose(val) {
+			this.visible = val
 		}
 	}
 }

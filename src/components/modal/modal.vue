@@ -1,9 +1,9 @@
 <template>
 	<transition name="modal" @enter="enter">
-		<div class="c-modal" v-show="visible">
-			<div class="c-modal-mask"></div>
+		<div class="c-modal" v-show="visibleState">
+			<div class="c-modal-mask" @click="onClose"></div>
 			<div class="c-modal-container" ref="cModalContainer">
-				<div class="c-modal-header">
+				<div class="c-modal-header" v-if="title || $slots.header">
 					<slot name="header">
 						<span class="c-modal-title">{{title}}</span>
 					</slot>
@@ -11,7 +11,7 @@
 				<div class="c-modal-body">
 					<slot></slot>
 				</div>
-				<div class="c-modal-footer">
+				<div class="c-modal-footer" v-if="$slots.footer">
 					<slot name="footer"></slot>
 				</div>
 			</div>
@@ -24,11 +24,25 @@ export default {
 	name: 'c-modal',
 	props: {
 		visible: Boolean,
-		title: String
+		title: String,
+		maskClosable: {
+			type: Boolean,
+			default: true
+		}
 	},
 	data() {
 		return {
+			visibleState: this.visible,
 			triggerEl: null
+		}
+	},
+	watch: {
+		visible(val) {
+			this.visibleState = val
+		},
+		visibleState(val) {
+			val ? this.$emit('open', val) : this.$emit('close', val)
+			this.$emit('toggle', val)
 		}
 	},
 	methods: {
@@ -48,6 +62,11 @@ export default {
 			}
 
 			containerEl.style.transformOrigin = [x, y].join(' ')
+		},
+		onClose() {
+			if (this.maskClosable) {
+				this.visibleState = false
+			}
 		}
 	},
 	mounted() {

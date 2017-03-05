@@ -69,6 +69,42 @@ export default {
 ```
 :::
 
+::: 外部调用
+===
+调用 **Notification** 组件（非实例）上的`notice`方法，首次调用自动创建容器，可通过`destroy`方法主动销毁容器
+===
+```html
+<template>
+	<c-button @click="notice">notice</c-button>
+</template>
+<script>
+import { Notification } from 'src/components'
+const notice = Notification.notice
+const destroy = Notification.destroy
+
+// 用于浏览器测试，可打开Chrome开发者工具，在控制台调用
+global.notice = notice
+global.destroy = destroy
+
+export default {
+	methods: {
+		notice() {
+			notice({
+				text: 'TEXT CONTENT',
+				buttonText: 'UNDO',
+				buttonColor: '#b8b',
+				duration: 2000,
+				position: 'bottom-left'
+			})
+		}
+	},
+	beforeDestroy() {
+		destroy()
+	}
+}
+</script>
+```
+:::
 ## API
 
 ### NotificationContainer

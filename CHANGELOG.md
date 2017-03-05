@@ -9,32 +9,40 @@
 
 ---
 
+## 0.0.3
+- 修复 **Menu** 初始化子级选中状态下父级不显示的问题
+- 修复 **Button** `position`被覆盖的问题
+- **Modal**
+  + 新增`mask-closable`属性，用于背景层关闭
+  + 优化样式
+- **Notification**
+  + 新增`notice`静态方法，首次调用自动创建 **NotificationContainer** 组件
+  + 新增`destroy`静态方法，用于销毁自动创建的 **NotificationContainer** 组件
+
 ## 0.0.2
-- 新增`tooltip`组件和文档
-- 新增`select`组件和文档
-- 新增`tabs`组件和文档
-- 优化`dropdown`
-- 优化`menu`
-- 优化`modal`
-- 优化`popover`
-- 优化`docs-loader`模块
+- 新增 **Tooltip** 组件和文档
+- 新增 **Select** 组件和文档
+- 新增 **Tabs** 组件和文档
+- 优化 **Dropdown**
+- 优化 **Menu**
+- 优化 **Modal**
+- 优化 **Popover**
+- 优化 `docs-loader` 模块
 - 优化样式文件结构及相关变量
 
-
-
 ## 0.0.1
-- 新增`button`组件和文档
-- 新增`checkbox`组件和文档
-- 新增`dropdown`组件和文档
-- 新增`icon`组件和文档
-- 新增`input`组件和文档
-- 新增`menu`组件和文档
-- 新增`modal`组件和文档
-- 新增`notification`组件和文档
-- 新增`popover`组件和文档
-- 新增`progress`组件和文档
-- 新增`radio`组件和文档
-- 新增`ripple`组件和文档
-- 新增`spin`组件和文档
-- 新增`switch`组件和文档
-- 新增`docs-loader`markdown处理模块
+- 新增 **Button** 组件和文档
+- 新增 **Checkbox** 组件和文档
+- 新增 **Dropdown** 组件和文档
+- 新增 **Icon** 组件和文档
+- 新增 **Input** 组件和文档
+- 新增 **Menu** 组件和文档
+- 新增 **Modal** 组件和文档
+- 新增 **Notification** 组件和文档
+- 新增 **Popover** 组件和文档
+- 新增 **Progress** 组件和文档
+- 新增 **Radio** 组件和文档
+- 新增 **Ripple** 组件和文档
+- 新增 **Spin** 组件和文档
+- 新增 **Switch** 组件和文档
+- 新增 `docs-loader` markdown处理模块
