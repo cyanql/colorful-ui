@@ -3,6 +3,8 @@ import './polyfill'
 import 'src/lib/classlist-polyfill'
 import * as Components from './components'
 import * as Transitions from './transitions'
+export * as Components from './components'
+export * as Transitions from './transitions'
 
 const Colorful = {
 	install(Vue) {
