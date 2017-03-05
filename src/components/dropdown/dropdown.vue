@@ -4,7 +4,7 @@
 			<slot></slot>
 		</div>
 		<transition name="scale">
-			<div ref="contentEl" class="c-dropdown-content" v-show="visibleState">
+			<div ref="contentEl" class="c-dropdown-content" :class="position" v-show="visibleState">
 				<slot name="content"></slot>
 			</div>
 		</transition>
@@ -29,7 +29,7 @@ export default {
 	props: {
 		position: {
 			type: String,
-			default: 'bottom-left'
+			default: 'left-bottom'
 		},
 		delay: {
 			type: Number,
@@ -135,6 +135,35 @@ export default {
 <style lang="scss">
 @import "~src/styles/variables";
 
+$dropdown-arrow-size: 5px;
+$dropdown-arrow-stroke: 1px;
+$dropdown-arrow-stroke-color: rgba(0,0,0,.1);
+
+$arrow-arrow-stroke-size: $dropdown-arrow-size + $dropdown-arrow-stroke;
+
+@mixin arrow-position($position-1, $position-2, $position-1-opposite, $offset-per) {
+	margin-#{$position-1-opposite}: $arrow-arrow-stroke-size;
+	transform-origin: if($offset-per == 50%, center, $position-2) $position-1-opposite 0px;
+
+	&:before {
+		#{$position-1-opposite}: -$arrow-arrow-stroke-size;
+		margin-#{$position-2}: -$arrow-arrow-stroke-size;
+		border-#{$position-1}-color: $dropdown-arrow-stroke-color;
+	}
+
+	&:after {
+		#{$position-1-opposite}: -$dropdown-arrow-size;
+		margin-#{$position-2}: -$dropdown-arrow-size;
+		border-#{$position-1}-color: $dropdown-bg-color;
+	}
+
+	&:before,
+	&:after {
+		#{$position-2}: $offset-per;
+		border-#{$position-1-opposite}-width: 0;
+	}
+}
+
 .c-dropdown {
 	position: relative;
 	display: inline-block;
@@ -149,6 +178,41 @@ export default {
 		white-space: nowrap;
 		background-color: $dropdown-bg-color;
 		z-index: $zindex-dropdown;
+
+		&.top-left {@include arrow-position(top, left, bottom, 15px);}
+		&.top {@include arrow-position(top, left, bottom, 50%);}
+		&.top-right {@include arrow-position(top, right, bottom, 15px);}
+
+		&.bottom-left {@include arrow-position(bottom, left, top, 15px);}
+		&.bottom {@include arrow-position(bottom, left, top, 50%);}
+		&.bottom-right {@include arrow-position(bottom, right, top, 15px);}
+
+		&.left-top {@include arrow-position(left, top, right, 15px);}
+		&.left {@include arrow-position(left, top, right, 50%);}
+		&.left-bottom {@include arrow-position(left, bottom, right, 15px);}
+
+		&.right-top {@include arrow-position(right, top, left, 15px);}
+		&.right {@include arrow-position(right, top, left, 50%);}
+		&.right-bottom {@include arrow-position(right, bottom, left, 15px);}
+
+		&:before,
+		&:after {
+			content: '';
+			position: absolute;
+			display: block;
+			width: 0;
+			height: 0;
+			border-color: transparent;
+			border-style: solid;
+		}
+
+		&:before {
+			border-width: $arrow-arrow-stroke-size;
+		}
+
+		&:after {
+			border-width: $dropdown-arrow-size;
+		}
 	}
 
 	.scale {

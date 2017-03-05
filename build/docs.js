@@ -57,12 +57,6 @@ for (const name of Object.keys(config.entry)) {
 }
 
 if (NODE_ENV === 'development') {
-	for (const name of Object.keys(config.entry)) {
-		if (name !== 'lib') {
-			config.entry[name].unshift('webpack/hot/only-dev-server')
-			config.entry[name].unshift('webpack-dev-server/client?http://localhost:3000')
-		}
-	}
 	config.watch = true
 	config.plugins.unshift(new webpack.HotModuleReplacementPlugin())
 }

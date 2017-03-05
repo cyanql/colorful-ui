@@ -36,10 +36,6 @@
 				</c-sub-menu>
 			</c-menu>
 		</c-dropdown>
-
-		<c-dropdown>
-			1
-		</c-dropdown>
 	</div>
 </template>
 ```

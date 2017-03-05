@@ -51,8 +51,9 @@ export default {
 		}
 	},
 	created() {
-		if (this.selected) {
+		if (this.oSelected) {
 			this.menuParent.onSelect(this.value)
+			this.subMenuParent && this.subMenuParent.onSelect(this.value)
 		}
 	},
 	methods: {

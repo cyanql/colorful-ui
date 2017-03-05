@@ -65,7 +65,7 @@ export default {
 <script>
 export default {
 	data: () => ({
-		value: ''
+		value: 'item 7'
 	})
 }
 </script>

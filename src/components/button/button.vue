@@ -181,7 +181,6 @@ export default {
 	}
 
 	&.has-ripple {
-		position: relative;
 		overflow: hidden;
 	}
 

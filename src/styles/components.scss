@@ -69,19 +69,19 @@ $menu-item-group-title-font-size	: $font-size-small;
 
 // Modal
 $model-width						: 520px;
-$model-padding						: 0 20px;
+$model-padding						: 20px;
 $model-border-radius				: $border-radius;
 $model-box-shadow					: $box-shadow;
 
 $model-mask-bg-color				: $bg-color-rgba;
 
-$model-header-padding				: 20px 0;
+$model-header-padding				: 0;
 $model-header-font-size				: $font-size-large;
 
-$model-body-padding					: 0;
+$model-body-padding					: 20px 0;
 $model-body-font-size				: $font-size;
 
-$model-footer-padding				: 50px 0 15px 0;
+$model-footer-padding				: 30px 0 0 0;
 
 
 // Notification
