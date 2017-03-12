@@ -146,7 +146,6 @@ export default {
 			english: 'Popover',
 			chinese: '气泡卡片'
 		}, {
-			disabled: true,
 			english: 'Table',
 			chinese: '表格'
 		}, {

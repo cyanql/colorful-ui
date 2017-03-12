@@ -14,7 +14,7 @@
 		<div class="escape">
 			<slot name="escape"></slot>
 		</div>
-	<div>
+	</div>
 </template>
 
 <script>

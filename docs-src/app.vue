@@ -26,9 +26,7 @@
 				</c-menu-item>
 			</c-menu-item-group>
 		</c-menu>
-		<div class="docs-content docs-markdown">
-			<router-view></router-view>
-		</div>
+		<router-view class="docs-content docs-markdown"></router-view>
 	</div>
 </template>
 

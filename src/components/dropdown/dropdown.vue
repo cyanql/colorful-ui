@@ -29,7 +29,7 @@ export default {
 	props: {
 		position: {
 			type: String,
-			default: 'left-bottom'
+			default: 'bottom-left'
 		},
 		delay: {
 			type: Number,
