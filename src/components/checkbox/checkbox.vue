@@ -4,7 +4,7 @@
 			<span class="c-checkbox-inner" :style="oStyle"></span>
 			<input class="c-checkbox-input" type="checkbox" @change="onChange" v-model="checked" :disabled="disabled">
 		</span>
-		<span class="c-checkbox-text">
+		<span class="c-checkbox-text" v-if="$slots.default">
 			<slot></slot>
 		</span>
 	</label>

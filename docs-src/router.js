@@ -32,12 +32,12 @@ const routes = Object.keys(Components).map(key => {
 			return prev + token.value
 		}
 	}, '')
-
+	
 	return {
 		name,
 		path: '/' + name,
 		component: Vue.component('docs-' + name, {
-			template: `<div>${text}<div>`,
+			template: `<div>${text}</div>`,
 			components: compMap
 		})
 	}

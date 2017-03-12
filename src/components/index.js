@@ -14,6 +14,7 @@ import Select from './select'
 import Spin from './spin'
 import Switch from './switch'
 import Tabs from './tabs'
+import Table from './table'
 import Tooltip from './tooltip'
 
 const MenuItem = Menu.Item
@@ -25,6 +26,13 @@ const NotificationContainer = Notification.Container
 const RadioGroup = Radio.Group
 
 const Tab = Tabs.Tab
+
+
+const Tbody = Table.Tbody
+const Thead = Table.Thead
+const Td = Table.Td
+const Th = Table.Th
+const Tr = Table.Tr
 
 const Option = Select.Option
 
@@ -51,6 +59,12 @@ export {
 	NotificationContainer,
 	RadioGroup,
 	Tab,
+	Table,
+	Tbody,
+	Td,
+	Th,
+	Thead,
+	Tr,
 	Tooltip,
 	Option
 }

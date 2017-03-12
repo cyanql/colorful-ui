@@ -1,5 +1,8 @@
 # Colorful-UI
 
+[![npm version](https://img.shields.io/npm/v/colorful-ui.svg?style=flat-square)](https://www.npmjs.com/package/colorful-ui)
+[![npm license](https://img.shields.io/npm/l/colorful-ui.svg?style=flat-square)](https://spdx.org/licenses/MIT)
+
 UI component library based on vue.js
 
 ## Help

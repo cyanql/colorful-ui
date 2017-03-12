@@ -14,6 +14,7 @@ import Select from './select'
 import Spin from './spin'
 import Switch from './switch'
 import Tabs from './tabs'
+import Table from './table'
 import Tooltip from './tooltip'
 
 export {
@@ -33,5 +34,6 @@ export {
 	Spin,
 	Switch,
 	Tabs,
+	Table,
 	Tooltip
 }
