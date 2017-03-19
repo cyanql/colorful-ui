@@ -19,7 +19,7 @@ UI component library based on vue.js
 
 ## Required
 
-- Vue.js(^2.1.0)
+- Vue.js(^2.2.0)
 
 ## Install
 
